@@ -5,6 +5,11 @@
 \usepackage{graphicx} 
 \usepackage{caption}    
 \usepackage{subcaption} 
+\usepackage{booktabs}
+\usepackage{array}
+
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
 
 \title{Capacitively-Coupled Chopper Instrumentation Amplifier for Linear Hall Effect Sensor \\[1ex] \large IEEE SSCS Chipathon 2026}
 \author{Team Chop}
@@ -47,29 +52,6 @@
 
 \begin{figure}[htbp]
     \centering
-
-    \begin{subfigure}{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
-        \caption{First image.}
-        \label{fig:image_left}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
-        \caption{Second image.}
-        \label{fig:image_right}
-    \end{subfigure}
-
-    \caption{Two images displayed side-by-side.}
-    \label{fig:side_by_side}
-\end{figure}
-
-Fig.~\ref{fig:image_left}
-
-\begin{figure}[htbp]
-    \centering
     \includegraphics[width=0.8\linewidth]{figs/chip_block_diagram.pdf}
     \caption{Block diagram of the proposed architecture.}
     \label{fig:block_diagram}
@@ -77,28 +59,41 @@ Fig.~\ref{fig:image_left}
 
 Fig.~\ref{fig:block_diagram}
 
-\begin{figure}[hbtp]
-    \centering
+\begin{table}[htbp]
+\centering
+\caption{Chip pinout description.}
+\label{tab:pinout}
 
-    \begin{subfigure}{0.8\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
-        \caption{First view.}
-        \label{fig:block_top}
-    \end{subfigure}
+\begin{tabular}{p{2.2cm} p{2.5cm} p{8.0cm}}
+\toprule
 
-    \vspace{0.5cm}
+\multicolumn{3}{l}{\textbf{Analog Pins}} \\
+\midrule
+IREF   & Analog & Current reference \\
+OUT+   & Analog & Differential output positive terminal \\
+OUT-   & Analog & Differential output negative terminal \\
+VTP+   & Analog & Positive analog test point (differential probe node) \\
+VTP-   & Analog & Negative analog test point (differential probe node) \\
+\midrule
 
-    \begin{subfigure}{0.8\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
-        \caption{Second view.}
-        \label{fig:block_bottom}
-    \end{subfigure}
+\multicolumn{3}{l}{\textbf{Digital Interface}} \\
+\midrule
+SCK    & Digital Input & SPI configuration clock \\
+MOSI   & Digital Input & SPI configuration data input \\
+CSn    & Digital Input & SPI chip select (active low; data shifted while low, latched on rising edge) \\
+CLK    & Digital Input & Chopping/spinning clock reference \\
+\midrule
 
-    \caption{Chip block diagram shown twice for testing subfigures.}
-    \label{fig:chip_block_test}
-\end{figure}
+\multicolumn{3}{l}{\textbf{Supply Pins}} \\
+\midrule
+VDD    & Power & Supply input \\
+VSS    & Power & Ground (shared with other Chipathon blocks) \\
+\bottomrule
+
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:pinout}
 
 \subsection{Sensor}
 
