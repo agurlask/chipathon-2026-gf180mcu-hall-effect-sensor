@@ -2,6 +2,9 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{cite}
+\usepackage{graphicx} 
+\usepackage{caption}    
+\usepackage{subcaption} 
 
 \title{Capacitively-Coupled Chopper Instrumentation Amplifier for Linear Hall Effect Sensor \\[1ex] \large IEEE SSCS Chipathon 2026}
 \author{Team Chop}
@@ -41,6 +44,61 @@
     \item Show high-level block diagram
     \item Table of pinouts with signal descriptions/directions
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
+        \caption{First image.}
+        \label{fig:image_left}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
+        \caption{Second image.}
+        \label{fig:image_right}
+    \end{subfigure}
+
+    \caption{Two images displayed side-by-side.}
+    \label{fig:side_by_side}
+\end{figure}
+
+Fig.~\ref{fig:image_left}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figs/chip_block_diagram.pdf}
+    \caption{Block diagram of the proposed architecture.}
+    \label{fig:block_diagram}
+\end{figure}
+
+Fig.~\ref{fig:block_diagram}
+
+\begin{figure}[hbtp]
+    \centering
+
+    \begin{subfigure}{0.8\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
+        \caption{First view.}
+        \label{fig:block_top}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}{0.8\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
+        \caption{Second view.}
+        \label{fig:block_bottom}
+    \end{subfigure}
+
+    \caption{Chip block diagram shown twice for testing subfigures.}
+    \label{fig:chip_block_test}
+\end{figure}
 
 \subsection{Sensor}
 
