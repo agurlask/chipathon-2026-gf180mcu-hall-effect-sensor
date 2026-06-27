@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Project Information}{3}{}%
+\contentsline {section}{\numberline {2}Design Objective}{4}{}%
+\contentsline {section}{\numberline {3}System Overview}{5}{}%
+\contentsline {section}{\numberline {4}Schematic Summary}{6}{}%
+\contentsline {subsection}{\numberline {4.1}Sheet 1.sch}{6}{}%
+\contentsline {subsection}{\numberline {4.2}Sheet 2.sch}{6}{}%
+\contentsline {section}{\numberline {5}Design Assumptions}{7}{}%
+\contentsline {section}{\numberline {6}Verification Status}{8}{}%
+\contentsline {subsection}{\numberline {6.1}Functional Simulations}{8}{}%
+\contentsline {subsection}{\numberline {6.2}Corner Simulations}{8}{}%
+\contentsline {subsection}{\numberline {6.3}Monte Carlo}{8}{}%
+\contentsline {subsection}{\numberline {6.4}Sign-off}{8}{}%
+\contentsline {section}{\numberline {7}Design Checklist}{9}{}%
+\contentsline {subsection}{\numberline {7.1}Functionality}{9}{}%
+\contentsline {subsection}{\numberline {7.2}Analog}{9}{}%
+\contentsline {subsection}{\numberline {7.3}Digital}{9}{}%
+\contentsline {subsection}{\numberline {7.4}Mixed-Signal}{9}{}%
+\contentsline {subsection}{\numberline {7.5}Reliability}{9}{}%
+\contentsline {subsection}{\numberline {7.6}Documentation}{9}{}%
+\contentsline {section}{\numberline {8}Open Issues}{10}{}%
+\contentsline {section}{\numberline {9}Questions for Reviewers}{11}{}%
+\contentsline {section}{\numberline {10}Review Outcome}{12}{}%

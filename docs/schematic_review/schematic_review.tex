@@ -1,0 +1,215 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{cite}
+\usepackage{graphicx} 
+\usepackage{caption}    
+\usepackage{subcaption} 
+\usepackage{booktabs}
+\usepackage{array}
+
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+
+\title{Capacitively-Coupled Chopper Instrumentation Amplifier for Linear Hall Effect Sensor \\[1ex] \large IEEE SSCS Chipathon 2026}
+\author{Team Chop}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Project Information}
+
+\begin{center}
+\begin{tabular}{|c c|} 
+ \hline
+ Project Name & CCIA for Linear Hall Effect Sensor \\
+ \hline
+ Team Members & alang \\ 
+ \hline
+ Review Date &  \\
+ \hline
+ Review Version &  \\
+ \hline
+ Track & B \\
+ \hline
+\end{tabular}
+\end{center}
+
+
+\cite{Lamport1994}
+
+\newpage
+
+\section{Design Objective}
+
+\begin{itemize}
+    \item{What problem does the circuit solve}
+    \item{Target specifications}
+    \item{Intended use within the Chipathon project}
+\end{itemize}
+
+\newpage
+
+\section{System Overview}
+
+\begin{itemize}
+    \item{Block Diagram}
+    \item{Description of each block}
+    \item{Signal Flow}
+    \item{Power Domains}
+    \item{Clock Domains}
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figs/chip_block_diagram.pdf}
+    \caption{Block diagram of the proposed architecture.}
+    \label{fig:block_diagram}
+\end{figure}
+
+Fig.~\ref{fig:block_diagram}
+
+\begin{table}[htbp]
+\centering
+\caption{Chip pinout description.}
+\label{tab:pinout}
+
+\begin{tabular}{p{2.2cm} p{2.5cm} p{8.0cm}}
+\toprule
+
+\multicolumn{3}{l}{\textbf{Analog Pins}} \\
+\midrule
+IREF   & Analog & Current reference \\
+OUT+   & Analog & Differential output positive terminal \\
+OUT-   & Analog & Differential output negative terminal \\
+VTP+   & Analog & Positive analog test point (differential probe node) \\
+VTP-   & Analog & Negative analog test point (differential probe node) \\
+\midrule
+
+\multicolumn{3}{l}{\textbf{Digital Interface}} \\
+\midrule
+SCK    & Digital Input & SPI configuration clock \\
+MOSI   & Digital Input & SPI configuration data input \\
+CSn    & Digital Input & SPI chip select \\
+CLK    & Digital Input & Chopping/spinning clock reference \\
+\midrule
+
+\multicolumn{3}{l}{\textbf{Supply Pins}} \\
+\midrule
+VDD    & Power & Supply input \\
+VSS    & Power & Ground (shared with other Chipathon blocks) \\
+\bottomrule
+
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:pinout}
+
+\newpage
+
+\section{Schematic Summary}
+
+\subsection{Sheet 1.sch}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Important Design Decisions}
+    \item{Interfaces to other blocks}
+\end{itemize}
+
+\subsection{Sheet 2.sch}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Important Design Decisions}
+    \item{Interfaces to other blocks}
+\end{itemize}
+
+\newpage
+
+\section{Design Assumptions}
+
+\begin{itemize}
+    \item{Supply Voltages}
+    \item{Temperature Range}
+    \item{Process Corners}
+    \item{Expected Loads}
+    \item{External Circuitry}
+\end{itemize}
+
+\newpage
+
+\section{Verification Status}
+
+\subsection{Functional Simulations}
+
+\subsection{Corner Simulations}
+
+\subsection{Monte Carlo}
+
+\subsection{Sign-off}
+
+\begin{itemize}
+    \item{ERC Status}
+    \item{DRC Status}
+    \item{LVS Status}
+\end{itemize}
+
+
+\newpage
+
+\section{Design Checklist}
+
+\subsection{Functionality}
+
+\subsection{Analog}
+
+\subsection{Digital}
+
+\subsection{Mixed-Signal}
+
+\subsection{Reliability}
+
+\subsection{Documentation}
+
+\newpage
+
+\section{Open Issues}
+
+List of open issues with:
+
+\begin{itemize}
+    \item{Description}
+    \item{Impact}
+    \item{Proposed Solution}
+    \item{Owner}
+\end{itemize}
+
+\newpage
+
+\section{Questions for Reviewers}
+
+\newpage
+
+\section{Review Outcome}
+
+\newpage
+
+\section*{Appendix}
+
+\newpage
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
