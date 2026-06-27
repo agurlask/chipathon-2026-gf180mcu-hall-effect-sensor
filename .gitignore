@@ -13,4 +13,5 @@ img/
 *.fdb_latexmk
 *.fls
 *.log
+*.toc
 docs/refs
