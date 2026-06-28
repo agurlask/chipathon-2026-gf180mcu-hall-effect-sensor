@@ -8,6 +8,9 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{siunitx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{indentfirst}
 
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
@@ -15,6 +18,8 @@
 \title{Capacitively-Coupled Chopper Instrumentation Amplifier for Linear Hall Effect Sensor \\[1ex] \large IEEE SSCS Chipathon 2026}
 \author{Team Chop}
 \date{\today}
+
+\setcounter{secnumdepth}{0}
 
 \begin{document}
 
@@ -44,27 +49,48 @@
 \end{tabular}
 \end{center}
 
-
-\cite{Lamport1994}
-
 \newpage
 
 \section{Design Objective}
 
-The aim of this Chipathon project is to design and characterize a monolithic magnetic sensing system based on the Hall Effect. 
+The aim of this project is to design and characterize a monolithic magnetic sensing system based on the Hall Effect. 
 If tapeout is completed, the specifications of the sensor and readout circuit will be characterized individually.
 
-The target specifications are split into three parts: (1) Hall Effect sensor, (2) readout circuit, (3) full magnetic sensing system. 
-See the Appendix for the full specifications documents for both components. Below are three tables summarizing the desired 
-specifications for the three parts. 
+The target specifications for the magnetic sensing system are shown in Table~\ref{tab:system_specs}. 
+See the Appendix for the full working specification documents for all blocks. 
 
-(insert sensor specifications table)
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c c|}
+        \hline
+        \textbf{Specification} & \textbf{Value} \\
+        \hline
+        Maximum Offset & \SI{100}{\micro\tesla} \\
+        \hline
+        Area & \SI{0.25}{\milli\meter\squared} \\
+        \hline
+        Resolution & \SI{100}{\micro\tesla}\textsubscript{rms} \\
+        \hline
+        Input Range & $\pm$\SI{100}{\milli\tesla} \\
+        \hline
+        Bandwidth & \SI{10}{\kilo\hertz} \\
+        \hline
+        Supply Voltage & \SI{3.3}{\volt} \\
+        \hline
+        Supply Current & \SI{5}{\milli\ampere} \\
+        \hline
+        Temperature Range & \SIrange{-40}{125}{\degreeCelsius} \\
+        \hline
+        Clock Frequency & \SI{100}{\kilo\hertz} \\
+        \hline
+        Output Common-Mode Voltage & \SI{1}{\volt} \\
+        \hline
+    \end{tabular}
+    \caption{System Specifications}
+    \label{tab:system_specs}
+\end{table}
 
-(insert readout circuit specifications table)
-
-(insert full system specifications)
-
-The motivation for this project in the context of the Chipathon project is to provide reusable IP to the open-source silicon community.
+The motivation for this project in the context of the Chipathon program is to provide reusable IP to the open-source silicon community.
 Priority will be given to designing a simple system that can be well characterized as opposed to a novel system.
 Overall, if the tapeout is successful, future designers would be able to reuse and customize both the sensor design and
 the readout circuit for their specific application. In any case, future Chipathon participants will be able to learn from the 
@@ -78,96 +104,133 @@ A block diagram of the system is shown in Fig.~\ref{fig:block_diagram}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{figs/chip_block_diagram.pdf}
+    \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
     \caption{Block diagram of the proposed architecture.}
     \label{fig:block_diagram}
 \end{figure}
 
 In the diagram, an on-chip horizontal Hall plate converts an incoming magnetic
-field into a small voltage that is amplified by the instrumentation amplifier
-prior to being driven to the DUT output pins. The entire design operates with 
+field (perpendicular to plane of chip) into a small voltage that is amplified by the instrumentation amplifier (IA)
+prior to being driven to the DUT output pins (OUT+/OUT-). The entire design operates from 
 a single supply. Aside from the SPI configuration interface (only used during idle periods), 
 the entire design operates in a single synchronous clock domain derived from the external clock signal (CLK).
-Two additional pins are used as analog debug pins (V+ and V-). Based on the configuration, these pins will be used
-to characterize the sensor and the readout circuit individually.
+Two additional pins are used as analog debug pins (V+/V-). Based on the system configuration, these pins will used
+to probe various points within the design to enable individual characterization of the sensor and IA.
 
-A full pinout table is given in Table~\ref{tab:pinout}. The remaining subsections discuss the
-detailed operation of each block.
+A full pinout table of the design is given in Table~\ref{tab:pinout}.
 
-\begin{table}[htbp]
-\centering
-\caption{Chip pinout description.}
-\label{tab:pinout}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\linewidth}{l l X}
+        \toprule
 
-\begin{tabular}{p{2.2cm} p{2.5cm} p{8.0cm}}
-\toprule
+        \multicolumn{3}{l}{\textbf{Analog Pins}} \\
+        \midrule
+        IREF   & Analog & Current reference \\
+        OUT+   & Analog & (+) Output \\
+        OUT-   & Analog & (-) Output \\
+        VTP+   & Analog & (+) Test Point \\
+        VTP-   & Analog & (-) Test Point \\
+        \midrule
 
-\multicolumn{3}{l}{\textbf{Analog Pins}} \\
-\midrule
-IREF   & Analog & Current reference \\
-OUT+   & Analog & Differential output positive terminal \\
-OUT-   & Analog & Differential output negative terminal \\
-VTP+   & Analog & Positive analog test point (differential probe node) \\
-VTP-   & Analog & Negative analog test point (differential probe node) \\
-\midrule
+        \multicolumn{3}{l}{\textbf{Digital Pins}} \\
+        \midrule
+        SCK    & Digital Input & SPI configuration clock \\
+        MOSI   & Digital Input & SPI configuration data input \\
+        CSn    & Digital Input & SPI chip select \\
+        CLK    & Digital Input & Chopping/spinning clock reference \\
+        \midrule
 
-\multicolumn{3}{l}{\textbf{Digital Pins}} \\
-\midrule
-SCK    & Digital Input & SPI configuration clock \\
-MOSI   & Digital Input & SPI configuration data input \\
-CSn    & Digital Input & SPI chip select \\
-CLK    & Digital Input & Chopping/spinning clock reference \\
-\midrule
-
-\multicolumn{3}{l}{\textbf{Supply Pins}} \\
-\midrule
-VDD    & Power & Supply input \\
-VSS    & Power & Ground (shared with other Chipathon blocks) \\
-\bottomrule
-
-\end{tabular}
+        \multicolumn{3}{l}{\textbf{Supply Pins}} \\
+        \midrule
+        VDD    & Power & Supply input \\
+        VSS    & Power & Ground (shared with other Chipathon blocks) \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Project I/O description.}
+    \label{tab:pinout}
 \end{table}
-
-\subsection{On-Chip Hall Plate}
-
-\subsection{Bias Generation}
-
-\subsection{Spinning Current Generation}
-
-\subsection{Timing Signal Generation}
-
-\subsection{Configuration Register}
-
-\subsection{Instrumentation Amplifier}
 
 \newpage
 
 \section{Schematic Summary}
 
-\subsection{Sheet 1.sch}
+This section describes the schematic-level operation of each part of the design. For each block, 
+both behavioral and transistor-level models are described, including motivation for key design 
+decisions. For all blocks, the transistor-level sizing is subject to change during the verification
+process.
+
+\subsection{On-Chip Hall Plate}
 
 \begin{itemize}
     \item{Purpose}
     \item{Inputs and Outputs}
-    \item{Important Design Decisions}
-    \item{Interfaces to other blocks}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
 \end{itemize}
 
-\subsection{Sheet 2.sch}
+\subsection{Bias Generation}
 
 \begin{itemize}
     \item{Purpose}
     \item{Inputs and Outputs}
-    \item{Important Design Decisions}
-    \item{Interfaces to other blocks}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
+\end{itemize}
+
+\subsection{Spinning Current Generation}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
+\end{itemize}
+
+\subsection{Timing Signal Generation}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
+\end{itemize}
+
+\subsection{Configuration Register}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
+\end{itemize}
+
+\subsection{Instrumentation Amplifier}
+
+\begin{itemize}
+    \item{Purpose}
+    \item{Inputs and Outputs}
+    \item{Sub-sheets}
+    \item{Behavioral Model}
+    \item{Design Methodology}
+    \item{Transistor-Level Implementation}
 \end{itemize}
 
 \newpage
 
 \section{Design Assumptions}
 
-As stated in the specifications, the following assumptions
-are made within the design.
+The following assumptions are made within the design.
 
 \begin{itemize}
     \item{The circuit shall be designed to operate from a single 3.3V supply}
@@ -201,22 +264,54 @@ are made within the design.
     \item{LVS Status}
 \end{itemize}
 
-
 \newpage
 
 \section{Design Checklist}
 
 \subsection{Functionality}
 
+\begin{itemize}
+    \item{Requirements implemented}
+    \item{Reset behavior verified}
+    \item{Startup verified}
+    \item{Power sequencing considered}
+\end{itemize}
+
 \subsection{Analog}
+
+\begin{itemize}
+    \item{Bias currents checked}
+    \item{Device operating regions verified}
+    \item{Stability analyzed}
+    \item{Noise considered}
+    \item{Matching requirements identified}
+\end{itemize}
 
 \subsection{Digital}
 
+N/A
+
 \subsection{Mixed-Signal}
+
+N/A
 
 \subsection{Reliability}
 
+\begin{itemize}
+    \item{Device voltage limits checked}
+    \item{Current density reviewed}
+    \item{Latch-up prevention considered}
+    \item{ESD strategy identified}
+\end{itemize}
+
 \subsection{Documentation}
+
+\begin{itemize}
+    \item{Nets clearly named}
+    \item{Hierarchy consistent}
+    \item{Parameters documented}
+    \item{Symbols match implementation}
+\end{itemize}
 
 \newpage
 
@@ -241,10 +336,14 @@ List of open issues with:
 
 \newpage
 
-\section*{Appendix}
+\section{Appendix}
+
+\cite{Lamport1994}
 
 \newpage
 
+\cleardoublepage
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
