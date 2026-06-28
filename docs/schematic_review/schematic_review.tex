@@ -7,6 +7,7 @@
 \usepackage{subcaption} 
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{siunitx}
 
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
@@ -50,23 +51,30 @@
 
 \section{Design Objective}
 
-\begin{itemize}
-    \item{What problem does the circuit solve}
-    \item{Target specifications}
-    \item{Intended use within the Chipathon project}
-\end{itemize}
+The aim of this Chipathon project is to design and characterize a monolithic magnetic sensing system based on the Hall Effect. 
+If tapeout is completed, the specifications of the sensor and readout circuit will be characterized individually.
+
+The target specifications are split into three parts: (1) Hall Effect sensor, (2) readout circuit, (3) full magnetic sensing system. 
+See the Appendix for the full specifications documents for both components. Below are three tables summarizing the desired 
+specifications for the three parts. 
+
+(insert sensor specifications table)
+
+(insert readout circuit specifications table)
+
+(insert full system specifications)
+
+The motivation for this project in the context of the Chipathon project is to provide reusable IP to the open-source silicon community.
+Priority will be given to designing a simple system that can be well characterized as opposed to a novel system.
+Overall, if the tapeout is successful, future designers would be able to reuse and customize both the sensor design and
+the readout circuit for their specific application. In any case, future Chipathon participants will be able to learn from the 
+successes and failures of the project. 
 
 \newpage
 
 \section{System Overview}
 
-\begin{itemize}
-    \item{Block Diagram}
-    \item{Description of each block}
-    \item{Signal Flow}
-    \item{Power Domains}
-    \item{Clock Domains}
-\end{itemize}
+A block diagram of the system is shown in Fig.~\ref{fig:block_diagram}. 
 
 \begin{figure}[htbp]
     \centering
@@ -75,7 +83,16 @@
     \label{fig:block_diagram}
 \end{figure}
 
-Fig.~\ref{fig:block_diagram}
+In the diagram, an on-chip horizontal Hall plate converts an incoming magnetic
+field into a small voltage that is amplified by the instrumentation amplifier
+prior to being driven to the DUT output pins. The entire design operates with 
+a single supply. Aside from the SPI configuration interface (only used during idle periods), 
+the entire design operates in a single synchronous clock domain derived from the external clock signal (CLK).
+Two additional pins are used as analog debug pins (V+ and V-). Based on the configuration, these pins will be used
+to characterize the sensor and the readout circuit individually.
+
+A full pinout table is given in Table~\ref{tab:pinout}. The remaining subsections discuss the
+detailed operation of each block.
 
 \begin{table}[htbp]
 \centering
@@ -94,7 +111,7 @@ VTP+   & Analog & Positive analog test point (differential probe node) \\
 VTP-   & Analog & Negative analog test point (differential probe node) \\
 \midrule
 
-\multicolumn{3}{l}{\textbf{Digital Interface}} \\
+\multicolumn{3}{l}{\textbf{Digital Pins}} \\
 \midrule
 SCK    & Digital Input & SPI configuration clock \\
 MOSI   & Digital Input & SPI configuration data input \\
@@ -111,7 +128,17 @@ VSS    & Power & Ground (shared with other Chipathon blocks) \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:pinout}
+\subsection{On-Chip Hall Plate}
+
+\subsection{Bias Generation}
+
+\subsection{Spinning Current Generation}
+
+\subsection{Timing Signal Generation}
+
+\subsection{Configuration Register}
+
+\subsection{Instrumentation Amplifier}
 
 \newpage
 
@@ -139,12 +166,21 @@ Table~\ref{tab:pinout}
 
 \section{Design Assumptions}
 
+As stated in the specifications, the following assumptions
+are made within the design.
+
 \begin{itemize}
-    \item{Supply Voltages}
-    \item{Temperature Range}
-    \item{Process Corners}
-    \item{Expected Loads}
-    \item{External Circuitry}
+    \item{The circuit shall be designed to operate from a single 3.3V supply}
+    \item{The circuit shall be designed to operate over the temperature range of (\SI{-40}{\degreeCelsius} - \SI{125}{\degreeCelsius})}
+    \item{The specifications of each circuit shall be simulated over all worst-case process corners}
+    \item{Each analog output (both (+) and (-)) of the readout circuit shall be capable of driving a 10 pF off-chip load}
+    \item{
+    To test the full system, an external magnetic 
+    field will be applied via a Helmholtz coil pair. 
+    A printed circuit board will be designed to supply 
+    all DUT inputs and condition the differential 
+    readout circuit output prior to digitization.
+    }
 \end{itemize}
 
 \newpage
