@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage{indentfirst}
+\usepackage{xcolor}
 
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
@@ -77,7 +78,7 @@ See the Appendix for the full working specification documents for all blocks.
         \hline
         Supply Voltage & \SI{3.3}{\volt} \\
         \hline
-        Supply Current & \SI{5}{\milli\ampere} \\
+        Supply Current & \SI{2}{\milli\ampere} \\
         \hline
         Temperature Range & \SIrange{-40}{125}{\degreeCelsius} \\
         \hline
@@ -236,7 +237,10 @@ The following assumptions are made within the design.
     \item{The circuit shall be designed to operate from a single 3.3V supply}
     \item{The circuit shall be designed to operate over the temperature range of (\SI{-40}{\degreeCelsius} - \SI{125}{\degreeCelsius})}
     \item{The specifications of each circuit shall be simulated over all worst-case process corners}
-    \item{Each analog output (both (+) and (-)) of the readout circuit shall be capable of driving a 10 pF off-chip load}
+    \item{Each analog output (both OUT+ and OUT-) of the 
+    readout circuit shall be capable of driving a 
+    10 pF off-chip load (representative of commericially available 
+    CMOS op amps).}
     \item{
     To test the full system, an external magnetic 
     field will be applied via a Helmholtz coil pair. 
@@ -252,16 +256,24 @@ The following assumptions are made within the design.
 
 \subsection{Functional Simulations}
 
+Not started
+
 \subsection{Corner Simulations}
 
+Not started
+
+
 \subsection{Monte Carlo}
+
+Not started
+
 
 \subsection{Sign-off}
 
 \begin{itemize}
-    \item{ERC Status}
-    \item{DRC Status}
-    \item{LVS Status}
+    \item{ERC Status \textcolor{red}{$\times$}}
+    \item{DRC Status \textcolor{red}{$\times$}}
+    \item{LVS Status \textcolor{red}{$\times$}}
 \end{itemize}
 
 \newpage
@@ -271,20 +283,20 @@ The following assumptions are made within the design.
 \subsection{Functionality}
 
 \begin{itemize}
-    \item{Requirements implemented}
-    \item{Reset behavior verified}
-    \item{Startup verified}
-    \item{Power sequencing considered}
+    \item{Requirements implemented \textcolor{red}{$\times$}}
+    \item{Reset behavior verified \textcolor{red}{$\times$}}
+    \item{Startup verified \textcolor{red}{$\times$}}
+    \item{Power sequencing considered \textcolor{red}{$\times$}}
 \end{itemize}
 
 \subsection{Analog}
 
 \begin{itemize}
-    \item{Bias currents checked}
-    \item{Device operating regions verified}
-    \item{Stability analyzed}
-    \item{Noise considered}
-    \item{Matching requirements identified}
+    \item{Bias currents checked \textcolor{red}{$\times$}}
+    \item{Device operating regions verified \textcolor{red}{$\times$}}
+    \item{Stability analyzed \textcolor{red}{$\times$}}
+    \item{Noise considered \textcolor{red}{$\times$}}
+    \item{Matching requirements identified \textcolor{red}{$\times$}}
 \end{itemize}
 
 \subsection{Digital}
@@ -298,19 +310,19 @@ N/A
 \subsection{Reliability}
 
 \begin{itemize}
-    \item{Device voltage limits checked}
-    \item{Current density reviewed}
-    \item{Latch-up prevention considered}
-    \item{ESD strategy identified}
+    \item{Device voltage limits checked \textcolor{red}{$\times$}}
+    \item{Current density reviewed \textcolor{red}{$\times$}}
+    \item{Latch-up prevention considered \textcolor{red}{$\times$}}
+    \item{ESD strategy identified \textcolor{red}{$\times$}}
 \end{itemize}
 
 \subsection{Documentation}
 
 \begin{itemize}
-    \item{Nets clearly named}
-    \item{Hierarchy consistent}
-    \item{Parameters documented}
-    \item{Symbols match implementation}
+    \item{Nets clearly named \textcolor{red}{$\times$}}
+    \item{Hierarchy consistent \textcolor{red}{$\times$}}
+    \item{Parameters documented \textcolor{red}{$\times$}}
+    \item{Symbols match implementation \textcolor{red}{$\times$}}
 \end{itemize}
 
 \newpage
