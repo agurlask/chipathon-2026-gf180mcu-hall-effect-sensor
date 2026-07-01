@@ -7,3 +7,11 @@ final/
 img/
 *.lyrdb
 .ipynb_checkpoints/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+docs/refs

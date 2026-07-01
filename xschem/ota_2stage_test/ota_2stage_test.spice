@@ -1,0 +1,53 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota_2stage_test/ota_2stage_test.sch
+**.subckt ota_2stage_test
+x1 vcm vin_p vin_n net4 net1 ota_bhv rout=10e6 dc_gain=5000
+x2 vcm net1 net4 vout_p vout_n ota_bhv rout=100e3 dc_gain=100
+C3 vout_n net2 {cc}
+R3 net2 net1 {rc}
+C4 vout_p net3 {cc}
+R4 net3 net4 {rc}
+V3 vin_cm vss {vin_cm}
+V5 vin_p vin_cm DC 0 AC 0.5 0
+V4 vin_n vin_cm DC 0 AC 0.5 180
+C1 vout_p vss {cl}
+C2 vout_n vss {cl}
+V2 vdd vss 3.3
+V6 vss 0 0
+V1 vcm vss 1.65
+**** begin user architecture code
+
+.param cl=10p
+.param rc=10k
+.param cc=1p
+
+
+.param vin_cm=0.8
+.param vout_cm=1
+.control
+ac dec 10 1 1G
+setplot ac1
+let vdiff = v(vout_p) - v(vout_n)
+plot vdb(vdiff)
+set units=degrees
+plot phase(vdiff)
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ota_bhv/ota_bhv.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota_bhv/ota_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota_bhv/ota_bhv.sch
+.subckt ota_bhv vcm vin_p vin_n vout_p vout_n  rout=1e6 dc_gain=1000
+*.iopin vcm
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+G1 vout_n vcm vin_p vin_n {0.5*dc_gain/rout}
+R1 vout_n vcm {rout}
+G2 vout_p vcm vin_n vin_p {0.5*dc_gain/rout}
+R2 vout_p vcm {rout}
+.ends
+
+.end
