@@ -185,7 +185,7 @@ of each block.
 \subsubsection*{Purpose}
 
 The on-chip Hall plate is a four-terminal device. Throughout the design,
-the naming convention given in (FIXME) is used to refer to the four terminal device. The orientation
+the naming convention given in \cite{Mosser2017SpinningCurrent} is used to refer to the four terminal device. The orientation
 of the four pins, (a+, b+, a-, b-), is shown in Fig.~\ref{fig:hall_plate_bhv}. As hinted
 in the schematic symbol, a cross-shaped plate geometry is used to enable
 four-phase spinning current operation, described in Section~\ref{subsec:spinning_current_generation}.
@@ -217,7 +217,7 @@ INSERT I/O TABLE
 \subsubsection*{Behavioral Model}
 
 The plan for sensor behavioral modeling is to use the basic model linear model 
-described in (FIXME). Clearly, the symbol shown in Fig.~\ref{fig:hall_plate_bhv} needs an
+described in \cite{Xu2011ImprovedEquivalent}. Clearly, the symbol shown in Fig.~\ref{fig:hall_plate_bhv} needs an
 additional input to provide the incoming magnetic field.
 
 \subsubsection*{Design Methodology}
@@ -225,7 +225,7 @@ additional input to provide the incoming magnetic field.
 \begin{itemize}
     \item{n-well used to maximize sensitivity}
     \item{
-        Design equations in (FIXME) used to estimate bridge resistor values 
+        Design equations in \cite{Xu2011ImprovedEquivalent} used to estimate bridge resistor values 
         in behavioral model from n-well sheet resistance and geometry
     }
 \end{itemize}
@@ -300,7 +300,7 @@ in later processing stages.
 
 A conceptual schematic diagram of the spinning current generation block is shown 
 in Fig.~\ref{fig:spinning_current_gen_bhv}. The naming convention for spinning clocks
-is stolen from (FIXME), where \textit{sp(x)} clocks show the active phase, 
+is stolen from \cite{Jiang2019CMOSWideBandwidth}, where \textit{sp(x)} clocks show the active phase, 
 \textit{phi(x)} clocks are used to connect the sensor bias currents to the BIAS terminals,
 and \textit{o(x)} clocks are used to connect the SENSE terminals to the IA input.
 Separate clocks are used to connect the BIAS and SENSE terminals to avoid adding additional 
@@ -379,7 +379,7 @@ an event-driven paradigm.
 
 \subsubsection*{Design Methodology}
 
-The clock generation circuits from Chapter X of (FIXME) will be used. 
+The clock generation circuits from Chapter X of \cite{Jiang2019CMOSWideBandwidth} will be used. 
 
 \subsubsection*{Transistor-Level Implementation}
 
@@ -394,6 +394,8 @@ bias current, (2) preamplifier voltage input (i.e., disconnect sensor and supply
 Once more of the implementation is completed, these configuration options will be revisited.
 
 \subsection{Instrumentation Amplifier}
+
+The IA will use a CCIA structure very similar to the one reported in \cite{Zou2023CMOSHallArray}.
 
 \begin{itemize}
     \item{Purpose}
@@ -527,7 +529,9 @@ List of open issues with:
 
 \section{Appendix}
 
-\cite{Lamport1994}
+
+
+
 
 \newpage
 
