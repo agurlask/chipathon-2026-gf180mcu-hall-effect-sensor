@@ -62,8 +62,8 @@ N 1480 -540 1590 -540 {lab=ia_vin_n}
 N 1590 -540 1600 -540 {lab=ia_vin_n}
 N 1600 -820 1600 -780 {lab=vdd}
 N 1600 -220 1600 -180 {lab=vss}
-N 1980 -540 2100 -540 {lab=ia_vout_p}
-N 1980 -620 2100 -620 {lab=ia_vout_n}
+N 1980 -540 2100 -540 {lab=vout_p}
+N 1980 -620 2100 -620 {lab=vout_n}
 N 1860 -820 1860 -780 {lab=o1}
 N 1880 -820 1880 -780 {lab=o2}
 N 1900 -820 1900 -780 {lab=o3}
@@ -71,17 +71,14 @@ N 1920 -810 1920 -780 {lab=o4}
 N 1920 -820 1920 -810 {lab=o4}
 N 860 -340 960 -340 {lab=clk}
 N 860 -300 960 -300 {lab=cs_n}
-N 920 -980 920 -820 {lab=sens_ibias}
-N 1780 -960 1780 -780 {lab=ia_ibias}
-N 1750 -960 1780 -960 {lab=ia_ibias}
-N 1480 -960 1750 -960 {lab=ia_ibias}
-N 920 -1040 920 -980 {lab=sens_ibias}
-N 1800 -1040 1800 -780 {lab=ia_ibias}
-N 1380 -960 1480 -960 {lab=ia_ibias}
-N 1380 -1040 1380 -960 {lab=ia_ibias}
-N 680 -1040 680 -1000 {lab=iref}
-N 640 -1040 640 -1000 {lab=vss}
-N 640 -1180 640 -1140 {lab=vdd}
+N 680 -910 680 -870 {lab=iref}
+N 640 -910 640 -870 {lab=vss}
+N 640 -1050 640 -1010 {lab=vdd}
+N 1780 -840 1780 -780 {lab=ia_ibias}
+N 1380 -910 1380 -840 {lab=ia_ibias}
+N 1380 -840 1780 -840 {lab=ia_ibias}
+N 1800 -910 1800 -780 {lab=vcm}
+N 920 -910 920 -820 {lab=sens_ibias}
 C {title.sym} 160 -40 0 0 {name=l1 author="alang"}
 C {iopin.sym} 0 -810 0 0 {name=p1 lab=iref}
 C {iopin.sym} 0 -770 0 0 {name=p2 lab=vdd}
@@ -105,7 +102,6 @@ C {lab_wire.sym} 340 -580 0 1 {name=p14 sig_type=std_logic lab=sck}
 C {noconn.sym} 420 -620 0 1 {name=l6}
 C {lab_wire.sym} 340 -620 0 1 {name=p16 sig_type=std_logic lab=mosi}
 C {spinning_current_gen_bhv/spinning_current_gen_bhv.sym} 920 -480 0 0 {name=x1}
-C {clkgen_bhv/clkgen_bhv.sym} 960 -240 0 0 {name=x2}
 C {hall_plate_bhv/hall_plate_bhv.sym} 640 -540 0 0 {name=x3}
 C {lab_wire.sym} 830 -680 0 0 {name=p17 sig_type=std_logic lab=sens_ap}
 C {lab_wire.sym} 830 -600 0 0 {name=p18 sig_type=std_logic lab=sens_bp}
@@ -132,18 +128,19 @@ C {lab_wire.sym} 1600 -820 1 1 {name=p37 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 1600 -180 3 1 {name=p38 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1560 -620 0 0 {name=p39 sig_type=std_logic lab=ia_vin_p}
 C {lab_wire.sym} 1560 -540 0 0 {name=p40 sig_type=std_logic lab=ia_vin_n}
-C {lab_wire.sym} 2100 -540 0 0 {name=p41 sig_type=std_logic lab=ia_vout_p}
-C {lab_wire.sym} 2100 -620 0 0 {name=p42 sig_type=std_logic lab=ia_vout_n}
+C {lab_wire.sym} 2100 -540 0 0 {name=p41 sig_type=std_logic lab=vout_p}
+C {lab_wire.sym} 2100 -620 0 0 {name=p42 sig_type=std_logic lab=vout_n}
 C {lab_wire.sym} 1860 -820 3 0 {name=p43 sig_type=std_logic lab=o1}
 C {lab_wire.sym} 1880 -820 3 0 {name=p44 sig_type=std_logic lab=o2}
 C {lab_wire.sym} 1900 -820 3 0 {name=p45 sig_type=std_logic lab=o3}
 C {lab_wire.sym} 1920 -820 3 0 {name=p46 sig_type=std_logic lab=o4}
 C {lab_wire.sym} 860 -300 0 1 {name=p47 sig_type=std_logic lab=cs_n}
 C {lab_wire.sym} 860 -340 0 1 {name=p15 sig_type=std_logic lab=clk}
-C {bias_gen_bhv/bias_gen_bhv.sym} 640 -1040 0 0 {name=x5}
-C {lab_wire.sym} 680 -1000 1 0 {name=p48 sig_type=std_logic lab=iref}
-C {lab_wire.sym} 640 -1000 1 0 {name=p49 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 640 -1180 1 1 {name=p50 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 920 -950 1 0 {name=p51 sig_type=std_logic lab=sens_ibias}
-C {lab_wire.sym} 1380 -960 1 0 {name=p52 sig_type=std_logic lab=ia_ibias}
-C {lab_wire.sym} 1800 -960 1 0 {name=p53 sig_type=std_logic lab=vcm}
+C {bias_gen_bhv/bias_gen_bhv.sym} 640 -910 0 0 {name=x5}
+C {lab_wire.sym} 680 -870 1 0 {name=p48 sig_type=std_logic lab=iref}
+C {lab_wire.sym} 640 -870 1 0 {name=p49 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 640 -1050 1 1 {name=p50 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 920 -820 1 0 {name=p51 sig_type=std_logic lab=sens_ibias}
+C {lab_wire.sym} 1380 -840 1 0 {name=p52 sig_type=std_logic lab=ia_ibias}
+C {lab_wire.sym} 1800 -840 1 0 {name=p53 sig_type=std_logic lab=vcm}
+C {clk_gen_bhv/clk_gen_bhv.sym} 960 -240 0 0 {name=x2}
