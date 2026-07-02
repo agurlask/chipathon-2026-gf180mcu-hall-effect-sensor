@@ -1,0 +1,62 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv_tb.sch
+**.subckt hall_plate_bhv_tb
+I0 0 net1 1m
+C2 sens_bp 0 1p
+x1 net1 sens_bp 0 sens_bn net2 0 hall_plate_bhv
+C1 sens_bn 0 1p
+V1 net2 0 0
+**** begin user architecture code
+
+.op
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  hall_plate_bhv/hall_plate_bhv.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv.sch
+.subckt hall_plate_bhv sens_ap sens_bp sens_an sens_bn bin_p bin_n
+*.iopin sens_bn
+*.iopin sens_an
+*.iopin sens_bp
+*.iopin sens_ap
+*.iopin bin_p
+*.iopin bin_n
+R1 net1 net2 {rh}
+R2 net1 net4 {rh}
+R3 net2 net3 {rh}
+R4 net4 net3 {rh}
+R5 net9 net2 {rd}
+B1 sens_bn net5 V = 0.5*i(Vap)*{sens_i}*(v(bin_p) - v(bin_n)) + 0.5*i(Vap)*{roffset}
+B2 sens_ap net6 V = 0.5*i(Vbp)*{sens_i}*(v(bin_p) - v(bin_n)) + 0.5*i(Vbp)*{roffset}
+B3 sens_an net8 V = 0.5*i(Vbn)*{sens_i}*(v(bin_p) - v(bin_n)) + 0.5*i(Vbn)*{roffset}
+B4 sens_bp net7 V = 0.5*i(Van)*{sens_i}*(v(bin_p) - v(bin_n)) + 0.5*i(Van)*{roffset}
+Vbn net5 net2 0
+Vap net6 net1 0
+Vbp net7 net4 0
+Van net8 net3 0
+R6 net9 net1 {rd}
+R7 net9 net3 {rd}
+R8 net4 net9 {rd}
+**** begin user architecture code
+
+.param nw_rsheet=1000
+.param device_l=25u
+.param device_w=25u
+.param r_mismatch=0.01
+.param nw_mu=0.1
+.param hall_factor = 1
+.param pi = acos(-1)
+.param qnt = 1/(nw_mu*nw_rsheet)
+.param g = 1 - 5.0267*exp(-(pi/2)*(device_w+2*device_l)/device_w)
+.param rh=(2*nw_rsheet/pi) * ((2*(device_l/device_w) + 2/3)*pi - 2*ln(2))
+.param rh_rd_ratio = 2 - (8/pi) * (ln(2) / (2*(device_l/device_w) + 2/3))
+.param rd=rh/rh_rd_ratio
+.param roffset=r_mismatch*rh
+
+.param sens_i=(g*hall_factor)/qnt
+
+**** end user architecture code
+.ends
+
+.end
