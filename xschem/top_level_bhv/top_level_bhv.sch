@@ -143,4 +143,4 @@ C {lab_wire.sym} 640 -1050 1 1 {name=p50 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 920 -820 1 0 {name=p51 sig_type=std_logic lab=sens_ibias}
 C {lab_wire.sym} 1380 -840 1 0 {name=p52 sig_type=std_logic lab=ia_ibias}
 C {lab_wire.sym} 1800 -840 1 0 {name=p53 sig_type=std_logic lab=vcm}
-C {clk_gen_bhv/clk_gen_bhv.sym} 960 -240 0 0 {name=x2}
+C {clk_gen/clk_gen.sym} 960 -240 0 0 {name=x2}

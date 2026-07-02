@@ -17,7 +17,7 @@ o(x): output/ccia chopping switch control (non-overlapping)
 } 0 -780 0 0 0.2 0.2 {}
 T {Supply/Reference Inputs} 0 -550 0 0 0.4 0.4 {}
 T {Instrumentation Amplifier I/O} 0 -320 0 0 0.4 0.4 {}
-T {Ripple Reduction Loop} 1680 -820 0 0 0.4 0.4 {}
+T {Ripple Reduction Loop} 1670 -820 0 0 0.4 0.4 {}
 T {Input Stage} 1100 -1180 0 0 0.4 0.4 {}
 T {Output Stage} 2110 -1170 0 0 0.4 0.4 {}
 N 910 -1040 910 -1020 {lab=vcm}

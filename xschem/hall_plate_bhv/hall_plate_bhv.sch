@@ -44,7 +44,7 @@ C {iopin.sym} 0 -500 0 0 {name=p3 lab=sens_bp}
 C {iopin.sym} 0 -540 0 0 {name=p4 lab=sens_ap}
 C {title.sym} 160 -40 0 0 {name=l1 author="alang"}
 C {res.sym} 650 -750 0 0 {name=R1
-value=\{rh\}
+value=\{rh+0.5*roffset\}
 footprint=1206
 device=resistor
 m=1}
@@ -59,7 +59,7 @@ footprint=1206
 device=resistor
 m=1}
 C {res.sym} 990 -570 0 0 {name=R4
-value=\{rh\}
+value=\{rh+0.5*roffset\}
 footprint=1206
 device=resistor
 m=1}
@@ -68,10 +68,10 @@ value=\{rd\}
 footprint=1206
 device=resistor
 m=1}
-C {bsource.sym} 460 -670 3 1 {name=B1 VAR=V FUNC="0.5*i(Vap)*\{sens_i\}*(v(bin_p) - v(bin_n)) + 0.5*i(Vap)*\{roffset\}" m=1}
-C {bsource.sym} 840 -980 0 1 {name=B2 VAR=V FUNC="0.5*i(Vbp)*\{sens_i\}*(v(bin_p) - v(bin_n)) + 0.5*i(Vbp)*\{roffset\}" m=1}
-C {bsource.sym} 840 -360 2 0 {name=B3 VAR=V FUNC="0.5*i(Vbn)*\{sens_i\}*(v(bin_p) - v(bin_n)) + 0.5*i(Vbn)*\{roffset\}" m=1}
-C {bsource.sym} 1160 -670 1 0 {name=B4 VAR=V FUNC="0.5*i(Van)*\{sens_i\}*(v(bin_p) - v(bin_n)) + 0.5*i(Van)*\{roffset\}" m=1}
+C {bsource.sym} 460 -670 3 1 {name=B1 VAR=V FUNC="0.5*i(Vap)*\{sens_i\}*(v(bin_p) - v(bin_n))" m=1}
+C {bsource.sym} 840 -980 0 1 {name=B2 VAR=V FUNC="0.5*i(Vbp)*\{sens_i\}*(v(bin_p) - v(bin_n))" m=1}
+C {bsource.sym} 840 -360 2 0 {name=B3 VAR=V FUNC="0.5*i(Vbn)*\{sens_i\}*(v(bin_p) - v(bin_n))" m=1}
+C {bsource.sym} 1160 -670 1 0 {name=B4 VAR=V FUNC="0.5*i(Van)*\{sens_i\}*(v(bin_p) - v(bin_n))" m=1}
 C {lab_wire.sym} 840 -1100 3 0 {name=p5 sig_type=std_logic lab=sens_ap}
 C {lab_wire.sym} 1300 -670 0 0 {name=p6 sig_type=std_logic lab=sens_bp}
 C {lab_wire.sym} 840 -240 3 1 {name=p7 sig_type=std_logic lab=sens_an}
@@ -98,7 +98,7 @@ m=1}
 C {code_shown.sym} 0 -1300 0 0 {name=s1 only_toplevel=false value=".param nw_rsheet = 1000
 .param device_l = 25u
 .param device_w = 25u
-.param r_mismatch = 0.01
+.param r_mismatch = 0.05
 .param nw_mu = 0.1 
 .param hall_factor = 1
 .param pi = acos(-1)

@@ -33,7 +33,7 @@ C {title.sym} 190 -50 0 0 {name=l1 author="A Gurlaskie"}
 C {switch_ngspice.sym} 400 -550 1 0 {name=S1 model=SW1
 device_model=".MODEL SW1 SW 
 + VT=1.65 VH=0
-+ RON=0.01 ROFF=10G "}
++ RON=1 ROFF=1G "}
 C {lab_wire.sym} 340 -230 0 1 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 340 -350 0 1 {name=p2 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 340 -470 0 1 {name=p3 sig_type=std_logic lab=vss}
@@ -58,12 +58,12 @@ C {ipin.sym} 180 -500 0 0 {name=p21 lab=phi2}
 C {switch_ngspice.sym} 400 -430 1 0 {name=S2 model=SW1
 device_model=".MODEL SW1 SW 
 + VT=1.65 VH=0
-+ RON=0.01 ROFF=10G "}
++ RON=1 ROFF=1G "}
 C {switch_ngspice.sym} 400 -310 1 0 {name=S3 model=SW1
 device_model=".MODEL SW1 SW 
 + VT=1.65 VH=0
-+ RON=0.01 ROFF=10G "}
++ RON=1 ROFF=1G "}
 C {switch_ngspice.sym} 400 -190 1 0 {name=S4 model=SW1
 device_model=".MODEL SW1 SW 
 + VT=1.65 VH=0
-+ RON=0.01 ROFF=10G "}
++ RON=1 ROFF=1G "}
