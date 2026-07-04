@@ -1,0 +1,54 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/clk_gen_bhv/clk_gen_test.sch
+**.subckt clk_gen_test
+x1 sp4 rn clk sp1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+x2 sp1 rn clk sp2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+x3 sp2 rn clk sp3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+x4 sp3 rn clk sp4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+V1 clk vss PULSE(0 1.8 0 1n 1n {clkper/2} {clkper})
+V3 vdd vss 3.3
+V4 vss 0 0
+V2 rn vss PULSE(0 1.8 10n 1n 1n 1 2)
+x5 net21 sp1 net1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x6 phi1 net5 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x7 net5 sp2 net6 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x8 phi2 net10 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x9 net10 sp3 net11 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x10 phi3 net15 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x11 net15 sp4 net16 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x12 phi4 net21 vdd vdd vss net20 gf180mcu_fd_sc_mcu7t5v0__inv_2
+x13 net1 net2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x14 net2 o1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x15 o1 net3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x16 net3 net4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x17 net6 net7 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x18 net7 o2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x19 o2 net8 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x20 net8 net9 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x21 net11 net12 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x22 net12 o3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x23 o3 net13 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x24 net13 net14 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x25 net16 net17 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x26 net17 o4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x27 o4 net18 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x28 net18 net19 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x29 net16 net19 phi4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x30 net11 net14 phi3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x31 net6 net9 phi2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x32 net1 net4 phi1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+**** begin user architecture code
+
+.param clkper=2u
+.tran 1n 100u uic
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+* .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_statistical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+**** end user architecture code
+**.ends
+.end

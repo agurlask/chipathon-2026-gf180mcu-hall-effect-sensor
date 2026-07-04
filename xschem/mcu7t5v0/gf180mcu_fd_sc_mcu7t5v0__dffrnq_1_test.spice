@@ -1,0 +1,22 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/mcu7t5v0/gf180mcu_fd_sc_mcu7t5v0__dffrnq_1_test.sch
+**.subckt gf180mcu_fd_sc_mcu7t5v0__dffrnq_1_test
+x1 d vdd clk q vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+V1 clk vss PULSE(0 1.8 0 1n 1n {clkper/2} {clkper})
+V3 vdd vss 3.3
+V4 vss 0 0
+V2 d vss PULSE(0 1.8 0 1n 1n {sigper/2} {sigper})
+* noconn q
+**** begin user architecture code
+
+.param sigper=3u
+.param clkper=2u
+.tran 1n 100u
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+**** end user architecture code
+**.ends
+.end

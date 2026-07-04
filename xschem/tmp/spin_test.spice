@@ -1,0 +1,242 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tmp/spin_test.sch
+**.subckt spin_test
+x1 sens_ibias sens_ap sens_bp sens_an sens_bn o1 phi1 sp1 o2 phi2 sp2 o3 sp3 phi3 sp4 o4 phi4 vdd vss ia_vin_p ia_vin_n
++ spinning_current_gen_bhv
+x3 sens_ap sens_bp sens_an sens_bn b_in 0 hall_plate_bhv
+x2 vdd vss clk sp1 o1 phi1 sp2 o2 phi2 o3 sp3 phi3 o4 sp4 phi4 reset_n clk_gen
+Vclk clk vss PULSE(0 1.8 0 1n 1n {clkper/2} {clkper})
+V3 vdd vss 3.3
+V4 vss 0 0
+V2 reset_n vss PULSE(0 1.8 10n 1n 1n 1 2)
+Vbin b_in 0 0
+XM1 sens_ibias net1 vdd vdd pfet_03v3 L=1u W=20u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+E2 ia_vout_p vss ia_vin_p vss 100
+E3 ia_vout_n vss ia_vin_n vss 100
+x4 chop_phi1 vss ia_vout_p chop_phi2 ia_vout_n vout_p vout_n chopper_bhv
+C1 vout_n vss 1p
+C2 vout_p vss 1p
+x5 o1 o3 chop_phi1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x6 o2 o4 chop_phi2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+XM2 net1 net1 vdd vdd pfet_03v3 L=1u W=20u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+I0 net1 0 1m
+**** begin user architecture code
+
+.param clkper=2u
+.options method=gear
+.control
+  * -------- transient settings --------
+  set t_step = 1n
+  set t_stop = 50u
+  * fresh results file
+  echo "# clkon   value   avg_vdiff" > diff_avg_results.txt
+  * -------- outer sweep: clock nominal (1), then clock held at 0 (0) --------
+  foreach clkon 1 0
+     * second pass: force the Vclk PULSE source to a flat 0 (only V1 V2 matter)
+     if $clkon = 0
+        alter @Vclk[pulse] = [ 0 0 0 1n 1n 1u 2u ]
+     end
+     * -------- inner sweep: explicit list of values --------
+     foreach cval 1e-4 2e-4 5e-4 1e-3 2e-3 5e-3 1e-2 2e-2 5e-2 1e-1
+        * set the swept parameter (CUSTOMIZE device name)
+        alter Vbin = $cval
+        * run the transient
+        tran $t_step $t_stop
+        * time-weighted average of the differential output
+        let vdiff = v(vout_p) - v(vout_n)
+        meas tran vavg AVG vdiff
+        * append "clkon value average" to the file
+        echo "$clkon   $cval   $&vavg" >> diff_avg_results.txt
+     end
+     * clock-enabled pass just finished: current plot = last run (cval=1e-1)
+     if $clkon = 1
+        set wr_singlescale
+        wrdata waveforms_clk_on.txt v(vout_p) v(vout_n) v(ia_vout_p) v(ia_vout_n) v(clk)
+     end
+  end
+  echo "Done -> diff_avg_results.txt"
+.endc
+.end
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+* .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_statistical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  spinning_current_gen_bhv/spinning_current_gen_bhv.sym # of pins=21
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/spinning_current_gen_bhv/spinning_current_gen_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/spinning_current_gen_bhv/spinning_current_gen_bhv.sch
+.subckt spinning_current_gen_bhv sens_ibias sens_ap sens_bp sens_an sens_bn o1 phi1 sp1 o2 phi2 sp2 o3 sp3 phi3 sp4 o4 phi4 vdd
++ vss sens_vout_p sens_vout_n
+*.iopin sens_ap
+*.iopin sens_bp
+*.iopin sens_an
+*.iopin sens_bn
+*.iopin phi1
+*.iopin phi2
+*.iopin phi3
+*.iopin phi4
+*.iopin sp1
+*.iopin sp2
+*.iopin sp3
+*.iopin sp4
+*.iopin o1
+*.iopin o2
+*.iopin o3
+*.iopin o4
+*.iopin sens_ibias
+*.iopin sens_vout_p
+*.iopin sens_vout_n
+*.iopin vdd
+*.iopin vss
+S1 sens_ibias sens_ap phi1 vss SW1
+S2 sens_ibias sens_bp phi2 vss SW1
+S3 sens_ibias sens_an phi3 vss SW1
+S4 sens_ibias sens_bn phi4 vss SW1
+S5 sens_ap vss phi3 vss SW1
+S6 sens_bp vss phi4 vss SW1
+S7 sens_an vss phi1 vss SW1
+S8 sens_bn vss phi2 vss SW1
+S9 sens_vout_p sens_ap o4 vss SW1
+S10 sens_vout_p sens_bp o3 vss SW1
+S11 sens_vout_p sens_an o2 vss SW1
+S12 sens_vout_p sens_bn o1 vss SW1
+S13 sens_ap sens_vout_n o2 vss SW1
+S14 sens_bp sens_vout_n o1 vss SW1
+S15 sens_an sens_vout_n o4 vss SW1
+S16 sens_bn sens_vout_n o3 vss SW1
+.ends
+
+
+* expanding   symbol:  hall_plate_bhv/hall_plate_bhv.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv.sch
+.subckt hall_plate_bhv sens_ap sens_bp sens_an sens_bn bin_p bin_n
+*.iopin sens_bn
+*.iopin sens_an
+*.iopin sens_bp
+*.iopin sens_ap
+*.iopin bin_p
+*.iopin bin_n
+R1 net1 net2 {rh-0.5*roffset}
+R2 net1 net4 {rh}
+R3 net2 net3 {rh}
+R4 net4 net3 {rh-0.5*roffset}
+R5 net9 net2 {rd}
+B1 sens_bn net5 V = 0.5*i(Vap)*{sens_i}*(v(bin_p) - v(bin_n))
+B2 sens_ap net6 V = 0.5*i(Vbp)*{sens_i}*(v(bin_p) - v(bin_n))
+B3 sens_an net8 V = 0.5*i(Vbn)*{sens_i}*(v(bin_p) - v(bin_n))
+B4 sens_bp net7 V = 0.5*i(Van)*{sens_i}*(v(bin_p) - v(bin_n))
+Vbn net5 net2 0
+Vap net6 net1 0
+Vbp net7 net4 0
+Van net8 net3 0
+R6 net9 net1 {rd}
+R7 net9 net3 {rd}
+R8 net4 net9 {rd}
+**** begin user architecture code
+
+.param nw_rsheet = 1000
+.param device_l = 25u
+.param device_w = 25u
+.param r_mismatch = 0.05
+.param nw_mu = 0.1
+.param hall_factor = 1
+.param pi = acos(-1)
+.param qnt = 1/(nw_mu*nw_rsheet)
+.param g = 1 - 5.0267*exp(-(pi/2)*(device_w+2*device_l)/device_w)
+.param rh = (2*nw_rsheet/pi) * ((2*(device_l/device_w) + 2/3)*pi - 2*ln(2))
+.param rh_rd_ratio = 2 - (8/pi) * (ln(2) / (2*(device_l/device_w) + 2/3))
+.param rd = rh/rh_rd_ratio
+.param roffset = r_mismatch*rh
+.param sens_i = (g*hall_factor)/qnt
+
+**** end user architecture code
+.ends
+
+
+* expanding   symbol:  clk_gen/clk_gen.sym # of pins=16
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/clk_gen/clk_gen.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/clk_gen/clk_gen.sch
+.subckt clk_gen vdd vss clk sp1 o1 phi1 sp2 o2 phi2 o3 sp3 phi3 o4 sp4 phi4 reset_n
+*.iopin clk
+*.iopin phi1
+*.iopin phi2
+*.iopin phi3
+*.iopin phi4
+*.iopin sp1
+*.iopin sp2
+*.iopin sp3
+*.iopin sp4
+*.iopin o1
+*.iopin o2
+*.iopin o3
+*.iopin o4
+*.iopin vdd
+*.iopin vss
+*.iopin reset_n
+x1 sp4 reset_n clk sp1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffsnq_1
+x2 sp1 reset_n clk sp2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+x3 sp2 reset_n clk sp3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+x4 sp3 reset_n clk sp4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+x5 net20 sp1 net1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x6 phi1 net5 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x7 net5 sp2 net6 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x8 phi2 net10 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x9 net10 sp3 net11 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x10 phi3 net15 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x11 net15 sp4 net16 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__and2_2
+x12 phi4 net20 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+x13 net1 net2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x14 net2 o1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x15 o1 net3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x16 net3 net4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x17 net6 net7 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x18 net7 o2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x19 o2 net8 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x20 net8 net9 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x21 net11 net12 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x22 net12 o3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x23 o3 net13 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x24 net13 net14 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x25 net16 net17 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x26 net17 o4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x27 o4 net18 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x28 net18 net19 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__buf_2
+x29 net16 net19 phi4 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x30 net11 net14 phi3 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x31 net6 net9 phi2 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+x32 net1 net4 phi1 vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__or2_2
+.ends
+
+
+* expanding   symbol:  chopper_bhv/chopper_bhv.sym # of pins=7
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper_bhv/chopper_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper_bhv/chopper_bhv.sch
+.subckt chopper_bhv phi1 vss vin_p phi2 vin_n vout_p vout_n
+*.iopin vss
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.ipin phi1
+*.ipin phi2
+S1 vout_p vin_p phi1 vss SW1
+S2 vout_p vin_n phi2 vss SW1
+S3 vout_n vin_n phi1 vss SW1
+S4 vout_n vin_p phi2 vss SW1
+.ends
+
+**** begin user architecture code
+.MODEL SW1 SW
++ VT=1.65 VH=0
++ RON=1 ROFF=1G
+**** end user architecture code
+.end

@@ -1,0 +1,38 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/hall_plate_bhv/hall_plate_bhv.sch
+**.subckt hall_plate_bhv sens_ap sens_bp sens_an sens_bn bin_p bin_n
+*.iopin sens_bn
+*.iopin sens_an
+*.iopin sens_bp
+*.iopin sens_ap
+*.iopin bin_p
+*.iopin bin_n
+R1 net1 net2 {rh}
+R2 net1 net4 {rh}
+R3 net2 net3 {rh}
+R4 net4 net3 {rh}
+R5 net9 net2 {rd}
+B1 sens_bn net5 V = 0.5*i(Vap)*{sens_i}*(v(bin_p) - v(bin_n))
+B2 sens_ap net6 V = 0.5*i(Vbp)*{sens_i}*(v(bin_p) - v(bin_n))
+B3 sens_an net8 V = 0.5*i(Vbn)*{sens_i}*(v(bin_p) - v(bin_n))
+B4 sens_bp net7 V = 0.5*i(Van)*{sens_i}*(v(bin_p) - v(bin_n))
+Vbn net5 net2 0
+Vap net6 net1 0
+Vbp net7 net4 0
+Van net8 net3 0
+R6 net9 net1 {rd}
+R7 net9 net3 {rd}
+R8 net4 net9 {rd}
+**** begin user architecture code
+
+.param nw_rsheet=1000
+.param device_l=25u
+.param device_w=25u
+.param rh=(2*nw_rsheet/pi) * ((2*(device_l/device_w) + 2/3)*pi - 2*ln(2))
+.param rh_rd_ratio = 2 - (8/pi) * (ln(2) / (2*(device_l/device_w) + 2/3))
+.param rd=rh/rh_rd_ratio
+
+.param sens_i=100
+
+**** end user architecture code
+**.ends
+.end
