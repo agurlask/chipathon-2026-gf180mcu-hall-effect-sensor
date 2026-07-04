@@ -7,7 +7,7 @@
    viewBox="0 0 1084.7969 770.92187"
    version="1.1"
    id="svg8"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    sodipodi:docname="chip_block_diagram.svg"
    inkscape:export-filename="chip_block_diagram.png"
    inkscape:export-xdpi="600"
@@ -51,19 +51,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.56"
-     inkscape:cx="324.60938"
-     inkscape:cy="389.64844"
+     inkscape:zoom="0.6749349"
+     inkscape:cx="451.15462"
+     inkscape:cy="478.56467"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      units="px"
      inkscape:snap-text-baseline="true"
-     inkscape:window-width="1850"
-     inkscape:window-height="1016"
-     inkscape:window-x="70"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1470"
+     inkscape:window-height="923"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
      inkscape:snap-center="false"
      inkscape:snap-object-midpoints="false"
      inkscape:lockguides="true"
@@ -154,7 +154,7 @@ mpan (&lt;https://commons.wikimedia.org/wiki/User:Wikimpan&gt;; &lt;https://mpan
      transform="translate(-70,222.58335)">
     <g
        id="g1951"
-       transform="rotate(180,206.5,119.66665)">
+       transform="rotate(180,206.5,179.16665)">
       <circle
          r="28"
          cy="311.41666"
@@ -458,15 +458,16 @@ mpan (&lt;https://commons.wikimedia.org/wiki/User:Wikimpan&gt;; &lt;https://mpan
          y="-19.583349">IREF</tspan></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 105,-30.08335 c 0,0 0,35 0,35 h 70"
-       id="path36" />
+       d="m 105,4.91665 v 0 h 70"
+       id="path36"
+       sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 105,-114.08335 v -21"
+       d="M 105,88.916652 V 109.91665"
        id="path37" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="M 90.999996,-135.08335 H 119"
+       d="M 119,109.91665 H 90.999998"
        id="path38" />
     <text
        xml:space="preserve"
@@ -546,13 +547,13 @@ mpan (&lt;https://commons.wikimedia.org/wiki/User:Wikimpan&gt;; &lt;https://mpan
     <text
        xml:space="preserve"
        style="font-size:32px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       x="777.375"
-       y="134.10416"
+       x="820.85938"
+       y="133.68228"
        id="text43"><tspan
          sodipodi:role="line"
          id="tspan43"
-         x="777.375"
-         y="134.10416">CCIA</tspan></text>
+         x="820.85938"
+         y="133.68228">IA</tspan></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="m 367.5,179.91665 v 35 H 490"
