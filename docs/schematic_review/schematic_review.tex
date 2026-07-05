@@ -13,6 +13,7 @@
 \usepackage{indentfirst}
 \usepackage{xcolor}
 \usepackage{url}
+\usepackage{amssymb}
 
 \renewcommand{\arraystretch}{1.2}
 \setlength{\tabcolsep}{6pt}
@@ -105,7 +106,7 @@ A block diagram of the system is shown in Fig.~\ref{fig:block_diagram}.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{figs/chip_block_diagram.pdf}
+    \includegraphics[width=\linewidth]{figs/chip_block_diagram.png}
     \caption{Block diagram of the proposed architecture.}
     \label{fig:block_diagram}
 \end{figure}
@@ -155,6 +156,9 @@ A full pinout table of the design is given in Table~\ref{tab:pinout}.
 \newpage
 
 \section{Schematic Summary}
+
+\textbf{Note:} Only open \path{xschem} from the \path{xschem/} directory 
+(i.e., \path{cd} to \path{xschem/} and then run \path{xschem} \path{/path/to/schematic} to open any schematics).
 
 This section describes the schematic-level operation of each part of the design. For each block, 
 both behavioral and transistor-level models are described, including motivation for key design 
@@ -226,8 +230,16 @@ additional input to provide the incoming magnetic field.
     \item{n-well used to maximize sensitivity}
     \item{
         Design equations in \cite{Xu2011ImprovedEquivalent} used to estimate bridge resistor values 
-        in behavioral model from n-well sheet resistance and geometry
+        in behavioral model from n-well sheet resistance, n-well electron mobility, and geometry
     }
+    \begin{itemize}
+        \item{
+            Sensor geometry target currently 75x75 um (from \cite{Xu2011ImprovedEquivalent}, L=25 um and W=25 um).
+            Final decision will depend on (1) min contact size/DRC limitations, (2) parasitic capacitance, 
+            (3) thermal considerations at maximum bias current.
+        }
+        \item{n-well electron mobility estimated to make sensor have raw sensitivity of $\SI{100}{\volt\per(\ampere\cdot\tesla)}$}
+    \end{itemize}
 \end{itemize}
 
 \subsubsection*{Transistor-Level Implementation}
@@ -251,7 +263,7 @@ is shown in Fig.~\ref{fig:bias_gen_bhv}.
         Xschem schematic symbol for bias generation block.
         The block creates the sensor bias current and IA current reference from
         an off-chip reference current source. Also, the IA common-mode voltage is generated 
-        by an on-chip resistor divider.  
+        by an on-chip R-C (buffer may be added if load large enough).  
     }
     \label{fig:bias_gen_bhv}
 \end{figure}
@@ -263,14 +275,14 @@ INSERT I/O TABLE
 \subsubsection*{Sub-sheets}
 
 \begin{itemize}
-    \item{Behavioral: \path{xschem/bias_gen_bhv/bias_gen_bhv.sch}}
+    \item{Behavioral: \textcolor{red}{$\times$}}
     \item{Implementation: \textcolor{red}{$\times$}}
 \end{itemize}
 
 \subsubsection*{Behavioral Model}
 
-The behavioral model will use ideal current-controlled current sources (CCCS) to generate
-the required bias currents and ideal passive components to generate the IA common-mode voltage.
+Due to the relative simplicity of the design and issues with ideal current sources
+with zero load (large voltage spikes), no behavioral modeling will be done for this block.
 
 \subsubsection*{Design Methodology}
 
@@ -278,10 +290,7 @@ As hinted in the schematic symbol, current mirrors will be used to produce
 the bias currents. Transistor dimensions will be chosen to minimize short-channel
 effects and current mismatch.
 
-The common-mode voltage generator will be evaluated initially using only passive 
-components (resistor values chosen to achieve satsifactory tradeoff between
-silicon area and static power dissipation), but this design decision may be revisited
-if needed. 
+The common-mode voltage generator will be evaluated initially to do the required I-V conversion.
 
 \subsubsection*{Transistor-Level Implementation}
 
@@ -366,24 +375,25 @@ INSERT I/O TABLE
 \subsubsection*{Sub-sheets}
 
 \begin{itemize}
-    \item{Behavioral: \path{xschem/clk_gen_bhv/clk_gen_bhv.sch}}
-    \item{Implementation: \textcolor{red}{$\times$}}
+    \item{Behavioral: \textcolor{red}{$\times$} (see below)}
+    \item{Implementation: \path{xschem/clk_gen/clk_gen.sch}}
 \end{itemize}
 
 \subsubsection*{Behavioral Model}
 
-Standard cells may be used right away to implement the clock generation 
+Standard cells are directly used to implement the clock generation 
 logic. If this slows down simulation significantly, time will be invested to 
 use the ngspice XSPICE primitives to implement the required digital circuit in 
-an event-driven paradigm. 
+an event-driven paradigm. Since I could not find symbols for the GF180MCU 7T standard cells,
+custom symbols were created (\path{xschem/mcu7t5v0/})
 
 \subsubsection*{Design Methodology}
 
-The clock generation circuits from Chapter X of \cite{Jiang2019CMOSWideBandwidth} will be used. 
+The clock generation circuits from Chapter 3 of \cite{Jiang2019CMOSWideBandwidth} will be used. 
 
 \subsubsection*{Transistor-Level Implementation}
 
-Not started: \textcolor{red}{$\times$}
+Completed: \textcolor{green}{\checkmark}
 
 \subsection{Configuration Register}
 
@@ -414,7 +424,8 @@ The following assumptions are made within the design.
 
 \begin{itemize}
     \item{The circuit shall be designed to operate from a single 3.3V supply}
-    \item{The circuit shall be designed to operate over the temperature range of (\SI{-40}{\degreeCelsius} - \SI{125}{\degreeCelsius})}
+    \item{The circuit shall be designed to operate over the temperature range of (\SI{-40}{\degreeCelsius} - \SI{125}{\degreeCelsius}). 
+    Accurately modeling the sensor over this temperature range is out of scope, so system specifications are only given at room temperature.}
     \item{The specifications of each circuit shall be simulated over all worst-case process corners}
     \item{Each analog output (both OUT+ and OUT-) of the 
     readout circuit shall be capable of driving a 
@@ -435,7 +446,12 @@ The following assumptions are made within the design.
 
 \subsection{Functional Simulations}
 
-Not started
+\subsubsection*{Basic Spinning Current Verification}
+
+The purpose of this testbench is to verify the sensor behavioral model and spinning current generation
+appropriately reduce the sensor offset using ideal IA and chopping switches. 
+
+See \path{/xschem/spin_test/spin_test.sch}
 
 \subsection{Corner Simulations}
 
