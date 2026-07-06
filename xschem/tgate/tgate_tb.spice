@@ -1,0 +1,94 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate_tb.sch
+**.subckt tgate_tb
+x1 vdd vin vss vout en_n en tgate
+C1 vout vss 10p
+V1 vin vss {vin_dc}
+V2 vdd vss 3.3
+V3 vss 0 0
+V4 en vss PULSE(0 3.3 0 500p 500p {tper/2} {tper})
+V5 en_n vss PULSE(3.3 0 0 500p 500p {tper/2} {tper})
+**** begin user architecture code
+
+.param vin_dc=1.65
+.param tper=20u
+
+.tran 1n 40u
+
+.control
+  * -------- sweep configuration --------
+  let vstart = 0.0        $ first vin_dc value            [V]
+  let vstop  = 3.3        $ last  vin_dc value            [V]
+  let vstep  = 0.1        $ step size                     [V]
+  let cfac   = 10e-12     $ multiplier applied to the vout difference
+
+  * -------- edge-sampling configuration --------
+  let t_pre  = 1n         $ how far BEFORE the en edge to sample v(vout)
+  let t_post = 50n        $ how far AFTER  the en edge to sample v(vout)
+                          $ push t_post past any injection ringing so you
+                          $ capture the settled post-edge level
+
+  let npts = floor((vstop - vstart)/vstep + 0.5) + 1
+
+  * fresh output file + header
+  echo "vin_dc    vout_pre     vout_post    delta_v      result" > charge_injection.txt
+
+  let i = 0
+  dowhile i < npts
+     let vval = vstart + i*vstep
+
+     * apply the new input level and re-run the transient
+     alterparam vin_dc = $&vval
+     reset
+     run
+
+     * find the falling edge of en (threshold = half its own high level,
+     * so this adapts to whatever amplitude your en source uses)
+     meas tran en_hi max v(en)
+     let thr = en_hi/2
+     meas tran tfall when v(en)=$&thr fall=1
+
+     * sample v(vout) just before and just after that edge
+     let tb = tfall - t_pre
+     let ta = tfall + t_post
+     meas tran vout_pre  find v(vout) at=$&tb
+     meas tran vout_post find v(vout) at=$&ta
+
+     * difference and scaled result
+     let dv  = vout_post - vout_pre
+     let res = dv * cfac
+
+     * record this point
+     echo "$&vval   $&vout_pre   $&vout_post   $&dv   $&res" >> charge_injection.txt
+
+     let i = i + 1
+  end
+
+  echo "Sweep complete -> results written to charge_injection.txt"
+.endc
+
+.end
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  tgate/tgate.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sch
+.subckt tgate vdd va vss vb en_n en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+*.iopin en_n
+XM1 vb en va vss nfet_03v3 L=0.28u W=6.4u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=18.8u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end

@@ -1,0 +1,77 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper_tb.sch
+**.subckt chopper_tb
+x1 phi1 vss vin_p phi2 vin_n phi1_n phi2_n vint_p vint_n vdd chopper
+V1 vcm vss {vcm}
+V2 vin_p vcm {vd/2}
+V3 vin_n vcm {-vd/2}
+C1 vint_n vcm 100f
+C2 vint_p vcm 100f
+V4 vdd vss 3.3
+V5 vss 0 0
+V6 phi1 vss PULSE(0 3.3 0 500p 500p {tper/2-tdead-500p} {tper})
+V7 phi1_n vss PULSE(3.3 0 0 500p 500p {tper/2-tdead-500p} {tper})
+V8 phi2 vss PULSE(0 3.3 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
+V9 phi2_n vss PULSE(3.3 0 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
+x2 phi1 vss vint_p phi2 vint_n phi1_n phi2_n vout_p vout_n vdd chopper
+C3 vout_n vcm 100f
+C4 vout_p vcm 100f
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+.param tper=20u
+.param tdead=1n
+.param vcm=1.65
+.param vd=0.2
+.csparam vd_cs=vd
+.control
+	tran 1n 80u
+	let vdiff = v(vout_p)-v(vout_n)
+        meas tran vavg AVG vdiff
+	let error = vd_cs-vavg
+        echo "$&error"
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  chopper/chopper.sym # of pins=10
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper.sch
+.subckt chopper phi1 vss vin_p phi2 vin_n phi1_n phi2_n vout_p vout_n vdd
+*.iopin vss
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.ipin phi1
+*.ipin phi2
+*.ipin phi1_n
+*.ipin phi2_n
+*.iopin vdd
+x1 vdd vin_p vss vout_p phi1_n phi1 tgate
+x2 vdd vin_p vss vout_n phi2_n phi2 tgate
+x3 vdd vin_n vss vout_p phi2_n phi2 tgate
+x4 vdd vin_n vss vout_n phi1_n phi1 tgate
+.ends
+
+
+* expanding   symbol:  tgate/tgate.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sch
+.subckt tgate vdd va vss vb en_n en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+*.iopin en_n
+XM1 vb en va vss nfet_03v3 L=0.28u W=6.4u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=6.4u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end
