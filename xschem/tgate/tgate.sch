@@ -25,7 +25,7 @@ C {iopin.sym} 100 -140 0 0 {name=p4 lab=va}
 C {iopin.sym} 100 -100 0 0 {name=p5 lab=vb}
 C {symbols/nfet_03v3.sym} 390 -360 1 0 {name=M1
 L=0.28u
-W=6.4u
+W=3.2u
 nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -39,7 +39,7 @@ spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 390 -100 1 1 {name=M2
 L=0.28u
-W=6.4u
+W=3.2u
 nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"

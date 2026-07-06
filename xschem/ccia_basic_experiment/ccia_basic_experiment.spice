@@ -1,20 +1,29 @@
-** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper_tb.sch
-**.subckt chopper_tb
-x1 phi1 vss vin_p phi2 vin_n phi1_n phi2_n vint_p vint_n vdd chopper
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_basic_experiment/ccia_basic_experiment.sch
+**.subckt ccia_basic_experiment
+x1 phi1 vss vinl_p phi2 vinl_n phi1_n phi2_n vinc_p vinc_n vdd chopper
+x2 vcm net1 vvg_n vota_p vota_n ota_bhv rout=1e6 dc_gain=1e6
+x3 phi1 vss vota_n phi2 vota_p phi1_n phi2_n vout_n vout_p vdd chopper
+x4 phi1 vss voutc_n phi2 voutc_p phi1_n phi2_n vout_n vout_p vdd chopper
+C1 vinc_p vvg_p 10p
+C2 vinc_n vvg_n 10p
+C3 vvg_p voutc_n 100f
+C4 vvg_n voutc_p 100f
+C5 vout_n vcm 10p
+C6 vout_p vcm 10p
+R1 vinl_p vin_p 2.5k
+R2 vinl_n vin_n 2.5k
 V1 vcm vss {vcm}
 V2 vin_p vcm {vd/2}
 V3 vin_n vcm {-vd/2}
-C1 vint_n vcm 100f
-C2 vint_p vcm 100f
 V4 vdd vss 3.3
 V5 vss 0 0
 V6 phi1 vss PULSE(0 3.3 0 500p 500p {tper/2-tdead-500p} {tper})
 V7 phi1_n vss PULSE(3.3 0 0 500p 500p {tper/2-tdead-500p} {tper})
 V8 phi2 vss PULSE(0 3.3 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
 V9 phi2_n vss PULSE(3.3 0 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
-x2 phi1 vss vint_p phi2 vint_n phi1_n phi2_n vout_p vout_n vdd chopper
-C3 vout_n vcm 100f
-C4 vout_p vcm 100f
+R3 vvg_p vcm 100Meg
+R4 vvg_n vcm 100Meg
+V10 net1 vvg_p {vos}
 **** begin user architecture code
 
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
@@ -24,14 +33,18 @@ C4 vout_p vcm 100f
 .options method=gear
 .param tper=20u
 .param tdead=1n
-.param vcm=3.2
-.param vd=0.2
+.param vcm=0.5
+.param vd=0.01
+.param vos=1e-3
 .csparam vd_cs=vd
+.ic v(vout_p)=1
+.ic v(vout_n)=0
+.ic
 .control
-	tran 1n 80u
+	tran 1n 50u
 	let vdiff = v(vout_p)-v(vout_n)
         meas tran vavg AVG vdiff
-	let error = vd_cs-vavg
+	let error = 100*vd_cs-vavg
         echo "$&error"
 .endc
 
@@ -59,6 +72,22 @@ x4 vdd vin_n vss vout_n phi1_n phi1 tgate
 .ends
 
 
+* expanding   symbol:  ota_bhv/ota_bhv.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota_bhv/ota_bhv.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota_bhv/ota_bhv.sch
+.subckt ota_bhv vcm vin_p vin_n vout_p vout_n  rout=1e6 dc_gain=1000
+*.iopin vcm
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+G1 vout_n vcm vin_p vin_n {0.5*dc_gain/rout}
+R1 vout_n vcm {rout}
+G2 vout_p vcm vin_n vin_p {0.5*dc_gain/rout}
+R2 vout_p vcm {rout}
+.ends
+
+
 * expanding   symbol:  tgate/tgate.sym # of pins=6
 ** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sym
 ** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sch
@@ -69,9 +98,9 @@ x4 vdd vin_n vss vout_n phi1_n phi1 tgate
 *.iopin va
 *.iopin vb
 *.iopin en_n
-XM1 vb en va vss nfet_03v3 L=0.28u W=6.4u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-XM2 va en_n vb vdd pfet_03v3 L=0.28u W=6.4u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 

@@ -122,9 +122,10 @@ value="
 .include $::180MCU_MODELS/design.ngspice
 .lib $::180MCU_MODELS/sm141064.ngspice typical
 "}
-C {code_shown.sym} 680 -290 0 0 {name=s1 only_toplevel=false value=".param tper=20u
+C {code_shown.sym} 680 -280 0 0 {name=s1 only_toplevel=false value=".options method=gear
+.param tper=20u
 .param tdead=1n
-.param vcm=1.65
+.param vcm=3.2
 .param vd=0.2
 .csparam vd_cs=vd
 .control
