@@ -24,7 +24,6 @@ XM18 vbp_top vbp_top vdd vdd pfet_03v3 L=1.68u W=18.6u nf=5 ad='int((nf+1)/2) * 
 V3 vdd vss 3.3
 V4 vss 0 0
 V1 vcm vss {vcm}
-V2 vin_p vcm DC {vd/2} AC 0.5 0
 XM3 vint_p vin_n vtail vtail pfet_03v3 L=0.84u W=70u nf=10 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
 XM4 vpint_n vbp_top vdd vdd pfet_03v3 L=1.68u W=18.6u nf=5 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
@@ -35,7 +34,6 @@ XM10 vint_n vbn_bot vss vss nfet_03v3 L=1.68u W=2.125u nf=1 ad='int((nf+1)/2) * 
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=24
 XM13 vtail vout_p vss vss nfet_03v3 L=0.28u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-V5 vin_n vcm DC {-vd/2} AC 0.5 180
 XM16 vd_nbias vbp_top vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XM19 vbn_casc vbp_top vdd vdd pfet_03v3 L=1.68u W=33.48u nf=9 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
@@ -50,6 +48,9 @@ XM8 vout_n vbn_casc vint_n vss nfet_03v3 L=0.28u W=1.8u nf=1 ad='int((nf+1)/2) *
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
 XM20 vd_nbias vd_nbias vdsatn_bot vss nfet_03v3 L=0.28u W=0.6u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
 + pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+E1 vin_p vcm vin vss 0.5
+E2 vin_n vcm vin vss -0.5
+Vin vin vss DC {vd} AC 1 0
 **** begin user architecture code
 
 .param vcm=0.5
@@ -58,11 +59,19 @@ XM20 vd_nbias vd_nbias vdsatn_bot vss nfet_03v3 L=0.28u W=0.6u nf=1 ad='int((nf+
 save @m.xm1.m0[id] @m.xm2.m0[id] @m.xm3.m0[id] @m.xm4.m0[id] @m.xm5.m0[id]
 save @m.xm6.m0[id] @m.xm7.m0[id] @m.xm8.m0[id] @m.xm9.m0[id] @m.xm10.m0[id]
 save @m.xm11.m0[id] @m.xm12.m0[id] @m.xm13.m0[id] @m.xm14.m0[id] @m.xm15.m0[id]
-save @m.xm16.m0[id] @m.xm17.m0[id] @m.xm18.m0[id] @m.xm19.m0[id] @m.xm20.m0[id] @m.xm21.m0[id] @m.xm22.m0[id]
+save @m.xm16.m0[id] @m.xm17.m0[id] @m.xm18.m0[id] @m.xm19.m0[id] @m.xm20.m0[id]
+save @m.xm21.m0[id] @m.xm22.m0[id]
+
+save @m.xm1.m0[gm] @m.xm2.m0[gm] @m.xm3.m0[gm] @m.xm4.m0[gm] @m.xm5.m0[gm]
+save @m.xm6.m0[gm] @m.xm7.m0[gm] @m.xm8.m0[gm] @m.xm9.m0[gm] @m.xm10.m0[gm]
+save @m.xm11.m0[gm] @m.xm12.m0[gm] @m.xm13.m0[gm] @m.xm14.m0[gm] @m.xm15.m0[gm]
+save @m.xm16.m0[gm] @m.xm17.m0[gm] @m.xm18.m0[gm] @m.xm19.m0[gm] @m.xm20.m0[gm]
+save @m.xm21.m0[gm] @m.xm22.m0[gm]
+
 save all
 op
 write results_op.raw all
-ac dec 100 1 10G
+noise v(vout_p, vout_n) Vin dec 10 1 1000Meg
 .endc
 
 

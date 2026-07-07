@@ -128,8 +128,8 @@ N 1280 -1120 1280 -1080 {lab=vdd}
 N -290 -210 -290 -190 {lab=vcm}
 N -180 -190 -100 -190 {lab=vcm}
 N -100 -210 -100 -190 {lab=vcm}
-N -140 -190 -140 -170 {lab=vcm}
-N -140 -110 -140 -50 {lab=vss}
+N -200 -190 -200 -170 {lab=vcm}
+N -200 -110 -200 -50 {lab=vss}
 N -290 -410 -290 -270 {lab=vin_p}
 N -180 -410 -0 -410 {lab=vin_p}
 N -100 -320 -100 -270 {lab=vin_n}
@@ -168,6 +168,12 @@ N 1880 -190 1930 -190 {lab=vss}
 N 2140 -290 2190 -290 {lab=vss}
 N 1880 -410 1930 -410 {lab=vss}
 N 1670 0 1880 0 {lab=vss}
+N -400 -220 -330 -220 {lab=vss}
+N -400 -260 -330 -260 {lab=vin}
+N -210 -220 -140 -220 {lab=vss}
+N -210 -260 -140 -260 {lab=vin}
+N -640 -230 -640 -170 {lab=vss}
+N -640 -360 -640 -290 {lab=vin}
 C {symbols/pfet_03v3.sym} 60 -410 0 0 {name=M2
 L=0.84u
 W=70u
@@ -345,23 +351,30 @@ C {gnd.sym} 1220 -1000 0 0 {name=l2 lab=0}
 C {lab_wire.sym} 1220 -1120 3 0 {name=p32 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1280 -980 3 1 {name=p33 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1280 -1120 3 0 {name=p34 sig_type=std_logic lab=vdd}
-C {code_shown.sym} 1480 -1020 0 0 {name=s1 only_toplevel=false value=".param vcm=0.5
+C {code_shown.sym} 2290 -720 0 0 {name=s1 only_toplevel=false value=".param vcm=0.5
 .param vd=0
 .control
 save @m.xm1.m0[id] @m.xm2.m0[id] @m.xm3.m0[id] @m.xm4.m0[id] @m.xm5.m0[id]
 save @m.xm6.m0[id] @m.xm7.m0[id] @m.xm8.m0[id] @m.xm9.m0[id] @m.xm10.m0[id]
 save @m.xm11.m0[id] @m.xm12.m0[id] @m.xm13.m0[id] @m.xm14.m0[id] @m.xm15.m0[id]
-save @m.xm16.m0[id] @m.xm17.m0[id] @m.xm18.m0[id] @m.xm19.m0[id] @m.xm20.m0[id] @m.xm21.m0[id] @m.xm22.m0[id]
+save @m.xm16.m0[id] @m.xm17.m0[id] @m.xm18.m0[id] @m.xm19.m0[id] @m.xm20.m0[id] 
+save @m.xm21.m0[id] @m.xm22.m0[id]
+
+save @m.xm1.m0[gm] @m.xm2.m0[gm] @m.xm3.m0[gm] @m.xm4.m0[gm] @m.xm5.m0[gm]
+save @m.xm6.m0[gm] @m.xm7.m0[gm] @m.xm8.m0[gm] @m.xm9.m0[gm] @m.xm10.m0[gm]
+save @m.xm11.m0[gm] @m.xm12.m0[gm] @m.xm13.m0[gm] @m.xm14.m0[gm] @m.xm15.m0[gm]
+save @m.xm16.m0[gm] @m.xm17.m0[gm] @m.xm18.m0[gm] @m.xm19.m0[gm] @m.xm20.m0[gm] 
+save @m.xm21.m0[gm] @m.xm22.m0[gm]
+
 save all
 op
 write results_op.raw all
-ac dec 100 1 10G
+noise v(vout_p, vout_n) Vin dec 10 1 1000Meg
 .endc"}
-C {vsource.sym} -140 -140 0 0 {name=V1 value=\{vcm\} savecurrent=false}
-C {vsource.sym} -290 -240 0 0 {name=V2 value="DC \{vd/2\} AC 0.5 0" savecurrent=false}
-C {lab_wire.sym} -140 -50 3 1 {name=p35 sig_type=std_logic lab=vss}
+C {vsource.sym} -200 -140 0 0 {name=V1 value=\{vcm\} savecurrent=false}
+C {lab_wire.sym} -200 -50 3 1 {name=p35 sig_type=std_logic lab=vss}
 C {lab_wire.sym} -120 -190 0 0 {name=p36 sig_type=std_logic lab=vcm}
-C {devices/code_shown.sym} 1450 -1130 0 0 {name=MODELS only_toplevel=true
+C {devices/code_shown.sym} 1440 -970 0 0 {name=MODELS only_toplevel=true
 format="tcleval( @value )"
 value="
 .include $::180MCU_MODELS/design.ngspice
@@ -439,7 +452,6 @@ spiceprefix=X
 }
 C {lab_wire.sym} 560 -610 3 0 {name=p31 sig_type=std_logic lab=vpint_n}
 C {lab_wire.sym} 920 -610 3 0 {name=p37 sig_type=std_logic lab=vpint_p}
-C {vsource.sym} -100 -240 0 0 {name=V5 value="DC \{-vd/2\} AC 0.5 180" savecurrent=false}
 C {symbols/pfet_03v3.sym} 1860 -650 0 0 {name=M16
 L=1.68u
 W=3.72u
@@ -545,3 +557,12 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
+C {vcvs.sym} -290 -240 0 0 {name=E1 value=0.5}
+C {vcvs.sym} -100 -240 0 0 {name=E2 value=-0.5}
+C {lab_wire.sym} -400 -220 0 1 {name=p43 sig_type=std_logic lab=vss}
+C {lab_wire.sym} -400 -260 0 1 {name=p46 sig_type=std_logic lab=vin}
+C {lab_wire.sym} -210 -220 0 1 {name=p47 sig_type=std_logic lab=vss}
+C {lab_wire.sym} -210 -260 0 1 {name=p48 sig_type=std_logic lab=vin}
+C {vsource.sym} -640 -260 0 0 {name=Vin value="DC \{vd\} AC 1 0" savecurrent=false}
+C {lab_wire.sym} -640 -170 3 1 {name=p49 sig_type=std_logic lab=vss}
+C {lab_wire.sym} -640 -360 3 0 {name=p50 sig_type=std_logic lab=vin}
