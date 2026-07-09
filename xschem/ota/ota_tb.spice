@@ -1,0 +1,284 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota_tb.sch
+**.subckt ota_tb
+x1 vdd net1 vin_p vin_n vss net2 vout_n vout_p ota
+I0 vdd net1 10u
+V4 net2 vss {voutcm}
+C3 vout_n vcm 10p
+C4 vout_p vcm 10p
+V5 vdd vss 3.3
+V6 vss 0 0
+V7 vcm vss {vincm}
+E1 vin_p vcm vin vss 0.5
+E2 vin_n vcm vin vss -0.5
+Vin vin vss DC {vd} AC 1 0
+**** begin user architecture code
+
+.param vincm=0.5
+.param voutcm=1.65
+.param vd=0
+.control
+save all
+save @m.x1.x1.xm2.m0[id] @m.x1.x1.xm2.m0[gm] @m.x1.x1.xm2.m0[gds]
+save @m.x1.x1.xm1.m0[id] @m.x1.x1.xm1.m0[gm] @m.x1.x1.xm1.m0[gds]
+save @m.x1.x2.xm1.m0[id] @m.x1.x2.xm1.m0[gm] @m.x1.x2.xm1.m0[gds]
+save @m.x1.x2.xm7.m0[id] @m.x1.x2.xm7.m0[gm] @m.x1.x2.xm7.m0[gds]
+save @m.x1.x2.xm17.m0[id] @m.x1.x2.xm17.m0[gm] @m.x1.x2.xm17.m0[gds]
+save @m.x1.x2.xm18.m0[id] @m.x1.x2.xm18.m0[gm] @m.x1.x2.xm18.m0[gds]
+save @m.x1.x2.xm4.m0[id] @m.x1.x2.xm4.m0[gm] @m.x1.x2.xm4.m0[gds]
+save @m.x1.x2.xm16.m0[id] @m.x1.x2.xm16.m0[gm] @m.x1.x2.xm16.m0[gds]
+save @m.x1.x2.xm19.m0[id] @m.x1.x2.xm19.m0[gm] @m.x1.x2.xm19.m0[gds]
+save @m.x1.x2.xm11.m0[id] @m.x1.x2.xm11.m0[gm] @m.x1.x2.xm11.m0[gds]
+save @m.x1.x2.xm6.m0[id] @m.x1.x2.xm6.m0[gm] @m.x1.x2.xm6.m0[gds]
+save @m.x1.x2.xm25.m0[id] @m.x1.x2.xm25.m0[gm] @m.x1.x2.xm25.m0[gds]
+save @m.x1.x2.xm26.m0[id] @m.x1.x2.xm26.m0[gm] @m.x1.x2.xm26.m0[gds]
+save @m.x1.x2.xm27.m0[id] @m.x1.x2.xm27.m0[gm] @m.x1.x2.xm27.m0[gds]
+save @m.x1.x3.xm14.m0[id] @m.x1.x3.xm14.m0[gm] @m.x1.x3.xm14.m0[gds]
+save @m.x1.x3.xm15.m0[id] @m.x1.x3.xm15.m0[gm] @m.x1.x3.xm15.m0[gds]
+save @m.x1.x3.xm10.m0[id] @m.x1.x3.xm10.m0[gm] @m.x1.x3.xm10.m0[gds]
+save @m.x1.x3.xm5.m0[id] @m.x1.x3.xm5.m0[gm] @m.x1.x3.xm5.m0[gds]
+save @m.x1.x3.xm23.m0[id] @m.x1.x3.xm23.m0[gm] @m.x1.x3.xm23.m0[gds]
+save @m.x1.x3.xm24.m0[id] @m.x1.x3.xm24.m0[gm] @m.x1.x3.xm24.m0[gds]
+save @m.x1.x4.xm9.m0[id] @m.x1.x4.xm9.m0[gm] @m.x1.x4.xm9.m0[gds]
+save @m.x1.x4.xm22.m0[id] @m.x1.x4.xm22.m0[gm] @m.x1.x4.xm22.m0[gds]
+save @m.x1.x4.xm21.m0[id] @m.x1.x4.xm21.m0[gm] @m.x1.x4.xm21.m0[gds]
+save @m.x1.x4.xm8.m0[id] @m.x1.x4.xm8.m0[gm] @m.x1.x4.xm8.m0[gds]
+save @m.x1.x4.xm20.m0[id] @m.x1.x4.xm20.m0[gm] @m.x1.x4.xm20.m0[gds]
+save @m.x1.x5.xm1.m0[id] @m.x1.x5.xm1.m0[gm] @m.x1.x5.xm1.m0[gds]
+save @m.x1.x5.xm2.m0[id] @m.x1.x5.xm2.m0[gm] @m.x1.x5.xm2.m0[gds]
+save @m.x1.x6.xm15.m0[id] @m.x1.x6.xm15.m0[gm] @m.x1.x6.xm15.m0[gds]
+save @m.x1.x6.xm1.m0[id] @m.x1.x6.xm1.m0[gm] @m.x1.x6.xm1.m0[gds]
+save @m.x1.x6.xm2.m0[id] @m.x1.x6.xm2.m0[gm] @m.x1.x6.xm2.m0[gds]
+save @m.x1.x6.xm3.m0[id] @m.x1.x6.xm3.m0[gm] @m.x1.x6.xm3.m0[gds]
+save @m.x1.x6.xm7.m0[id] @m.x1.x6.xm7.m0[gm] @m.x1.x6.xm7.m0[gds]
+save @m.x1.x6.xm8.m0[id] @m.x1.x6.xm8.m0[gm] @m.x1.x6.xm8.m0[gds]
+save @m.x1.x6.xm4.m0[id] @m.x1.x6.xm4.m0[gm] @m.x1.x6.xm4.m0[gds]
+save @m.x1.x6.xm5.m0[id] @m.x1.x6.xm5.m0[gm] @m.x1.x6.xm5.m0[gds]
+save @m.x1.x6.xm6.m0[id] @m.x1.x6.xm6.m0[gm] @m.x1.x6.xm6.m0[gds]
+save @m.x1.x7.xm6.m0[id] @m.x1.x7.xm6.m0[gm] @m.x1.x7.xm6.m0[gds]
+save @m.x1.x7.xm5.m0[id] @m.x1.x7.xm5.m0[gm] @m.x1.x7.xm5.m0[gds]
+save @m.x1.x7.xm1.m0[id] @m.x1.x7.xm1.m0[gm] @m.x1.x7.xm1.m0[gds]
+save @m.x1.x7.xm2.m0[id] @m.x1.x7.xm2.m0[gm] @m.x1.x7.xm2.m0[gds]
+save @m.x1.x7.xm3.m0[id] @m.x1.x7.xm3.m0[gm] @m.x1.x7.xm3.m0[gds]
+save @m.x1.x7.xm4.m0[id] @m.x1.x7.xm4.m0[gm] @m.x1.x7.xm4.m0[gds]
+save @m.x1.x8.xm6.m0[id] @m.x1.x8.xm6.m0[gm] @m.x1.x8.xm6.m0[gds]
+save @m.x1.x8.xm5.m0[id] @m.x1.x8.xm5.m0[gm] @m.x1.x8.xm5.m0[gds]
+save @m.x1.x8.xm1.m0[id] @m.x1.x8.xm1.m0[gm] @m.x1.x8.xm1.m0[gds]
+save @m.x1.x8.xm2.m0[id] @m.x1.x8.xm2.m0[gm] @m.x1.x8.xm2.m0[gds]
+save @m.x1.x8.xm3.m0[id] @m.x1.x8.xm3.m0[gm] @m.x1.x8.xm3.m0[gds]
+save @m.x1.x8.xm4.m0[id] @m.x1.x8.xm4.m0[gm] @m.x1.x8.xm4.m0[gds]
+op
+write ota_op.raw all
+ac dec 100 1 10G
+.endc
+
+
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ota/ota.sym # of pins=8
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota.sch
+.subckt ota vdd iref vin_p vin_n vss vcm_set vout_p vout_n
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.iopin iref
+*.iopin vdd
+*.iopin vss
+*.iopin vcm_set
+x1 vint_n vint_p vin_p vin_n s1_icmfb s1_input_pair
+x2 vdd s1_icmfb s1_n s1_p vgs_gen vds_gen iref_copy s1_pmos_bias
+x3 iref iref_copy vint_n vint_p vss vtail s1_nmos_bias
+x4 s1_n s1_p vint_n vint_p vgs_gen vds_gen vss s1_nmos_casc
+x5 s1_icmfb s1_p s1_n vss s1_cmfb
+x6 vout_p vout_n vcm_set vtail s2_vcmfb vdd vss s2_cmfb
+x7 s2_vcmfb vdd vss s1_p vout_n s2_half_circuit
+x8 s2_vcmfb vdd vss s1_n vout_p s2_half_circuit
+.ends
+
+
+* expanding   symbol:  ota/s1_input_pair.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_input_pair.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_input_pair.sch
+.subckt s1_input_pair vd_1 vd_2 vin_1 vin_2 vtail
+*.iopin vd_1
+*.iopin vd_2
+*.iopin vin_1
+*.iopin vin_2
+*.iopin vtail
+XM2 vd_1 vin_1 vtail vtail pfet_03v3 L=0.84u W=70u nf=10 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM1 vd_2 vin_2 vtail vtail pfet_03v3 L=0.84u W=70u nf=10 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+* noconn vtail
+.ends
+
+
+* expanding   symbol:  ota/s1_pmos_bias.sym # of pins=7
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_pmos_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_pmos_bias.sch
+.subckt s1_pmos_bias vdd vtail vout_1 vout_2 vgscasc_gen vdsat_gen iref_copy
+*.iopin vdd
+*.iopin vtail
+*.iopin vout_1
+*.iopin vout_2
+*.iopin vgscasc_gen
+*.iopin vdsat_gen
+*.iopin iref_copy
+XM1 vt_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=70
+XM7 vout_2 iref_copy vo2_int vdd pfet_03v3 L=0.28u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=12
+XM17 iref_copy iref_copy vr_int vdd pfet_03v3 L=0.28u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM18 vr_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=5
+XM4 vo1_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=30
+XM16 vsg_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM19 vcg_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=9
+XM11 vo2_int vr_int vdd vdd pfet_03v3 L=1.68u W=3.72u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=30
+XM6 vout_1 iref_copy vo1_int vdd pfet_03v3 L=0.28u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=12
+XM25 vdsat_gen iref_copy vsg_int vdd pfet_03v3 L=0.28u W=1.6u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM26 vgscasc_gen iref_copy vcg_int vdd pfet_03v3 L=0.28u W=1.6u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=9
+XM27 vtail iref_copy vt_int vdd pfet_03v3 L=0.28u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=28
+.ends
+
+
+* expanding   symbol:  ota/s1_nmos_bias.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_nmos_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_nmos_bias.sch
+.subckt s1_nmos_bias iref iref_copy vd_1 vd_2 vss vref
+*.iopin iref
+*.iopin iref_copy
+*.iopin vd_1
+*.iopin vd_2
+*.iopin vss
+*.iopin vref
+XM14 irc_int vref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM15 vref vref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM10 vd_1 vref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=24
+XM5 vd_2 vref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=24
+XM23 iref iref vref vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM24 iref_copy iref irc_int vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+.ends
+
+
+* expanding   symbol:  ota/s1_nmos_casc.sym # of pins=7
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_nmos_casc.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_nmos_casc.sch
+.subckt s1_nmos_casc vout_1 vout_2 vd_1 vd_2 vgscasc_gen vdsat_gen vss
+*.iopin vout_1
+*.iopin vout_2
+*.iopin vd_1
+*.iopin vd_2
+*.iopin vgscasc_gen
+*.iopin vdsat_gen
+*.iopin vss
+XM9 vout_2 vgscasc_gen vd_2 vss nfet_03v3 L=0.28u W=1.8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM22 vgscasc_gen vgscasc_gen net1 vss nfet_03v3 L=0.28u W=1.8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=3
+XM21 net1 vdsat_gen vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM8 vout_1 vgscasc_gen vd_1 vss nfet_03v3 L=0.28u W=1.8u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM20 vdsat_gen vdsat_gen net1 vss nfet_03v3 L=0.28u W=0.6u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  ota/s1_cmfb.sym # of pins=4
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_cmfb.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s1_cmfb.sch
+.subckt s1_cmfb icmfb s1_p s1_n vss
+*.iopin icmfb
+*.iopin s1_p
+*.iopin s1_n
+*.iopin vss
+XM1 icmfb s1_p vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 icmfb s1_n vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  ota/s2_cmfb.sym # of pins=7
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s2_cmfb.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s2_cmfb.sch
+.subckt s2_cmfb vin_1 vin_2 vcm_set vtail_ref vcmfb vdd vss
+*.iopin vin_1
+*.iopin vin_2
+*.iopin vcm_set
+*.iopin vtail_ref
+*.iopin vcmfb
+*.iopin vdd
+*.iopin vss
+XM15 vtail_1 vtail_ref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
+XM1 vtail_2 vtail_ref vss vss nfet_03v3 L=3u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=4
+XM2 vcmfb vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM7 vint_2 vint_2 vdd vdd pfet_03v3 L=0.6u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM8 vint_1 vint_1 vdd vdd pfet_03v3 L=0.6u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM4 vcmfb vcm_set vtail_1 vss nfet_03v3 L=0.28u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vint_2 vin_2 vtail_2 vss nfet_03v3 L=0.28u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM5 vcmfb vcm_set vtail_2 vss nfet_03v3 L=0.28u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM6 vint_1 vin_1 vtail_1 vss nfet_03v3 L=0.28u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  ota/s2_half_circuit.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s2_half_circuit.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s2_half_circuit.sch
+.subckt s2_half_circuit vcmfb vdd vss vin vout
+*.iopin vcmfb
+*.iopin vdd
+*.iopin vss
+*.iopin vin
+*.iopin vout
+XC1 vout net1 cap_mim_2f0fF c_width=25e-6 c_length=20e-6
+XM6 vout vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=7
+XM5 vgs2_copy vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM1 vout vin vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=14
+XM2 net1 vgs2_copy vin vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vgs_copy vgs_copy vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM4 vgs2_copy vgs2_copy vgs_copy vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end

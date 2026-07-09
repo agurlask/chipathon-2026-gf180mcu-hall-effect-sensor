@@ -59,13 +59,14 @@ def f(x):
 class Device:
     """One transistor role: fixed type, L and gm/Id; current set later."""
 
-    def __init__(self, name, table, kind, gm_id, L, i_mult):
+    def __init__(self, name, table, kind, gm_id, L, i_mult, count):
         self.name = name          # label
         self.table = table        # pygmid Lookup object
         self.kind = kind          # 'NMOS' / 'PMOS'
         self.gm_id = gm_id        # target gm/Id
         self.L = L                # channel length [um]
         self.i_mult = i_mult      # drain current as a multiple of I_in
+        self.count = count        # number of physical instances in the amp
 
     def op(self, VDS, VSB=0.0):
         """Resolve the operating point (at reference width) for this gm/Id."""
@@ -168,14 +169,14 @@ def main():
     VDS = VDD / 4.0          # assumption: every device biased at VDS = VDD/4
     L0 = 0.28                # GF180 minimum length [um]
 
-    # ---- device roster: (table, type, gm/Id, L, current multiple of I_in) ----
+    # ---- device roster: (table, type, gm/Id, L, current mult, instance count) ----
     devices = [
-        Device("input_pair",     pch, "PMOS", 18, 3 * L0, 1),   # input diff pair
-        Device("input_tail",     pch, "PMOS",  8, 6 * L0, 2),   # tail source (=2*I_in)
-        Device("load_nmos_bias", nch, "NMOS",  8, 6 * L0, 2),   # folding sources (=2*I_in)
-        Device("load_nmos_casc", nch, "NMOS", 13, 1 * L0, 1),   # NMOS cascodes
-        Device("load_pmos_casc", pch, "PMOS", 13, 1 * L0, 1),   # PMOS cascodes
-        Device("load_pmos_bias", pch, "PMOS",  8, 6 * L0, 1),   # top sources
+        Device("input_pair",     pch, "PMOS", 18, 3 * L0, 1, 2),  # diff pair (x2)
+        Device("input_tail",     pch, "PMOS",  8, 6 * L0, 2, 1),  # single tail source
+        Device("load_nmos_bias", nch, "NMOS",  8, 3.0,    2, 2),  # folding sources (x2), L=3um
+        Device("load_nmos_casc", nch, "NMOS", 13, 1 * L0, 1, 2),  # NMOS cascodes (x2)
+        Device("load_pmos_casc", pch, "PMOS", 13, 1 * L0, 1, 2),  # PMOS cascodes (x2)
+        Device("load_pmos_bias", pch, "PMOS",  8, 6 * L0, 1, 2),  # top sources (x2)
     ]
     by_name = {d.name: d for d in devices}
 
@@ -194,12 +195,26 @@ def main():
         gm = d.gm_id * ID                  # S   (actual)
         ro = op["av"] / gm                 # ohm (av=gm/gds is W-indep -> ro=av/gm_actual)
         rows.append(dict(name=d.name, kind=d.kind, L=d.L, gm_id=d.gm_id,
-                         ID=ID, W=W, gm=gm, ro=ro, vgs=op["vgs"]))
-        sized[d.name] = dict(gm=gm, ro=ro)
+                         ID=ID, W=W, gm=gm, ro=ro, vgs=op["vgs"],
+                         count=d.count, area=d.count * W * d.L))   # gate area [um^2]
+        scale = gm / op["gm"]              # = W_actual / W_ref
+        sized[d.name] = dict(gm=gm, ro=ro,
+                             sth=op["sth"] * scale,   # actual-width drain thermal PSD
+                             sfl=op["sfl"] * scale)   # actual-width drain flicker PSD @1Hz
 
-    # ---- 3) input-device 1/f corner (width-independent = SFL/STH) ------------
+    # ---- 3) 1/f corner -------------------------------------------------------
+    # (a) input-device-only corner: SFL/STH at its op point (width-independent).
     op_in = by_name["input_pair"].op(VDS)
-    f_corner = op_in["sfl"] / op_in["sth"]
+    f_corner_in = op_in["sfl"] / op_in["sth"]
+    # (b) actual amplifier corner: total input-referred flicker = total thermal.
+    #     The (2/gm1^2) input-referral factor is common to both PSDs, so it
+    #     cancels and the corner reduces to sum(SFL_act)/sum(STH_act) over the
+    #     noise contributors (input pair + both current-source pairs; their
+    #     instance counts are all equal, so they cancel too).
+    contrib = ["input_pair", "load_nmos_bias", "load_pmos_bias"]
+    sth_tot = sum(sized[n]["sth"] for n in contrib)
+    sfl_tot = sum(sized[n]["sfl"] for n in contrib)
+    f_corner = sfl_tot / sth_tot
 
     # ---- report --------------------------------------------------------------
     print(f"\nFolded-cascode sizing  (VDD={VDD} V, VDS=VDD/4={VDS:.3f} V, VSB=0)")
@@ -228,9 +243,12 @@ def main():
     print(f"\nAchieved input-referred thermal noise: {args.noise_spec*1e9:.2f} nV/rtHz "
           f"(solved to target)")
 
-    print(f"\nInput-device 1/f corner (SFL/STH): {f_corner/1e3:.2f} kHz")
-    print(f"   (width-independent; set by gm/Id={by_name['input_pair'].gm_id} and "
-          f"L={by_name['input_pair'].L:.2f} um)")
+    print(f"\n1/f corner:")
+    print(f"   input device only (SFL/STH)       : {f_corner_in/1e3:8.2f} kHz")
+    print(f"   actual, incl. current sources     : {f_corner/1e3:8.2f} kHz")
+    print(f"   input-referred flicker contribution (at any f):")
+    for n in contrib:
+        print(f"      {n:16s}: {100*sized[n]['sfl']/sfl_tot:5.1f} %")
 
     # ---- 4) open-loop gain ---------------------------------------------------
     g = compute_gain(sized)
@@ -241,7 +259,24 @@ def main():
     print(f"   R_out  (R_up || R_down)           : {g['R_out']/1e6:8.2f} MOhm")
     print(f"   gm_in                             : {g['gm_in']*1e3:8.3f} mS")
     print(f"   A_v                               : {g['Av']:8.0f} V/V "
-          f"({20*math.log10(g['Av']):.1f} dB)\n")
+          f"({20*math.log10(g['Av']):.1f} dB)")
+
+    # ---- 5) area estimate ----------------------------------------------------
+    # Active gate area = sum(count * W * L). Silicon area is larger once S/D
+    # diffusion, gate/well spacing, guard rings and local routing are added;
+    # LAYOUT_FILL is the active-area fraction of a packed analog block (~1/3).
+    LAYOUT_FILL = 0.35
+    gate_area = sum(r["area"] for r in rows)
+    layout_area = gate_area / LAYOUT_FILL
+    print("\nArea estimate:")
+    print(f"   {'device':16s} {'count':>5s} {'W[um]':>9s} {'L[um]':>6s} {'gate area[um2]':>14s}")
+    for r in sorted(rows, key=lambda x: -x["area"]):
+        print(f"   {r['name']:16s} {r['count']:5d} {r['W']:9.1f} {r['L']:6.2f} {r['area']:14.1f}")
+    print(f"   {'-'*54}")
+    print(f"   active gate area (sum W*L)        : {gate_area:10.1f} um^2")
+    print(f"   est. silicon area (fill={LAYOUT_FILL:.2f})    : {layout_area:10.1f} um^2 "
+          f"(~{layout_area/1e3:.2f} x 10^3 um^2)")
+    print(f"   note: core devices only; excludes bias gen, caps, and the output stage.\n")
 
 
 if __name__ == "__main__":
