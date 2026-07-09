@@ -124,7 +124,7 @@ save @m.x1.x8.xm3.m0[id] @m.x1.x8.xm3.m0[gm] @m.x1.x8.xm3.m0[gds]
 save @m.x1.x8.xm4.m0[id] @m.x1.x8.xm4.m0[gm] @m.x1.x8.xm4.m0[gds]
 op
 write ota_op.raw all
-ac dec 100 1 10G
+*ac dec 100 1 10G
 .endc
 "}
 C {vsource.sym} -180 140 0 0 {name=V7 value=\{vincm\} savecurrent=false}
