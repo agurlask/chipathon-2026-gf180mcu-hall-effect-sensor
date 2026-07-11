@@ -81,8 +81,8 @@ N 690 -970 2050 -970 {lab=vdd}
 N 1350 -970 1350 -700 {lab=vdd}
 N 1730 -970 1730 -700 {lab=vdd}
 N 1390 -520 1430 -520 {lab=vout_n}
-N 1040 -400 1090 -400 {lab=s1_p}
-N 1430 -400 1470 -400 {lab=s1_n}
+N 1040 -400 1090 -400 {lab=s2_p}
+N 1430 -400 1470 -400 {lab=s2_n}
 N 1820 -310 1870 -310 {lab=vcm_set}
 N 1820 -360 1870 -360 {lab=vout_p}
 N 2050 -210 2050 -150 {lab=vss}
@@ -97,8 +97,6 @@ N 2280 -360 2290 -360 {lab=vout_n}
 N 1810 -310 1820 -310 {lab=vcm_set}
 N 1800 -310 1810 -310 {lab=vcm_set}
 C {ota/s1_input_pair.sym} 320 -480 0 0 {name=x1}
-C {title.sym} 160 -40 0 0 {name=l1 author="alang
-"}
 C {ota/s1_pmos_bias.sym} 360 -740 0 0 {name=x2}
 C {lab_wire.sym} 1440 -970 0 0 {name=p1 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 760 -130 3 1 {name=p2 sig_type=std_logic lab=vss}
@@ -116,13 +114,13 @@ C {lab_wire.sym} 510 -450 0 0 {name=p11 sig_type=std_logic lab=vint_p}
 C {lab_wire.sym} 720 -730 3 0 {name=p12 sig_type=std_logic lab=vgs_gen}
 C {lab_wire.sym} 800 -730 3 0 {name=p13 sig_type=std_logic lab=vds_gen}
 C {lab_wire.sym} 880 -700 3 0 {name=p14 sig_type=std_logic lab=iref_copy}
-C {iopin.sym} 60 -290 0 0 {name=p15 lab=vin_p}
-C {iopin.sym} 60 -250 0 0 {name=p16 lab=vin_n}
-C {iopin.sym} 60 -210 0 0 {name=p17 lab=vout_p}
-C {iopin.sym} 60 -170 0 0 {name=p18 lab=vout_n}
-C {iopin.sym} 180 -290 0 0 {name=p19 lab=iref}
-C {iopin.sym} 280 -290 0 0 {name=p21 lab=vdd}
-C {iopin.sym} 280 -250 0 0 {name=p22 lab=vss}
+C {iopin.sym} 0 -290 0 0 {name=p15 lab=vin_p}
+C {iopin.sym} 0 -250 0 0 {name=p16 lab=vin_n}
+C {iopin.sym} 0 -210 0 0 {name=p17 lab=vout_p}
+C {iopin.sym} 0 -170 0 0 {name=p18 lab=vout_n}
+C {iopin.sym} 120 -290 0 0 {name=p19 lab=iref}
+C {iopin.sym} 220 -290 0 0 {name=p21 lab=vdd}
+C {iopin.sym} 220 -250 0 0 {name=p22 lab=vss}
 C {ota/s1_cmfb.sym} 40 -460 0 0 {name=x5}
 C {lab_wire.sym} 120 -400 3 1 {name=p23 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 240 -530 0 0 {name=p24 sig_type=std_logic lab=s1_n}
@@ -133,8 +131,8 @@ C {ota/s2_half_circuit.sym} 1470 -350 0 0 {name=x8}
 C {lab_wire.sym} 2050 -150 3 1 {name=p26 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1730 -290 3 1 {name=p27 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1350 -290 3 1 {name=p28 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1040 -400 0 1 {name=p29 sig_type=std_logic lab=s1_p}
-C {lab_wire.sym} 1430 -400 0 1 {name=p30 sig_type=std_logic lab=s1_n}
+C {lab_wire.sym} 1040 -400 0 1 {name=p29 sig_type=std_logic lab=s2_p}
+C {lab_wire.sym} 1430 -400 0 1 {name=p30 sig_type=std_logic lab=s2_n}
 C {lab_wire.sym} 1440 -520 0 0 {name=p31 sig_type=std_logic lab=vout_n}
 C {lab_wire.sym} 1820 -520 0 0 {name=p32 sig_type=std_logic lab=vout_p}
 C {lab_wire.sym} 1850 -630 0 0 {name=p33 sig_type=std_logic lab=s2_vcmfb}
@@ -142,4 +140,10 @@ C {lab_wire.sym} 1810 -360 0 1 {name=p34 sig_type=std_logic lab=vout_p}
 C {lab_wire.sym} 2290 -360 0 0 {name=p35 sig_type=std_logic lab=vout_n}
 C {lab_wire.sym} 1500 -280 0 1 {name=p36 sig_type=std_logic lab=vtail}
 C {lab_wire.sym} 1800 -310 0 1 {name=p37 sig_type=std_logic lab=vcm_set}
-C {iopin.sym} 180 -210 0 0 {name=p38 lab=vcm_set}
+C {iopin.sym} 120 -210 0 0 {name=p38 lab=vcm_set}
+C {title.sym} 160 -40 0 0 {name=l1 author="alang
+"}
+C {iopin.sym} 320 -290 0 0 {name=p20 lab=s1_p}
+C {iopin.sym} 320 -250 0 0 {name=p39 lab=s1_n}
+C {iopin.sym} 320 -210 0 0 {name=p40 lab=s2_p}
+C {iopin.sym} 320 -170 0 0 {name=p41 lab=s2_n}

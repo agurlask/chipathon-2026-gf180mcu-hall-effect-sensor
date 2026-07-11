@@ -1,94 +1,57 @@
-** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota_tb.sch
-**.subckt ota_tb
-x1 vdd net1 vin_p vin_n vss net2 vout_n vout_p ota
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_top_level/ccia_top_level.sch
+**.subckt ccia_top_level
+x1 net2 vdd vs1_p net1 vvg_n vss vs1_n vs2_p vcm vout_n vs2_n vout_p ccia_main_ota
+x2 phi1 vss vs1_n phi2 vs1_p phi1_n phi2_n vs2_p vs2_n vdd chopper
 I0 vdd net1 10u
-V4 net2 vss {voutcm}
-C3 vout_n vcm 10p
-C4 vout_p vcm 10p
-V5 vdd vss 3.3
-V6 vss 0 0
-V7 vcm vss {vincm}
-E1 vin_p vcm vin vss 0.5
-E2 vin_n vcm vin vss -0.5
+V1 vcm vss 1.65
+C1 voutchop_p vvg_n 100f
+C2 voutchop_n net2 100f
+x3 phi1 vss voutchop_p phi2 voutchop_n phi1_n phi2_n vout_p vout_n vdd chopper
+x4 phi1 vss vin_p phi2 vin_n phi1_n phi2_n vinchop_p vinchop_n vdd chopper
+C3 vvg_p vinchop_p 10p
+C4 vvg_n vinchop_n 10p
+C5 vout_n vcm 10p
+C6 vout_p vcm 10p
+E1 vin_p net3 vin vss 0.5
+E2 vin_n net3 vin vss -0.5
 Vin vin vss DC {vd} AC 1 0
+V6 phi1 vss PULSE(0 3.3 0 500p 500p {tper/2-tdead-500p} {tper})
+V2 phi1_n vss PULSE(3.3 0 0 500p 500p {tper/2-tdead-500p} {tper})
+V8 phi2 vss PULSE(0 3.3 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
+V9 phi2_n vss PULSE(3.3 0 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
+V4 vdd vss 3.3
+V5 vss 0 0
+R1 vvg_p net4 1G
+R2 vvg_n net4 1G
+V3 net4 vss 0.5
+V7 net3 vss 0.5
+V10 net2 vvg_p 1m
 **** begin user architecture code
 
-.param vincm=0.5
-.param voutcm=1.65
-.param vd=0
+.options method=gear
+.param tper=100u
+.param tdead=1n
+.param vd=0.002
+.ic v(vout_p)=1.65 v(vout_n)=1.65
+.ic v(vs2_p)=0.76 v(vs2_n)=0.76
+.ic v(vinchop_p)=0.5 v(vinchop_n)=0.5
 .control
-save all
-save @m.x1.x1.xm2.m0[id] @m.x1.x1.xm2.m0[gm] @m.x1.x1.xm2.m0[gds] @m.x1.x1.xm2.m0[cdb] @m.x1.x1.xm2.m0[cgs] @m.x1.x1.xm2.m0[csb] @m.x1.x1.xm2.m0[cgd]
-save @m.x1.x1.xm1.m0[id] @m.x1.x1.xm1.m0[gm] @m.x1.x1.xm1.m0[gds] @m.x1.x1.xm1.m0[cdb] @m.x1.x1.xm1.m0[cgs] @m.x1.x1.xm1.m0[csb] @m.x1.x1.xm1.m0[cgd]
-save @m.x1.x2.xm1.m0[id] @m.x1.x2.xm1.m0[gm] @m.x1.x2.xm1.m0[gds] @m.x1.x2.xm1.m0[cdb] @m.x1.x2.xm1.m0[cgs] @m.x1.x2.xm1.m0[csb] @m.x1.x2.xm1.m0[cgd]
-save @m.x1.x2.xm7.m0[id] @m.x1.x2.xm7.m0[gm] @m.x1.x2.xm7.m0[gds] @m.x1.x2.xm7.m0[cdb] @m.x1.x2.xm7.m0[cgs] @m.x1.x2.xm7.m0[csb] @m.x1.x2.xm7.m0[cgd]
-save @m.x1.x2.xm17.m0[id] @m.x1.x2.xm17.m0[gm] @m.x1.x2.xm17.m0[gds] @m.x1.x2.xm17.m0[cdb] @m.x1.x2.xm17.m0[cgs] @m.x1.x2.xm17.m0[csb] @m.x1.x2.xm17.m0[cgd]
-save @m.x1.x2.xm18.m0[id] @m.x1.x2.xm18.m0[gm] @m.x1.x2.xm18.m0[gds] @m.x1.x2.xm18.m0[cdb] @m.x1.x2.xm18.m0[cgs] @m.x1.x2.xm18.m0[csb] @m.x1.x2.xm18.m0[cgd]
-save @m.x1.x2.xm4.m0[id] @m.x1.x2.xm4.m0[gm] @m.x1.x2.xm4.m0[gds] @m.x1.x2.xm4.m0[cdb] @m.x1.x2.xm4.m0[cgs] @m.x1.x2.xm4.m0[csb] @m.x1.x2.xm4.m0[cgd]
-save @m.x1.x2.xm16.m0[id] @m.x1.x2.xm16.m0[gm] @m.x1.x2.xm16.m0[gds] @m.x1.x2.xm16.m0[cdb] @m.x1.x2.xm16.m0[cgs] @m.x1.x2.xm16.m0[csb] @m.x1.x2.xm16.m0[cgd]
-save @m.x1.x2.xm19.m0[id] @m.x1.x2.xm19.m0[gm] @m.x1.x2.xm19.m0[gds] @m.x1.x2.xm19.m0[cdb] @m.x1.x2.xm19.m0[cgs] @m.x1.x2.xm19.m0[csb] @m.x1.x2.xm19.m0[cgd]
-save @m.x1.x2.xm11.m0[id] @m.x1.x2.xm11.m0[gm] @m.x1.x2.xm11.m0[gds] @m.x1.x2.xm11.m0[cdb] @m.x1.x2.xm11.m0[cgs] @m.x1.x2.xm11.m0[csb] @m.x1.x2.xm11.m0[cgd]
-save @m.x1.x2.xm6.m0[id] @m.x1.x2.xm6.m0[gm] @m.x1.x2.xm6.m0[gds] @m.x1.x2.xm6.m0[cdb] @m.x1.x2.xm6.m0[cgs] @m.x1.x2.xm6.m0[csb] @m.x1.x2.xm6.m0[cgd]
-save @m.x1.x2.xm25.m0[id] @m.x1.x2.xm25.m0[gm] @m.x1.x2.xm25.m0[gds] @m.x1.x2.xm25.m0[cdb] @m.x1.x2.xm25.m0[cgs] @m.x1.x2.xm25.m0[csb] @m.x1.x2.xm25.m0[cgd]
-save @m.x1.x2.xm26.m0[id] @m.x1.x2.xm26.m0[gm] @m.x1.x2.xm26.m0[gds] @m.x1.x2.xm26.m0[cdb] @m.x1.x2.xm26.m0[cgs] @m.x1.x2.xm26.m0[csb] @m.x1.x2.xm26.m0[cgd]
-save @m.x1.x2.xm27.m0[id] @m.x1.x2.xm27.m0[gm] @m.x1.x2.xm27.m0[gds] @m.x1.x2.xm27.m0[cdb] @m.x1.x2.xm27.m0[cgs] @m.x1.x2.xm27.m0[csb] @m.x1.x2.xm27.m0[cgd]
-save @m.x1.x3.xm14.m0[id] @m.x1.x3.xm14.m0[gm] @m.x1.x3.xm14.m0[gds] @m.x1.x3.xm14.m0[cdb] @m.x1.x3.xm14.m0[cgs] @m.x1.x3.xm14.m0[csb] @m.x1.x3.xm14.m0[cgd]
-save @m.x1.x3.xm15.m0[id] @m.x1.x3.xm15.m0[gm] @m.x1.x3.xm15.m0[gds] @m.x1.x3.xm15.m0[cdb] @m.x1.x3.xm15.m0[cgs] @m.x1.x3.xm15.m0[csb] @m.x1.x3.xm15.m0[cgd]
-save @m.x1.x3.xm10.m0[id] @m.x1.x3.xm10.m0[gm] @m.x1.x3.xm10.m0[gds] @m.x1.x3.xm10.m0[cdb] @m.x1.x3.xm10.m0[cgs] @m.x1.x3.xm10.m0[csb] @m.x1.x3.xm10.m0[cgd]
-save @m.x1.x3.xm5.m0[id] @m.x1.x3.xm5.m0[gm] @m.x1.x3.xm5.m0[gds] @m.x1.x3.xm5.m0[cdb] @m.x1.x3.xm5.m0[cgs] @m.x1.x3.xm5.m0[csb] @m.x1.x3.xm5.m0[cgd]
-save @m.x1.x3.xm23.m0[id] @m.x1.x3.xm23.m0[gm] @m.x1.x3.xm23.m0[gds] @m.x1.x3.xm23.m0[cdb] @m.x1.x3.xm23.m0[cgs] @m.x1.x3.xm23.m0[csb] @m.x1.x3.xm23.m0[cgd]
-save @m.x1.x3.xm24.m0[id] @m.x1.x3.xm24.m0[gm] @m.x1.x3.xm24.m0[gds] @m.x1.x3.xm24.m0[cdb] @m.x1.x3.xm24.m0[cgs] @m.x1.x3.xm24.m0[csb] @m.x1.x3.xm24.m0[cgd]
-save @m.x1.x4.xm9.m0[id] @m.x1.x4.xm9.m0[gm] @m.x1.x4.xm9.m0[gds] @m.x1.x4.xm9.m0[cdb] @m.x1.x4.xm9.m0[cgs] @m.x1.x4.xm9.m0[csb] @m.x1.x4.xm9.m0[cgd]
-save @m.x1.x4.xm22.m0[id] @m.x1.x4.xm22.m0[gm] @m.x1.x4.xm22.m0[gds] @m.x1.x4.xm22.m0[cdb] @m.x1.x4.xm22.m0[cgs] @m.x1.x4.xm22.m0[csb] @m.x1.x4.xm22.m0[cgd]
-save @m.x1.x4.xm21.m0[id] @m.x1.x4.xm21.m0[gm] @m.x1.x4.xm21.m0[gds] @m.x1.x4.xm21.m0[cdb] @m.x1.x4.xm21.m0[cgs] @m.x1.x4.xm21.m0[csb] @m.x1.x4.xm21.m0[cgd]
-save @m.x1.x4.xm8.m0[id] @m.x1.x4.xm8.m0[gm] @m.x1.x4.xm8.m0[gds] @m.x1.x4.xm8.m0[cdb] @m.x1.x4.xm8.m0[cgs] @m.x1.x4.xm8.m0[csb] @m.x1.x4.xm8.m0[cgd]
-save @m.x1.x4.xm20.m0[id] @m.x1.x4.xm20.m0[gm] @m.x1.x4.xm20.m0[gds] @m.x1.x4.xm20.m0[cdb] @m.x1.x4.xm20.m0[cgs] @m.x1.x4.xm20.m0[csb] @m.x1.x4.xm20.m0[cgd]
-save @m.x1.x5.xm1.m0[id] @m.x1.x5.xm1.m0[gm] @m.x1.x5.xm1.m0[gds] @m.x1.x5.xm1.m0[cdb] @m.x1.x5.xm1.m0[cgs] @m.x1.x5.xm1.m0[csb] @m.x1.x5.xm1.m0[cgd]
-save @m.x1.x5.xm2.m0[id] @m.x1.x5.xm2.m0[gm] @m.x1.x5.xm2.m0[gds] @m.x1.x5.xm2.m0[cdb] @m.x1.x5.xm2.m0[cgs] @m.x1.x5.xm2.m0[csb] @m.x1.x5.xm2.m0[cgd]
-save @m.x1.x6.xm15.m0[id] @m.x1.x6.xm15.m0[gm] @m.x1.x6.xm15.m0[gds] @m.x1.x6.xm15.m0[cdb] @m.x1.x6.xm15.m0[cgs] @m.x1.x6.xm15.m0[csb] @m.x1.x6.xm15.m0[cgd]
-save @m.x1.x6.xm1.m0[id] @m.x1.x6.xm1.m0[gm] @m.x1.x6.xm1.m0[gds] @m.x1.x6.xm1.m0[cdb] @m.x1.x6.xm1.m0[cgs] @m.x1.x6.xm1.m0[csb] @m.x1.x6.xm1.m0[cgd]
-save @m.x1.x6.xm2.m0[id] @m.x1.x6.xm2.m0[gm] @m.x1.x6.xm2.m0[gds] @m.x1.x6.xm2.m0[cdb] @m.x1.x6.xm2.m0[cgs] @m.x1.x6.xm2.m0[csb] @m.x1.x6.xm2.m0[cgd]
-save @m.x1.x6.xm7.m0[id] @m.x1.x6.xm7.m0[gm] @m.x1.x6.xm7.m0[gds] @m.x1.x6.xm7.m0[cdb] @m.x1.x6.xm7.m0[cgs] @m.x1.x6.xm7.m0[csb] @m.x1.x6.xm7.m0[cgd]
-save @m.x1.x6.xm8.m0[id] @m.x1.x6.xm8.m0[gm] @m.x1.x6.xm8.m0[gds] @m.x1.x6.xm8.m0[cdb] @m.x1.x6.xm8.m0[cgs] @m.x1.x6.xm8.m0[csb] @m.x1.x6.xm8.m0[cgd]
-save @m.x1.x6.xm4.m0[id] @m.x1.x6.xm4.m0[gm] @m.x1.x6.xm4.m0[gds] @m.x1.x6.xm4.m0[cdb] @m.x1.x6.xm4.m0[cgs] @m.x1.x6.xm4.m0[csb] @m.x1.x6.xm4.m0[cgd]
-save @m.x1.x6.xm3.m0[id] @m.x1.x6.xm3.m0[gm] @m.x1.x6.xm3.m0[gds] @m.x1.x6.xm3.m0[cdb] @m.x1.x6.xm3.m0[cgs] @m.x1.x6.xm3.m0[csb] @m.x1.x6.xm3.m0[cgd]
-save @m.x1.x6.xm5.m0[id] @m.x1.x6.xm5.m0[gm] @m.x1.x6.xm5.m0[gds] @m.x1.x6.xm5.m0[cdb] @m.x1.x6.xm5.m0[cgs] @m.x1.x6.xm5.m0[csb] @m.x1.x6.xm5.m0[cgd]
-save @m.x1.x6.xm6.m0[id] @m.x1.x6.xm6.m0[gm] @m.x1.x6.xm6.m0[gds] @m.x1.x6.xm6.m0[cdb] @m.x1.x6.xm6.m0[cgs] @m.x1.x6.xm6.m0[csb] @m.x1.x6.xm6.m0[cgd]
-save @m.x1.x7.xm6.m0[id] @m.x1.x7.xm6.m0[gm] @m.x1.x7.xm6.m0[gds] @m.x1.x7.xm6.m0[cdb] @m.x1.x7.xm6.m0[cgs] @m.x1.x7.xm6.m0[csb] @m.x1.x7.xm6.m0[cgd]
-save @m.x1.x7.xm5.m0[id] @m.x1.x7.xm5.m0[gm] @m.x1.x7.xm5.m0[gds] @m.x1.x7.xm5.m0[cdb] @m.x1.x7.xm5.m0[cgs] @m.x1.x7.xm5.m0[csb] @m.x1.x7.xm5.m0[cgd]
-save @m.x1.x7.xm1.m0[id] @m.x1.x7.xm1.m0[gm] @m.x1.x7.xm1.m0[gds] @m.x1.x7.xm1.m0[cdb] @m.x1.x7.xm1.m0[cgs] @m.x1.x7.xm1.m0[csb] @m.x1.x7.xm1.m0[cgd]
-save @m.x1.x7.xm3.m0[id] @m.x1.x7.xm3.m0[gm] @m.x1.x7.xm3.m0[gds] @m.x1.x7.xm3.m0[cdb] @m.x1.x7.xm3.m0[cgs] @m.x1.x7.xm3.m0[csb] @m.x1.x7.xm3.m0[cgd]
-save @m.x1.x7.xm4.m0[id] @m.x1.x7.xm4.m0[gm] @m.x1.x7.xm4.m0[gds] @m.x1.x7.xm4.m0[cdb] @m.x1.x7.xm4.m0[cgs] @m.x1.x7.xm4.m0[csb] @m.x1.x7.xm4.m0[cgd]
-save @m.x1.x7.xm2.m0[id] @m.x1.x7.xm2.m0[gm] @m.x1.x7.xm2.m0[gds] @m.x1.x7.xm2.m0[cdb] @m.x1.x7.xm2.m0[cgs] @m.x1.x7.xm2.m0[csb] @m.x1.x7.xm2.m0[cgd]
-save @m.x1.x8.xm6.m0[id] @m.x1.x8.xm6.m0[gm] @m.x1.x8.xm6.m0[gds] @m.x1.x8.xm6.m0[cdb] @m.x1.x8.xm6.m0[cgs] @m.x1.x8.xm6.m0[csb] @m.x1.x8.xm6.m0[cgd]
-save @m.x1.x8.xm5.m0[id] @m.x1.x8.xm5.m0[gm] @m.x1.x8.xm5.m0[gds] @m.x1.x8.xm5.m0[cdb] @m.x1.x8.xm5.m0[cgs] @m.x1.x8.xm5.m0[csb] @m.x1.x8.xm5.m0[cgd]
-save @m.x1.x8.xm1.m0[id] @m.x1.x8.xm1.m0[gm] @m.x1.x8.xm1.m0[gds] @m.x1.x8.xm1.m0[cdb] @m.x1.x8.xm1.m0[cgs] @m.x1.x8.xm1.m0[csb] @m.x1.x8.xm1.m0[cgd]
-save @m.x1.x8.xm3.m0[id] @m.x1.x8.xm3.m0[gm] @m.x1.x8.xm3.m0[gds] @m.x1.x8.xm3.m0[cdb] @m.x1.x8.xm3.m0[cgs] @m.x1.x8.xm3.m0[csb] @m.x1.x8.xm3.m0[cgd]
-save @m.x1.x8.xm4.m0[id] @m.x1.x8.xm4.m0[gm] @m.x1.x8.xm4.m0[gds] @m.x1.x8.xm4.m0[cdb] @m.x1.x8.xm4.m0[cgs] @m.x1.x8.xm4.m0[csb] @m.x1.x8.xm4.m0[cgd]
-save @m.x1.x8.xm2.m0[id] @m.x1.x8.xm2.m0[gm] @m.x1.x8.xm2.m0[gds] @m.x1.x8.xm2.m0[cdb] @m.x1.x8.xm2.m0[cgs] @m.x1.x8.xm2.m0[csb] @m.x1.x8.xm2.m0[cgd]
-op
-write ota_op.raw all
-ac dec 100 1 10G
-write ota_ac.raw all
-*noise v(vout_p, vout_n) Vin dec 10 1 1000Meg
+	tran 5n 500u
+	let vdiff = v(vout_p)-v(vout_n)
+        meas tran vavg AVG vdiff
 .endc
-
 
 
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
 
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  ota/ota.sym # of pins=8
-** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota.sym
-** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota.sch
-.subckt ota vdd iref vin_p vin_n vss vcm_set vout_p vout_n
+* expanding   symbol:  ccia_top_level/ccia_main_ota.sym # of pins=12
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_top_level/ccia_main_ota.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_top_level/ccia_main_ota.sch
+.subckt ccia_main_ota vin_p vdd s1_p iref vin_n vss s1_n s2_p vcm_set vout_p s2_n vout_n
 *.iopin vin_p
 *.iopin vin_n
 *.iopin vout_p
@@ -97,14 +60,39 @@ write ota_ac.raw all
 *.iopin vdd
 *.iopin vss
 *.iopin vcm_set
+*.iopin s1_p
+*.iopin s1_n
+*.iopin s2_p
+*.iopin s2_n
 x1 vint_n vint_p vin_p vin_n s1_icmfb s1_input_pair
 x2 vdd s1_icmfb s1_n s1_p vgs_gen vds_gen iref_copy s1_pmos_bias
 x3 iref iref_copy vint_n vint_p vss vtail s1_nmos_bias
 x4 s1_n s1_p vint_n vint_p vgs_gen vds_gen vss s1_nmos_casc
 x5 s1_icmfb s1_p s1_n vss s1_cmfb
 x6 vout_p vout_n vcm_set vtail s2_vcmfb vdd vss s2_cmfb
-x7 s2_vcmfb vdd vss s1_p vout_n s2_half_circuit
-x8 s2_vcmfb vdd vss s1_n vout_p s2_half_circuit
+x7 s2_vcmfb vdd vss s2_p vout_n s2_half_circuit
+x8 s2_vcmfb vdd vss s2_n vout_p s2_half_circuit
+.ends
+
+
+* expanding   symbol:  chopper/chopper.sym # of pins=10
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/chopper.sch
+.subckt chopper phi1 vss vin_p phi2 vin_n phi1_n phi2_n vout_p vout_n vdd
+*.iopin vss
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.ipin phi1
+*.ipin phi2
+*.ipin phi1_n
+*.ipin phi2_n
+*.iopin vdd
+x1 vdd vin_p vss vout_p phi1_n phi1 tgate
+x2 vdd vin_p vss vout_n phi2_n phi2 tgate
+x3 vdd vin_n vss vout_p phi2_n phi2 tgate
+x4 vdd vin_n vss vout_n phi1_n phi1 tgate
 .ends
 
 
@@ -273,6 +261,23 @@ XM6 vout vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.
 XM1 vout vin vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=14
 C1 vout vin 2p
+.ends
+
+
+* expanding   symbol:  tgate/tgate.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/tgate/tgate.sch
+.subckt tgate vdd va vss vb en_n en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+*.iopin en_n
+XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 
 .end

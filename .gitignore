@@ -16,3 +16,4 @@ img/
 *.toc
 docs/refs
 *.DS_Store
+*.raw

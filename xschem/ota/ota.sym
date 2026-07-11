@@ -28,7 +28,7 @@ B 5 -2.5 -2.5 2.5 2.5 {name=vss dir=inout}
 B 5 27.5 -22.5 32.5 -17.5 {name=vcm_set dir=inout}
 B 5 117.5 -42.5 122.5 -37.5 {name=vout_p dir=inout}
 B 5 117.5 -122.5 122.5 -117.5 {name=vout_n dir=inout}
-T {@symname} -1.5 -96 0 0 0.3 0.3 {}
+T {@symname} 18.5 -96 0 0 0.3 0.3 {}
 T {@name} 35 -172 0 0 0.2 0.2 {}
 T {vdd} 10 -149 0 1 0.1 0.1 {}
 T {iref} 35 -134 0 1 0.1 0.1 {}

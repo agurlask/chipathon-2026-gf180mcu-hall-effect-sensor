@@ -1,0 +1,14 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/s2_half_circuit.sch
+**.subckt s2_half_circuit vcmfb vdd vss vin vout
+*.iopin vcmfb
+*.iopin vdd
+*.iopin vss
+*.iopin vin
+*.iopin vout
+XM6 vout vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=7
+XM1 vout vin vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=14
+C1 vout vin 2p
+**.ends
+.end

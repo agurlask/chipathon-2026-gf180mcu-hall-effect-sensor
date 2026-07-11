@@ -1,8 +1,8 @@
-** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota_tb.sch
-**.subckt ota_tb
-x1 vdd net1 vin_p vin_n vss net2 vout_n vout_p ota
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ota/ota_cmfb_transient.sch
+**.subckt ota_cmfb_transient
+x1 vdd net1 vin_p vin_n vss vcm_set vout_n vout_p ota
 I0 vdd net1 10u
-V4 net2 vss {voutcm}
+V4 vcm_set vss PULSE(1 2 1n 1n 1n 1u 2u)
 C3 vout_n vcm 10p
 C4 vout_p vcm 10p
 V5 vdd vss 3.3
@@ -13,74 +13,17 @@ E2 vin_n vcm vin vss -0.5
 Vin vin vss DC {vd} AC 1 0
 **** begin user architecture code
 
-.param vincm=0.5
-.param voutcm=1.65
-.param vd=0
-.control
-save all
-save @m.x1.x1.xm2.m0[id] @m.x1.x1.xm2.m0[gm] @m.x1.x1.xm2.m0[gds] @m.x1.x1.xm2.m0[cdb] @m.x1.x1.xm2.m0[cgs] @m.x1.x1.xm2.m0[csb] @m.x1.x1.xm2.m0[cgd]
-save @m.x1.x1.xm1.m0[id] @m.x1.x1.xm1.m0[gm] @m.x1.x1.xm1.m0[gds] @m.x1.x1.xm1.m0[cdb] @m.x1.x1.xm1.m0[cgs] @m.x1.x1.xm1.m0[csb] @m.x1.x1.xm1.m0[cgd]
-save @m.x1.x2.xm1.m0[id] @m.x1.x2.xm1.m0[gm] @m.x1.x2.xm1.m0[gds] @m.x1.x2.xm1.m0[cdb] @m.x1.x2.xm1.m0[cgs] @m.x1.x2.xm1.m0[csb] @m.x1.x2.xm1.m0[cgd]
-save @m.x1.x2.xm7.m0[id] @m.x1.x2.xm7.m0[gm] @m.x1.x2.xm7.m0[gds] @m.x1.x2.xm7.m0[cdb] @m.x1.x2.xm7.m0[cgs] @m.x1.x2.xm7.m0[csb] @m.x1.x2.xm7.m0[cgd]
-save @m.x1.x2.xm17.m0[id] @m.x1.x2.xm17.m0[gm] @m.x1.x2.xm17.m0[gds] @m.x1.x2.xm17.m0[cdb] @m.x1.x2.xm17.m0[cgs] @m.x1.x2.xm17.m0[csb] @m.x1.x2.xm17.m0[cgd]
-save @m.x1.x2.xm18.m0[id] @m.x1.x2.xm18.m0[gm] @m.x1.x2.xm18.m0[gds] @m.x1.x2.xm18.m0[cdb] @m.x1.x2.xm18.m0[cgs] @m.x1.x2.xm18.m0[csb] @m.x1.x2.xm18.m0[cgd]
-save @m.x1.x2.xm4.m0[id] @m.x1.x2.xm4.m0[gm] @m.x1.x2.xm4.m0[gds] @m.x1.x2.xm4.m0[cdb] @m.x1.x2.xm4.m0[cgs] @m.x1.x2.xm4.m0[csb] @m.x1.x2.xm4.m0[cgd]
-save @m.x1.x2.xm16.m0[id] @m.x1.x2.xm16.m0[gm] @m.x1.x2.xm16.m0[gds] @m.x1.x2.xm16.m0[cdb] @m.x1.x2.xm16.m0[cgs] @m.x1.x2.xm16.m0[csb] @m.x1.x2.xm16.m0[cgd]
-save @m.x1.x2.xm19.m0[id] @m.x1.x2.xm19.m0[gm] @m.x1.x2.xm19.m0[gds] @m.x1.x2.xm19.m0[cdb] @m.x1.x2.xm19.m0[cgs] @m.x1.x2.xm19.m0[csb] @m.x1.x2.xm19.m0[cgd]
-save @m.x1.x2.xm11.m0[id] @m.x1.x2.xm11.m0[gm] @m.x1.x2.xm11.m0[gds] @m.x1.x2.xm11.m0[cdb] @m.x1.x2.xm11.m0[cgs] @m.x1.x2.xm11.m0[csb] @m.x1.x2.xm11.m0[cgd]
-save @m.x1.x2.xm6.m0[id] @m.x1.x2.xm6.m0[gm] @m.x1.x2.xm6.m0[gds] @m.x1.x2.xm6.m0[cdb] @m.x1.x2.xm6.m0[cgs] @m.x1.x2.xm6.m0[csb] @m.x1.x2.xm6.m0[cgd]
-save @m.x1.x2.xm25.m0[id] @m.x1.x2.xm25.m0[gm] @m.x1.x2.xm25.m0[gds] @m.x1.x2.xm25.m0[cdb] @m.x1.x2.xm25.m0[cgs] @m.x1.x2.xm25.m0[csb] @m.x1.x2.xm25.m0[cgd]
-save @m.x1.x2.xm26.m0[id] @m.x1.x2.xm26.m0[gm] @m.x1.x2.xm26.m0[gds] @m.x1.x2.xm26.m0[cdb] @m.x1.x2.xm26.m0[cgs] @m.x1.x2.xm26.m0[csb] @m.x1.x2.xm26.m0[cgd]
-save @m.x1.x2.xm27.m0[id] @m.x1.x2.xm27.m0[gm] @m.x1.x2.xm27.m0[gds] @m.x1.x2.xm27.m0[cdb] @m.x1.x2.xm27.m0[cgs] @m.x1.x2.xm27.m0[csb] @m.x1.x2.xm27.m0[cgd]
-save @m.x1.x3.xm14.m0[id] @m.x1.x3.xm14.m0[gm] @m.x1.x3.xm14.m0[gds] @m.x1.x3.xm14.m0[cdb] @m.x1.x3.xm14.m0[cgs] @m.x1.x3.xm14.m0[csb] @m.x1.x3.xm14.m0[cgd]
-save @m.x1.x3.xm15.m0[id] @m.x1.x3.xm15.m0[gm] @m.x1.x3.xm15.m0[gds] @m.x1.x3.xm15.m0[cdb] @m.x1.x3.xm15.m0[cgs] @m.x1.x3.xm15.m0[csb] @m.x1.x3.xm15.m0[cgd]
-save @m.x1.x3.xm10.m0[id] @m.x1.x3.xm10.m0[gm] @m.x1.x3.xm10.m0[gds] @m.x1.x3.xm10.m0[cdb] @m.x1.x3.xm10.m0[cgs] @m.x1.x3.xm10.m0[csb] @m.x1.x3.xm10.m0[cgd]
-save @m.x1.x3.xm5.m0[id] @m.x1.x3.xm5.m0[gm] @m.x1.x3.xm5.m0[gds] @m.x1.x3.xm5.m0[cdb] @m.x1.x3.xm5.m0[cgs] @m.x1.x3.xm5.m0[csb] @m.x1.x3.xm5.m0[cgd]
-save @m.x1.x3.xm23.m0[id] @m.x1.x3.xm23.m0[gm] @m.x1.x3.xm23.m0[gds] @m.x1.x3.xm23.m0[cdb] @m.x1.x3.xm23.m0[cgs] @m.x1.x3.xm23.m0[csb] @m.x1.x3.xm23.m0[cgd]
-save @m.x1.x3.xm24.m0[id] @m.x1.x3.xm24.m0[gm] @m.x1.x3.xm24.m0[gds] @m.x1.x3.xm24.m0[cdb] @m.x1.x3.xm24.m0[cgs] @m.x1.x3.xm24.m0[csb] @m.x1.x3.xm24.m0[cgd]
-save @m.x1.x4.xm9.m0[id] @m.x1.x4.xm9.m0[gm] @m.x1.x4.xm9.m0[gds] @m.x1.x4.xm9.m0[cdb] @m.x1.x4.xm9.m0[cgs] @m.x1.x4.xm9.m0[csb] @m.x1.x4.xm9.m0[cgd]
-save @m.x1.x4.xm22.m0[id] @m.x1.x4.xm22.m0[gm] @m.x1.x4.xm22.m0[gds] @m.x1.x4.xm22.m0[cdb] @m.x1.x4.xm22.m0[cgs] @m.x1.x4.xm22.m0[csb] @m.x1.x4.xm22.m0[cgd]
-save @m.x1.x4.xm21.m0[id] @m.x1.x4.xm21.m0[gm] @m.x1.x4.xm21.m0[gds] @m.x1.x4.xm21.m0[cdb] @m.x1.x4.xm21.m0[cgs] @m.x1.x4.xm21.m0[csb] @m.x1.x4.xm21.m0[cgd]
-save @m.x1.x4.xm8.m0[id] @m.x1.x4.xm8.m0[gm] @m.x1.x4.xm8.m0[gds] @m.x1.x4.xm8.m0[cdb] @m.x1.x4.xm8.m0[cgs] @m.x1.x4.xm8.m0[csb] @m.x1.x4.xm8.m0[cgd]
-save @m.x1.x4.xm20.m0[id] @m.x1.x4.xm20.m0[gm] @m.x1.x4.xm20.m0[gds] @m.x1.x4.xm20.m0[cdb] @m.x1.x4.xm20.m0[cgs] @m.x1.x4.xm20.m0[csb] @m.x1.x4.xm20.m0[cgd]
-save @m.x1.x5.xm1.m0[id] @m.x1.x5.xm1.m0[gm] @m.x1.x5.xm1.m0[gds] @m.x1.x5.xm1.m0[cdb] @m.x1.x5.xm1.m0[cgs] @m.x1.x5.xm1.m0[csb] @m.x1.x5.xm1.m0[cgd]
-save @m.x1.x5.xm2.m0[id] @m.x1.x5.xm2.m0[gm] @m.x1.x5.xm2.m0[gds] @m.x1.x5.xm2.m0[cdb] @m.x1.x5.xm2.m0[cgs] @m.x1.x5.xm2.m0[csb] @m.x1.x5.xm2.m0[cgd]
-save @m.x1.x6.xm15.m0[id] @m.x1.x6.xm15.m0[gm] @m.x1.x6.xm15.m0[gds] @m.x1.x6.xm15.m0[cdb] @m.x1.x6.xm15.m0[cgs] @m.x1.x6.xm15.m0[csb] @m.x1.x6.xm15.m0[cgd]
-save @m.x1.x6.xm1.m0[id] @m.x1.x6.xm1.m0[gm] @m.x1.x6.xm1.m0[gds] @m.x1.x6.xm1.m0[cdb] @m.x1.x6.xm1.m0[cgs] @m.x1.x6.xm1.m0[csb] @m.x1.x6.xm1.m0[cgd]
-save @m.x1.x6.xm2.m0[id] @m.x1.x6.xm2.m0[gm] @m.x1.x6.xm2.m0[gds] @m.x1.x6.xm2.m0[cdb] @m.x1.x6.xm2.m0[cgs] @m.x1.x6.xm2.m0[csb] @m.x1.x6.xm2.m0[cgd]
-save @m.x1.x6.xm7.m0[id] @m.x1.x6.xm7.m0[gm] @m.x1.x6.xm7.m0[gds] @m.x1.x6.xm7.m0[cdb] @m.x1.x6.xm7.m0[cgs] @m.x1.x6.xm7.m0[csb] @m.x1.x6.xm7.m0[cgd]
-save @m.x1.x6.xm8.m0[id] @m.x1.x6.xm8.m0[gm] @m.x1.x6.xm8.m0[gds] @m.x1.x6.xm8.m0[cdb] @m.x1.x6.xm8.m0[cgs] @m.x1.x6.xm8.m0[csb] @m.x1.x6.xm8.m0[cgd]
-save @m.x1.x6.xm4.m0[id] @m.x1.x6.xm4.m0[gm] @m.x1.x6.xm4.m0[gds] @m.x1.x6.xm4.m0[cdb] @m.x1.x6.xm4.m0[cgs] @m.x1.x6.xm4.m0[csb] @m.x1.x6.xm4.m0[cgd]
-save @m.x1.x6.xm3.m0[id] @m.x1.x6.xm3.m0[gm] @m.x1.x6.xm3.m0[gds] @m.x1.x6.xm3.m0[cdb] @m.x1.x6.xm3.m0[cgs] @m.x1.x6.xm3.m0[csb] @m.x1.x6.xm3.m0[cgd]
-save @m.x1.x6.xm5.m0[id] @m.x1.x6.xm5.m0[gm] @m.x1.x6.xm5.m0[gds] @m.x1.x6.xm5.m0[cdb] @m.x1.x6.xm5.m0[cgs] @m.x1.x6.xm5.m0[csb] @m.x1.x6.xm5.m0[cgd]
-save @m.x1.x6.xm6.m0[id] @m.x1.x6.xm6.m0[gm] @m.x1.x6.xm6.m0[gds] @m.x1.x6.xm6.m0[cdb] @m.x1.x6.xm6.m0[cgs] @m.x1.x6.xm6.m0[csb] @m.x1.x6.xm6.m0[cgd]
-save @m.x1.x7.xm6.m0[id] @m.x1.x7.xm6.m0[gm] @m.x1.x7.xm6.m0[gds] @m.x1.x7.xm6.m0[cdb] @m.x1.x7.xm6.m0[cgs] @m.x1.x7.xm6.m0[csb] @m.x1.x7.xm6.m0[cgd]
-save @m.x1.x7.xm5.m0[id] @m.x1.x7.xm5.m0[gm] @m.x1.x7.xm5.m0[gds] @m.x1.x7.xm5.m0[cdb] @m.x1.x7.xm5.m0[cgs] @m.x1.x7.xm5.m0[csb] @m.x1.x7.xm5.m0[cgd]
-save @m.x1.x7.xm1.m0[id] @m.x1.x7.xm1.m0[gm] @m.x1.x7.xm1.m0[gds] @m.x1.x7.xm1.m0[cdb] @m.x1.x7.xm1.m0[cgs] @m.x1.x7.xm1.m0[csb] @m.x1.x7.xm1.m0[cgd]
-save @m.x1.x7.xm3.m0[id] @m.x1.x7.xm3.m0[gm] @m.x1.x7.xm3.m0[gds] @m.x1.x7.xm3.m0[cdb] @m.x1.x7.xm3.m0[cgs] @m.x1.x7.xm3.m0[csb] @m.x1.x7.xm3.m0[cgd]
-save @m.x1.x7.xm4.m0[id] @m.x1.x7.xm4.m0[gm] @m.x1.x7.xm4.m0[gds] @m.x1.x7.xm4.m0[cdb] @m.x1.x7.xm4.m0[cgs] @m.x1.x7.xm4.m0[csb] @m.x1.x7.xm4.m0[cgd]
-save @m.x1.x7.xm2.m0[id] @m.x1.x7.xm2.m0[gm] @m.x1.x7.xm2.m0[gds] @m.x1.x7.xm2.m0[cdb] @m.x1.x7.xm2.m0[cgs] @m.x1.x7.xm2.m0[csb] @m.x1.x7.xm2.m0[cgd]
-save @m.x1.x8.xm6.m0[id] @m.x1.x8.xm6.m0[gm] @m.x1.x8.xm6.m0[gds] @m.x1.x8.xm6.m0[cdb] @m.x1.x8.xm6.m0[cgs] @m.x1.x8.xm6.m0[csb] @m.x1.x8.xm6.m0[cgd]
-save @m.x1.x8.xm5.m0[id] @m.x1.x8.xm5.m0[gm] @m.x1.x8.xm5.m0[gds] @m.x1.x8.xm5.m0[cdb] @m.x1.x8.xm5.m0[cgs] @m.x1.x8.xm5.m0[csb] @m.x1.x8.xm5.m0[cgd]
-save @m.x1.x8.xm1.m0[id] @m.x1.x8.xm1.m0[gm] @m.x1.x8.xm1.m0[gds] @m.x1.x8.xm1.m0[cdb] @m.x1.x8.xm1.m0[cgs] @m.x1.x8.xm1.m0[csb] @m.x1.x8.xm1.m0[cgd]
-save @m.x1.x8.xm3.m0[id] @m.x1.x8.xm3.m0[gm] @m.x1.x8.xm3.m0[gds] @m.x1.x8.xm3.m0[cdb] @m.x1.x8.xm3.m0[cgs] @m.x1.x8.xm3.m0[csb] @m.x1.x8.xm3.m0[cgd]
-save @m.x1.x8.xm4.m0[id] @m.x1.x8.xm4.m0[gm] @m.x1.x8.xm4.m0[gds] @m.x1.x8.xm4.m0[cdb] @m.x1.x8.xm4.m0[cgs] @m.x1.x8.xm4.m0[csb] @m.x1.x8.xm4.m0[cgd]
-save @m.x1.x8.xm2.m0[id] @m.x1.x8.xm2.m0[gm] @m.x1.x8.xm2.m0[gds] @m.x1.x8.xm2.m0[cdb] @m.x1.x8.xm2.m0[cgs] @m.x1.x8.xm2.m0[csb] @m.x1.x8.xm2.m0[cgd]
-op
-write ota_op.raw all
-ac dec 100 1 10G
-write ota_ac.raw all
-*noise v(vout_p, vout_n) Vin dec 10 1 1000Meg
-.endc
-
-
-
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+
+
+.param vincm=0.5
+.param vd=0
+.tran 100p 10u
 
 **** end user architecture code
 **.ends
@@ -270,9 +213,17 @@ XM6 vint_1 vin_1 vtail_1 vss nfet_03v3 L=0.28u W=18u nf=4 ad='int((nf+1)/2) * W/
 *.iopin vout
 XM6 vout vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=7
+XM5 vgs2_copy vcmfb vdd vdd pfet_03v3 L=0.6u W=12u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XM1 vout vin vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=14
-C1 vout vin 2p
+XM3 vgs_copy vgs_copy vss vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM4 vgs2_copy vgs2_copy vgs_copy vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=2
+XM2 net1 vgs2_copy vin vss nfet_03v3 L=0.6u W=7.4u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=14
+C1 vout net1 1p
 .ends
 
 .end
