@@ -599,7 +599,7 @@ C {lab_wire.sym} 780 -680 0 1 {name=p43 sig_type=std_logic lab=vds_input}
 C {lab_wire.sym} 400 -420 0 1 {name=p44 sig_type=std_logic lab=vb_float_bias}
 C {lab_wire.sym} 580 -350 3 1 {name=p45 sig_type=std_logic lab=vout_1}
 C {lab_wire.sym} 1000 -360 1 0 {name=p46 sig_type=std_logic lab=vout_2}
-C {lab_wire.sym} 1150 -810 0 1 {name=p47 sig_type=std_logic lab=vout_2}
+C {lab_wire.sym} 1150 -810 0 1 {name=p47 sig_type=std_logic lab=vout_1}
 C {lab_wire.sym} 2020 -810 0 0 {name=p48 sig_type=std_logic lab=vout_2}
 C {lab_wire.sym} 1490 -860 0 0 {name=p49 sig_type=std_logic lab=vtail_cmfb1}
 C {lab_wire.sym} 1890 -860 0 0 {name=p50 sig_type=std_logic lab=vtail_cmfb2}
