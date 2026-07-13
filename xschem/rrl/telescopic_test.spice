@@ -1,0 +1,111 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_test.sch
+**.subckt telescopic_test
+XM2 vpc_1 vin_1 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM4 vtail vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=50
+XM10 vout_1 vb_ncasc vnc_1 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM12 vnc_1 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM1 net1 vb_ncasc vss vss nfet_03v3 L=3u W=2u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM5 vds_input vb_pcasc vtail vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+I0 vbias 0 10u
+XM3 vpc_2 vin_2 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM11 vout_2 vb_ncasc vnc_2 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM16 vb_ncasc vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM17 vb_float_bias vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM18 vbias vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM13 vnc_2 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM15 vb_float_bias vb_float_bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM9 vb_pcasc vb_float_bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM19 vtail_cmfb1 vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM22 vtail_cmfb2 vbias vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM25 vb_nbias vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM26 vcmfb_1 vcmfb_1 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM27 vcmfb_2 vcmfb_2 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM28 vcmfb_1 vout_2 vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM20 vb_nbias vcm_set vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM21 vb_nbias vcm_set vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM23 vcmfb_2 vout_2 vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM6 vb_pcasc vb_pcasc vds_input vdd pfet_03v3 L=0.28u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM7 vout_1 vb_pcasc vpc_1 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM8 vout_2 vb_pcasc vpc_2 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM14 vb_ncasc vb_ncasc net1 vss nfet_03v3 L=0.28u W=3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+V3 vdd vss 3.3
+V4 vss 0 0
+V1 vcm vss {vcm}
+E1 vin_1 vcm vin vss 0.5
+E2 vin_2 vcm vin vss -0.5
+Vin vin vss DC {vd} AC 1 0
+V2 vcm_set vss 0.8
+C1 vout_1 vss 50p
+C2 vout_2 vss 50p
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+.param vcm=0.5
+.param vd=0
+.control
+save all
+save @m.xm2.m0[id] @m.xm2.m0[gm] @m.xm2.m0[gds] @m.xm2.m0[cdb] @m.xm2.m0[cgs] @m.xm2.m0[csb] @m.xm2.m0[cgd]
+save @m.xm4.m0[id] @m.xm4.m0[gm] @m.xm4.m0[gds] @m.xm4.m0[cdb] @m.xm4.m0[cgs] @m.xm4.m0[csb] @m.xm4.m0[cgd]
+save @m.xm10.m0[id] @m.xm10.m0[gm] @m.xm10.m0[gds] @m.xm10.m0[cdb] @m.xm10.m0[cgs] @m.xm10.m0[csb] @m.xm10.m0[cgd]
+save @m.xm12.m0[id] @m.xm12.m0[gm] @m.xm12.m0[gds] @m.xm12.m0[cdb] @m.xm12.m0[cgs] @m.xm12.m0[csb] @m.xm12.m0[cgd]
+save @m.xm1.m0[id] @m.xm1.m0[gm] @m.xm1.m0[gds] @m.xm1.m0[cdb] @m.xm1.m0[cgs] @m.xm1.m0[csb] @m.xm1.m0[cgd]
+save @m.xm5.m0[id] @m.xm5.m0[gm] @m.xm5.m0[gds] @m.xm5.m0[cdb] @m.xm5.m0[cgs] @m.xm5.m0[csb] @m.xm5.m0[cgd]
+save @m.xm3.m0[id] @m.xm3.m0[gm] @m.xm3.m0[gds] @m.xm3.m0[cdb] @m.xm3.m0[cgs] @m.xm3.m0[csb] @m.xm3.m0[cgd]
+save @m.xm11.m0[id] @m.xm11.m0[gm] @m.xm11.m0[gds] @m.xm11.m0[cdb] @m.xm11.m0[cgs] @m.xm11.m0[csb] @m.xm11.m0[cgd]
+save @m.xm16.m0[id] @m.xm16.m0[gm] @m.xm16.m0[gds] @m.xm16.m0[cdb] @m.xm16.m0[cgs] @m.xm16.m0[csb] @m.xm16.m0[cgd]
+save @m.xm17.m0[id] @m.xm17.m0[gm] @m.xm17.m0[gds] @m.xm17.m0[cdb] @m.xm17.m0[cgs] @m.xm17.m0[csb] @m.xm17.m0[cgd]
+save @m.xm18.m0[id] @m.xm18.m0[gm] @m.xm18.m0[gds] @m.xm18.m0[cdb] @m.xm18.m0[cgs] @m.xm18.m0[csb] @m.xm18.m0[cgd]
+save @m.xm13.m0[id] @m.xm13.m0[gm] @m.xm13.m0[gds] @m.xm13.m0[cdb] @m.xm13.m0[cgs] @m.xm13.m0[csb] @m.xm13.m0[cgd]
+save @m.xm15.m0[id] @m.xm15.m0[gm] @m.xm15.m0[gds] @m.xm15.m0[cdb] @m.xm15.m0[cgs] @m.xm15.m0[csb] @m.xm15.m0[cgd]
+save @m.xm9.m0[id] @m.xm9.m0[gm] @m.xm9.m0[gds] @m.xm9.m0[cdb] @m.xm9.m0[cgs] @m.xm9.m0[csb] @m.xm9.m0[cgd]
+save @m.xm19.m0[id] @m.xm19.m0[gm] @m.xm19.m0[gds] @m.xm19.m0[cdb] @m.xm19.m0[cgs] @m.xm19.m0[csb] @m.xm19.m0[cgd]
+save @m.xm22.m0[id] @m.xm22.m0[gm] @m.xm22.m0[gds] @m.xm22.m0[cdb] @m.xm22.m0[cgs] @m.xm22.m0[csb] @m.xm22.m0[cgd]
+save @m.xm25.m0[id] @m.xm25.m0[gm] @m.xm25.m0[gds] @m.xm25.m0[cdb] @m.xm25.m0[cgs] @m.xm25.m0[csb] @m.xm25.m0[cgd]
+save @m.xm26.m0[id] @m.xm26.m0[gm] @m.xm26.m0[gds] @m.xm26.m0[cdb] @m.xm26.m0[cgs] @m.xm26.m0[csb] @m.xm26.m0[cgd]
+save @m.xm27.m0[id] @m.xm27.m0[gm] @m.xm27.m0[gds] @m.xm27.m0[cdb] @m.xm27.m0[cgs] @m.xm27.m0[csb] @m.xm27.m0[cgd]
+save @m.xm28.m0[id] @m.xm28.m0[gm] @m.xm28.m0[gds] @m.xm28.m0[cdb] @m.xm28.m0[cgs] @m.xm28.m0[csb] @m.xm28.m0[cgd]
+save @m.xm20.m0[id] @m.xm20.m0[gm] @m.xm20.m0[gds] @m.xm20.m0[cdb] @m.xm20.m0[cgs] @m.xm20.m0[csb] @m.xm20.m0[cgd]
+save @m.xm21.m0[id] @m.xm21.m0[gm] @m.xm21.m0[gds] @m.xm21.m0[cdb] @m.xm21.m0[cgs] @m.xm21.m0[csb] @m.xm21.m0[cgd]
+save @m.xm23.m0[id] @m.xm23.m0[gm] @m.xm23.m0[gds] @m.xm23.m0[cdb] @m.xm23.m0[cgs] @m.xm23.m0[csb] @m.xm23.m0[cgd]
+save @m.xm6.m0[id] @m.xm6.m0[gm] @m.xm6.m0[gds] @m.xm6.m0[cdb] @m.xm6.m0[cgs] @m.xm6.m0[csb] @m.xm6.m0[cgd]
+save @m.xm7.m0[id] @m.xm7.m0[gm] @m.xm7.m0[gds] @m.xm7.m0[cdb] @m.xm7.m0[cgs] @m.xm7.m0[csb] @m.xm7.m0[cgd]
+save @m.xm8.m0[id] @m.xm8.m0[gm] @m.xm8.m0[gds] @m.xm8.m0[cdb] @m.xm8.m0[cgs] @m.xm8.m0[csb] @m.xm8.m0[cgd]
+save @m.xm14.m0[id] @m.xm14.m0[gm] @m.xm14.m0[gds] @m.xm14.m0[cdb] @m.xm14.m0[cgs] @m.xm14.m0[csb] @m.xm14.m0[cgd]
+op
+write results_op.raw all
+ac dec 100 1 10G
+.endc
+
+**** end user architecture code
+**.ends
+.end
