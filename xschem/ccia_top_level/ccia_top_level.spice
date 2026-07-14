@@ -25,7 +25,19 @@ R1 vvg_p net4 1G
 R2 vvg_n net4 1G
 V3 net4 vss 0.5
 V7 net3 vss 0.5
-V10 net2 vvg_p 1m
+V10 net2 vvg_p 10m
+x5 vvg_rrl_p vvg_rrl_n vint_n vint_p vdd vss vcm net5 telescopic
+C7 vout_p vrrl_p 100f
+C8 vout_n vrrl_n 100f
+x7 phi1 vss vvg_rrl_p phi2 vvg_rrl_n phi1_n phi2_n vrrl_p vrrl_n vdd chopper
+C9 vvg_rrl_p vint_p 2p
+C10 vvg_rrl_n vint_n 2p
+x6 vint_p vint_n vs1_p vs1_n vdd vss net6 telescopic_no_cmfb
+I1 net6 vss 10u
+I2 net5 vss 10u
+R3 vvg_rrl_p net7 1G
+R4 vvg_rrl_n net7 1G
+V11 net7 vss 0.5
 **** begin user architecture code
 
 .options method=gear
@@ -36,7 +48,7 @@ V10 net2 vvg_p 1m
 .ic v(vs2_p)=0.76 v(vs2_n)=0.76
 .ic v(vinchop_p)=0.5 v(vinchop_n)=0.5
 .control
-	tran 5n 500u
+	tran 5n 1000u
 	let vdiff = v(vout_p)-v(vout_n)
         meas tran vavg AVG vdiff
 .endc
@@ -93,6 +105,52 @@ x1 vdd vin_p vss vout_p phi1_n phi1 tgate
 x2 vdd vin_p vss vout_n phi2_n phi2 tgate
 x3 vdd vin_n vss vout_p phi2_n phi2 tgate
 x4 vdd vin_n vss vout_n phi1_n phi1 tgate
+.ends
+
+
+* expanding   symbol:  rrl/telescopic.sym # of pins=8
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic.sch
+.subckt telescopic vin_p vin_n vout_p vout_n vdd vss vcm_set iref
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.iopin vdd
+*.iopin vss
+*.iopin vcm_set
+*.iopin iref
+x1 vtail vdd vin_n vin_p vps_1 vps_2 telescopic_input_pair
+x2 vdd vss vps_1 vps_2 vns_1 vns_2 vout_p vout_n vbp vbn telescopic_cascode
+x3 vbn v_pcasc_bias vtail vbp vss vdd telescopic_cascode_bias
+x4 vdd vbn v_pcasc_bias vtail iref telescopic_pmos_bias
+x5 vns_1 vns_2 vout_p vout_n iref vdd vss vcm_set telescopic_cmfb
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_no_cmfb.sym # of pins=7
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_no_cmfb.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_no_cmfb.sch
+.subckt telescopic_no_cmfb vin_p vin_n vout_p vout_n vdd vss iref
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.iopin vdd
+*.iopin vss
+*.iopin iref
+x1 vtail vdd vin_n vin_p vps_1 vps_2 telescopic_input_pair
+x2 vdd vss vps_1 vps_2 vns_1 vns_2 vout_p vout_n vbp vbn telescopic_cascode
+x3 vbn v_pcasc_bias vtail vbp vss vdd telescopic_cascode_bias
+x4 vdd vbn v_pcasc_bias vtail iref telescopic_pmos_bias
+XM16 vg_nmos iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM12 vns_1 vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM25 vg_nmos vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM1 vns_2 vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 
 
@@ -278,6 +336,131 @@ XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XM2 va en_n vb vdd pfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_input_pair.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_input_pair.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_input_pair.sch
+.subckt telescopic_input_pair vtail vdd vin_1 vin_2 vd_1 vd_2
+*.iopin vtail
+*.iopin vdd
+*.iopin vin_1
+*.iopin vin_2
+*.iopin vd_1
+*.iopin vd_2
+XM2 vd_1 vin_1 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vd_2 vin_2 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+* noconn vtail
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_cascode.sym # of pins=10
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cascode.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cascode.sch
+.subckt telescopic_cascode vdd vss pmos_vs_1 pmos_vs_2 nmos_vs_1 nmos_vs_2 vout_1 vout_2 pmos_vb nmos_vb
+*.iopin vdd
+*.iopin vss
+*.iopin pmos_vs_1
+*.iopin pmos_vs_2
+*.iopin nmos_vs_1
+*.iopin nmos_vs_2
+*.iopin vout_1
+*.iopin vout_2
+*.iopin pmos_vb
+*.iopin nmos_vb
+XM10 vout_1 nmos_vb nmos_vs_1 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM11 vout_2 nmos_vb nmos_vs_2 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM7 vout_1 pmos_vb pmos_vs_1 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM8 vout_2 pmos_vb pmos_vs_2 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_cascode_bias.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cascode_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cascode_bias.sch
+.subckt telescopic_cascode_bias vb_nmos_casc bias vtail vb_pmos_casc vss vdd
+*.iopin vb_nmos_casc
+*.iopin bias
+*.iopin vtail
+*.iopin vb_pmos_casc
+*.iopin vss
+*.iopin vdd
+XM1 net1 vb_nmos_casc vss vss nfet_03v3 L=3u W=2u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM5 vds_input vb_pmos_casc vtail vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM15 bias bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM9 vb_pmos_casc bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM6 vb_pmos_casc vb_pmos_casc vds_input vdd pfet_03v3 L=0.28u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM14 vb_nmos_casc vb_nmos_casc net1 vss nfet_03v3 L=0.28u W=3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_pmos_bias.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_pmos_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_pmos_bias.sch
+.subckt telescopic_pmos_bias vdd vbias_ncasc vbias_pcasc vtail iref
+*.iopin vdd
+*.iopin vbias_ncasc
+*.iopin vbias_pcasc
+*.iopin vtail
+*.iopin iref
+XM4 vtail iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=50
+XM16 vbias_pcasc iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM17 vbias_ncasc iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM18 iref iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+.ends
+
+
+* expanding   symbol:  rrl/telescopic_cmfb.sym # of pins=8
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cmfb.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/rrl/telescopic_cmfb.sch
+.subckt telescopic_cmfb nmos_vs_1 nmos_vs_2 vout_1 vout_2 vg_pmos vdd vss vcm_set
+*.iopin nmos_vs_1
+*.iopin nmos_vs_2
+*.iopin vout_1
+*.iopin vout_2
+*.iopin vg_pmos
+*.iopin vdd
+*.iopin vss
+*.iopin vcm_set
+XM12 nmos_vs_1 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM13 nmos_vs_2 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM19 vtail_cmfb1 vg_pmos vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM22 vtail_cmfb2 vg_pmos vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM25 vb_nbias vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM26 vcmfb_1 vcmfb_1 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM27 vcmfb_2 vcmfb_2 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM28 vcmfb_1 vout_1 vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM20 vb_nbias vcm_set vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM21 vb_nbias vcm_set vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM23 vcmfb_2 vout_2 vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 
 .end

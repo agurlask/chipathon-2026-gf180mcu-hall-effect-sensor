@@ -25,23 +25,19 @@ N 1300 -410 1300 -380 {lab=vss}
 N 1420 -410 1420 -370 {lab=vcm}
 N 1420 -310 1420 -280 {lab=vss}
 N 1780 -530 1870 -530 {lab=vout_p}
-N 1640 -1030 1670 -1030 {lab=voutchop_p}
-N 1660 -950 1670 -950 {lab=voutchop_n}
-N 1730 -950 1740 -950 {lab=vout_n}
-N 1730 -1030 1760 -1030 {lab=vout_p}
-N 1690 -930 1690 -900 {lab=vdd}
-N 1710 -930 1710 -900 {lab=vss}
-N 1580 -950 1660 -950 {lab=voutchop_n}
-N 1580 -1030 1640 -1030 {lab=voutchop_p}
-N 1870 -1030 1870 -530 {lab=vout_p}
-N 1760 -1030 1870 -1030 {lab=vout_p}
-N 1740 -950 1820 -950 {lab=vout_n}
-N 1820 -950 1820 -450 {lab=vout_n}
+N 1640 -180 1670 -180 {lab=voutchop_p}
+N 1660 -100 1670 -100 {lab=voutchop_n}
+N 1730 -100 1740 -100 {lab=vout_n}
+N 1730 -180 1760 -180 {lab=vout_p}
+N 1690 -80 1690 -50 {lab=vdd}
+N 1710 -80 1710 -50 {lab=vss}
+N 1580 -100 1660 -100 {lab=voutchop_n}
+N 1580 -180 1640 -180 {lab=voutchop_p}
+N 1760 -180 1870 -180 {lab=vout_p}
+N 1740 -100 1820 -100 {lab=vout_n}
 N 1780 -450 1820 -450 {lab=vout_n}
-N 1280 -950 1520 -950 {lab=#net2}
-N 1280 -950 1280 -530 {lab=#net2}
+N 1280 -100 1520 -100 {lab=#net2}
 N 1280 -530 1300 -530 {lab=#net2}
-N 1270 -1030 1270 -450 {lab=vvg_n}
 N 990 -450 1040 -450 {lab=vvg_n}
 N 1290 -450 1300 -450 {lab=vvg_n}
 N 1300 -600 1300 -570 {lab=vdd}
@@ -107,14 +103,14 @@ N 1550 -820 1550 -780 {lab=phi2}
 N 1570 -820 1570 -780 {lab=phi2_n}
 N 1550 -840 1550 -820 {lab=phi2}
 N 1570 -840 1570 -820 {lab=phi2_n}
-N 1670 -1090 1670 -1050 {lab=phi1}
-N 1690 -1090 1690 -1050 {lab=phi1_n}
-N 1670 -1110 1670 -1090 {lab=phi1}
-N 1690 -1110 1690 -1090 {lab=phi1_n}
-N 1710 -1090 1710 -1050 {lab=phi2}
-N 1730 -1090 1730 -1050 {lab=phi2_n}
-N 1710 -1110 1710 -1090 {lab=phi2}
-N 1730 -1110 1730 -1090 {lab=phi2_n}
+N 1670 -240 1670 -200 {lab=phi1}
+N 1690 -240 1690 -200 {lab=phi1_n}
+N 1670 -260 1670 -240 {lab=phi1}
+N 1690 -260 1690 -240 {lab=phi1_n}
+N 1710 -240 1710 -200 {lab=phi2}
+N 1730 -240 1730 -200 {lab=phi2_n}
+N 1710 -260 1710 -240 {lab=phi2}
+N 1730 -260 1730 -240 {lab=phi2_n}
 N 780 -200 780 -180 {lab=vss}
 N 780 -180 780 -160 {lab=vss}
 N 780 -300 780 -260 {lab=vdd}
@@ -132,7 +128,7 @@ N 980 -220 980 -190 {lab=vss}
 N 460 -180 460 -150 {lab=vss}
 N 910 -530 940 -530 {lab=vvg_p}
 N 1000 -530 1030 -530 {lab=vvg_p}
-N 1270 -1030 1520 -1030 {lab=vvg_n}
+N 1270 -180 1520 -180 {lab=vvg_n}
 N 640 -530 650 -530 {lab=vin_p}
 N 710 -530 800 -530 {lab=vinchop_p}
 N 720 -450 810 -450 {lab=vinchop_n}
@@ -142,6 +138,66 @@ N 1040 -450 1260 -450 {lab=vvg_n}
 N 1260 -450 1270 -450 {lab=vvg_n}
 N 1190 -530 1280 -530 {lab=#net2}
 N 1030 -530 1130 -530 {lab=vvg_p}
+N 1870 -530 1870 -180 {lab=vout_p}
+N 1820 -450 1820 -100 {lab=vout_n}
+N 1280 -530 1280 -100 {lab=#net2}
+N 1270 -450 1270 -180 {lab=vvg_n}
+N 1500 -1240 1520 -1240 {lab=vint_p}
+N 1500 -1160 1520 -1160 {lab=vint_n}
+N 1940 -1240 1970 -1240 {lab=vrrl_p}
+N 1840 -1140 1840 -1110 {lab=vdd}
+N 1860 -1140 1860 -1110 {lab=vss}
+N 1880 -1240 1940 -1240 {lab=vrrl_p}
+N 1820 -1300 1820 -1260 {lab=phi1}
+N 1840 -1300 1840 -1260 {lab=phi1_n}
+N 1820 -1320 1820 -1300 {lab=phi1}
+N 1840 -1320 1840 -1300 {lab=phi1_n}
+N 1860 -1300 1860 -1260 {lab=phi2}
+N 1880 -1300 1880 -1260 {lab=phi2_n}
+N 1860 -1320 1860 -1300 {lab=phi2}
+N 1880 -1320 1880 -1300 {lab=phi2_n}
+N 1680 -1240 1700 -1240 {lab=vvg_rrl_p}
+N 1680 -1160 1700 -1160 {lab=vvg_rrl_n}
+N 1520 -1240 1560 -1240 {lab=vint_p}
+N 1520 -1160 1560 -1160 {lab=vint_n}
+N 1690 -1160 1690 -1000 {lab=vvg_rrl_n}
+N 1670 -1000 1690 -1000 {lab=vvg_rrl_n}
+N 1540 -1000 1610 -1000 {lab=vint_n}
+N 1540 -1160 1540 -1000 {lab=vint_n}
+N 1540 -1380 1540 -1240 {lab=vint_p}
+N 1540 -1380 1610 -1380 {lab=vint_p}
+N 1670 -1380 1690 -1380 {lab=vvg_rrl_p}
+N 1690 -1380 1690 -1240 {lab=vvg_rrl_p}
+N 1680 -1310 1680 -1280 {lab=vdd}
+N 1680 -1120 1680 -1090 {lab=vss}
+N 1650 -1310 1650 -1260 {lab=vcm}
+N 1680 -1090 1680 -1050 {lab=vss}
+N 1650 -1050 1680 -1050 {lab=vss}
+N 1650 -1060 1650 -1050 {lab=vss}
+N 1650 -1140 1650 -1120 {lab=#net5}
+N 1470 -1140 1470 -1120 {lab=#net6}
+N 1470 -1060 1500 -1060 {lab=vss}
+N 1500 -1120 1500 -1060 {lab=vss}
+N 1500 -1310 1500 -1280 {lab=vdd}
+N 1320 -1240 1380 -1240 {lab=vs1_n}
+N 1320 -1160 1380 -1160 {lab=vs1_p}
+N 1710 -1080 1710 -930 {lab=vvg_rrl_p}
+N 1780 -1000 1780 -930 {lab=vvg_rrl_n}
+N 1750 -850 1750 -830 {lab=#net7}
+N 1710 -850 1750 -850 {lab=#net7}
+N 1710 -870 1710 -850 {lab=#net7}
+N 1750 -850 1780 -850 {lab=#net7}
+N 1780 -870 1780 -850 {lab=#net7}
+N 1750 -770 1750 -740 {lab=vss}
+N 1700 -1240 1710 -1240 {lab=vvg_rrl_p}
+N 1710 -1240 1820 -1240 {lab=vvg_rrl_p}
+N 1780 -1160 1780 -1000 {lab=vvg_rrl_n}
+N 1710 -1240 1710 -1080 {lab=vvg_rrl_p}
+N 2030 -1240 2140 -1240 {lab=vout_p}
+N 2040 -1160 2140 -1160 {lab=vout_n}
+N 1700 -1160 1820 -1160 {lab=vvg_rrl_n}
+N 1880 -1160 1970 -1160 {lab=vrrl_n}
+N 2030 -1160 2040 -1160 {lab=vout_n}
 C {title.sym} 160 -40 0 0 {name=l1 author="alang
 "}
 C {ccia_top_level/ccia_main_ota.sym} 1300 -410 0 0 {name=x1}
@@ -152,19 +208,19 @@ C {lab_wire.sym} 1550 -630 3 1 {name=p2 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1300 -380 1 0 {name=p3 sig_type=std_logic lab=vss}
 C {vsource.sym} 1420 -340 0 0 {name=V1 value=1.65 savecurrent=false}
 C {lab_wire.sym} 1420 -280 3 1 {name=p4 sig_type=std_logic lab=vss}
-C {capa.sym} 1550 -1030 1 0 {name=C1
+C {capa.sym} 1550 -180 1 0 {name=C1
 m=1
 value=100f
 footprint=1206
 device="ceramic capacitor"}
-C {capa.sym} 1550 -950 1 0 {name=C2
+C {capa.sym} 1550 -100 1 0 {name=C2
 m=1
 value=100f
 footprint=1206
 device="ceramic capacitor"}
-C {chopper/chopper.sym} 1670 -930 0 0 {name=x3}
-C {lab_wire.sym} 1690 -900 3 1 {name=p5 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 1710 -900 3 1 {name=p6 sig_type=std_logic lab=vss}
+C {chopper/chopper.sym} 1670 -80 0 0 {name=x3}
+C {lab_wire.sym} 1690 -50 3 1 {name=p5 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1710 -50 3 1 {name=p6 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1300 -600 1 1 {name=p7 sig_type=std_logic lab=vdd}
 C {chopper/chopper.sym} 650 -430 0 0 {name=x4}
 C {lab_wire.sym} 670 -400 3 1 {name=p8 sig_type=std_logic lab=vdd}
@@ -223,10 +279,10 @@ C {lab_wire.sym} 1510 -840 3 0 {name=p26 sig_type=std_logic lab=phi1}
 C {lab_wire.sym} 1530 -840 3 0 {name=p27 sig_type=std_logic lab=phi1_n}
 C {lab_wire.sym} 1550 -840 3 0 {name=p28 sig_type=std_logic lab=phi2}
 C {lab_wire.sym} 1570 -840 3 0 {name=p29 sig_type=std_logic lab=phi2_n}
-C {lab_wire.sym} 1670 -1110 3 0 {name=p30 sig_type=std_logic lab=phi1}
-C {lab_wire.sym} 1690 -1110 3 0 {name=p32 sig_type=std_logic lab=phi1_n}
-C {lab_wire.sym} 1710 -1110 3 0 {name=p33 sig_type=std_logic lab=phi2}
-C {lab_wire.sym} 1730 -1110 3 0 {name=p34 sig_type=std_logic lab=phi2_n}
+C {lab_wire.sym} 1670 -260 3 0 {name=p30 sig_type=std_logic lab=phi1}
+C {lab_wire.sym} 1690 -260 3 0 {name=p32 sig_type=std_logic lab=phi1_n}
+C {lab_wire.sym} 1710 -260 3 0 {name=p33 sig_type=std_logic lab=phi2}
+C {lab_wire.sym} 1730 -260 3 0 {name=p34 sig_type=std_logic lab=phi2_n}
 C {lab_wire.sym} 1420 -380 0 0 {name=p37 sig_type=std_logic lab=vcm}
 C {vsource.sym} 780 -230 0 0 {name=V4 value=3.3 savecurrent=false}
 C {lab_wire.sym} 780 -160 3 1 {name=p38 sig_type=std_logic lab=vss}
@@ -234,7 +290,7 @@ C {lab_wire.sym} 780 -300 3 0 {name=p39 sig_type=std_logic lab=vdd}
 C {vsource.sym} 680 -230 0 0 {name=V5 value=0 savecurrent=false}
 C {lab_wire.sym} 680 -300 3 0 {name=p40 sig_type=std_logic lab=vss}
 C {gnd.sym} 680 -160 0 0 {name=l2 lab=0}
-C {code_shown.sym} 1510 -310 0 0 {name=s1 only_toplevel=false value=".options method=gear
+C {code_shown.sym} 2230 -720 0 0 {name=s1 only_toplevel=false value=".options method=gear
 .param tper=100u
 .param tdead=1n
 .param vd=0.002
@@ -242,7 +298,7 @@ C {code_shown.sym} 1510 -310 0 0 {name=s1 only_toplevel=false value=".options me
 .ic v(vs2_p)=0.76 v(vs2_n)=0.76
 .ic v(vinchop_p)=0.5 v(vinchop_n)=0.5
 .control
-	tran 5n 500u
+	tran 5n 1000u
 	let vdiff = v(vout_p)-v(vout_n)
         meas tran vavg AVG vdiff
 .endc"}
@@ -269,12 +325,70 @@ C {lab_wire.sym} 460 -150 3 1 {name=p35 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 1420 -730 3 0 {name=p36 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 810 -530 0 0 {name=p42 sig_type=std_logic lab=vinchop_p}
 C {lab_wire.sym} 800 -450 0 0 {name=p44 sig_type=std_logic lab=vinchop_n}
-C {lab_wire.sym} 1660 -1030 0 0 {name=p45 sig_type=std_logic lab=voutchop_p}
-C {lab_wire.sym} 1660 -950 0 0 {name=p51 sig_type=std_logic lab=voutchop_n}
+C {lab_wire.sym} 1660 -180 0 0 {name=p45 sig_type=std_logic lab=voutchop_p}
+C {lab_wire.sym} 1660 -100 0 0 {name=p51 sig_type=std_logic lab=voutchop_n}
 C {lab_wire.sym} 990 -530 0 0 {name=p52 sig_type=std_logic lab=vvg_p}
 C {lab_wire.sym} 990 -450 0 0 {name=p53 sig_type=std_logic lab=vvg_n}
 C {lab_wire.sym} 1500 -760 0 0 {name=p54 sig_type=std_logic lab=vs1_n}
 C {lab_wire.sym} 1500 -680 3 0 {name=p55 sig_type=std_logic lab=vs1_p}
 C {lab_wire.sym} 1600 -750 1 1 {name=p56 sig_type=std_logic lab=vs2_p}
 C {lab_wire.sym} 1580 -680 1 1 {name=p57 sig_type=std_logic lab=vs2_n}
-C {vsource.sym} 1160 -530 1 0 {name=V10 value=1m savecurrent=false}
+C {vsource.sym} 1160 -530 1 0 {name=V10 value=10m savecurrent=false}
+C {rrl/telescopic.sym} 1680 -1120 0 1 {name=x5}
+C {capa.sym} 2000 -1240 1 0 {name=C7
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {capa.sym} 2000 -1160 1 0 {name=C8
+m=1
+value=100f
+footprint=1206
+device="ceramic capacitor"}
+C {chopper/chopper.sym} 1820 -1140 0 0 {name=x7}
+C {lab_wire.sym} 1840 -1110 3 1 {name=p58 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1860 -1110 3 1 {name=p59 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1820 -1320 3 0 {name=p60 sig_type=std_logic lab=phi1}
+C {lab_wire.sym} 1840 -1320 3 0 {name=p61 sig_type=std_logic lab=phi1_n}
+C {lab_wire.sym} 1860 -1320 3 0 {name=p62 sig_type=std_logic lab=phi2}
+C {lab_wire.sym} 1880 -1320 3 0 {name=p63 sig_type=std_logic lab=phi2_n}
+C {capa.sym} 1640 -1380 1 0 {name=C9
+m=1
+value=2p
+footprint=1206
+device="ceramic capacitor"}
+C {capa.sym} 1640 -1000 1 0 {name=C10
+m=1
+value=2p
+footprint=1206
+device="ceramic capacitor"}
+C {lab_wire.sym} 1650 -1310 3 0 {name=p66 sig_type=std_logic lab=vcm}
+C {lab_wire.sym} 1680 -1310 3 0 {name=p67 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1680 -1090 3 1 {name=p68 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1500 -1240 0 1 {name=p69 sig_type=std_logic lab=vint_p}
+C {lab_wire.sym} 1500 -1160 0 1 {name=p70 sig_type=std_logic lab=vint_n}
+C {rrl/telescopic_no_cmfb.sym} 1500 -1120 0 1 {name=x6}
+C {isource.sym} 1470 -1090 0 1 {name=I1 value=10u}
+C {isource.sym} 1650 -1090 0 1 {name=I2 value=10u}
+C {lab_wire.sym} 1500 -1080 1 0 {name=p71 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1500 -1310 3 0 {name=p72 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1320 -1240 0 1 {name=p73 sig_type=std_logic lab=vs1_n}
+C {lab_wire.sym} 1320 -1160 0 1 {name=p74 sig_type=std_logic lab=vs1_p}
+C {lab_wire.sym} 1930 -1240 0 0 {name=p64 sig_type=std_logic lab=vrrl_p}
+C {lab_wire.sym} 1940 -1160 0 0 {name=p65 sig_type=std_logic lab=vrrl_n}
+C {res.sym} 1710 -900 0 0 {name=R3
+value=1G
+footprint=1206
+device=resistor
+m=1}
+C {res.sym} 1780 -900 0 0 {name=R4
+value=1G
+footprint=1206
+device=resistor
+m=1}
+C {vsource.sym} 1750 -800 0 0 {name=V11 value=0.5 savecurrent=false}
+C {lab_wire.sym} 1750 -740 3 1 {name=p75 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 2140 -1240 0 0 {name=p76 sig_type=std_logic lab=vout_p}
+C {lab_wire.sym} 2140 -1160 0 0 {name=p77 sig_type=std_logic lab=vout_n}
+C {lab_wire.sym} 1780 -1240 0 0 {name=p78 sig_type=std_logic lab=vvg_rrl_p}
+C {lab_wire.sym} 1790 -1160 0 0 {name=p79 sig_type=std_logic lab=vvg_rrl_n}
