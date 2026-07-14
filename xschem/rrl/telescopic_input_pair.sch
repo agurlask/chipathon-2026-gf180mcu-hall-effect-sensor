@@ -21,10 +21,11 @@ N 160 -260 240 -260 {lab=vin_1}
 N 740 -260 820 -260 {lab=vin_2}
 N 280 -350 280 -290 {lab=vtail}
 N 490 -430 490 -350 {lab=vtail}
-N 280 -260 370 -260 {lab=vdd}
-N 370 -260 700 -260 {lab=vdd}
 N 700 -350 990 -350 {lab=vtail}
 N 990 -350 990 -230 {lab=vtail}
+N 280 -260 300 -260 {lab=#net1}
+N 680 -260 700 -260 {lab=#net1}
+N 300 -260 680 -260 {lab=#net1}
 C {symbols/pfet_03v3.sym} 260 -260 0 0 {name=M2
 L=0.84u
 W=32u
@@ -56,7 +57,6 @@ spiceprefix=X
 C {lab_wire.sym} 490 -430 3 0 {name=p37 sig_type=std_logic lab=vtail}
 C {lab_wire.sym} 280 -60 3 1 {name=p1 sig_type=std_logic lab=vd_1}
 C {lab_wire.sym} 700 -60 1 0 {name=p2 sig_type=std_logic lab=vd_2}
-C {lab_wire.sym} 500 -260 0 0 {name=p3 sig_type=std_logic lab=vdd}
 C {lab_wire.sym} 160 -260 0 1 {name=p4 sig_type=std_logic lab=vin_1}
 C {lab_wire.sym} 820 -260 0 0 {name=p5 sig_type=std_logic lab=vin_2}
 C {noconn.sym} 990 -230 3 0 {name=l1}
@@ -66,3 +66,4 @@ C {iopin.sym} 0 -240 0 0 {name=p8 lab=vin_1}
 C {iopin.sym} 0 -200 0 0 {name=p9 lab=vin_2}
 C {iopin.sym} 0 -160 0 0 {name=p10 lab=vd_1}
 C {iopin.sym} 0 -120 0 0 {name=p11 lab=vd_2}
+C {lab_wire.sym} 500 -260 0 0 {name=p3 sig_type=std_logic lab=vdd}

@@ -71,7 +71,7 @@ C {lab_wire.sym} 470 -390 3 0 {name=p15 sig_type=std_logic lab=vdd}
 C {vsource.sym} 370 -320 0 0 {name=V6 value=0 savecurrent=false}
 C {lab_wire.sym} 370 -390 3 0 {name=p16 sig_type=std_logic lab=vss}
 C {gnd.sym} 370 -250 0 0 {name=l1 lab=0}
-C {code_shown.sym} 10 200 0 0 {name=s1 only_toplevel=false value=".param vincm=1.65
+C {code_shown.sym} 10 200 0 0 {name=s1 only_toplevel=false value=".param vincm=1
 .param voutcm=0.8
 .param vd=0
 .control

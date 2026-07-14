@@ -13,7 +13,7 @@ Vin vin vss DC {vd} AC 1 0
 x1 vin_p vin_n vout_n vout_p vdd vss net2 net1 telescopic
 **** begin user architecture code
 
-.param vincm=1.65
+.param vincm=1
 .param voutcm=0.8
 .param vd=0
 .control

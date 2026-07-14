@@ -21,23 +21,23 @@ V8 phi2 vss PULSE(0 3.3 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
 V9 phi2_n vss PULSE(3.3 0 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
 V4 vdd vss 3.3
 V5 vss 0 0
-R1 vvg_p net4 1G
-R2 vvg_n net4 1G
-V3 net4 vss 0.5
 V7 net3 vss 0.5
 V10 net2 vvg_p 10m
-x5 vvg_rrl_p vvg_rrl_n vint_n vint_p vdd vss vcm net5 telescopic
+x5 vvg_rrl_p vvg_rrl_n vint_n vint_p vdd vss vcm net4 telescopic
 C7 vout_p vrrl_p 100f
 C8 vout_n vrrl_n 100f
 x7 phi1 vss vvg_rrl_p phi2 vvg_rrl_n phi1_n phi2_n vrrl_p vrrl_n vdd chopper
 C9 vvg_rrl_p vint_p 2p
 C10 vvg_rrl_n vint_n 2p
-x6 vint_p vint_n vs1_p vs1_n vdd vss net6 telescopic_no_cmfb
-I1 net6 vss 10u
-I2 net5 vss 10u
-R3 vvg_rrl_p net7 1G
-R4 vvg_rrl_n net7 1G
-V11 net7 vss 0.5
+x6 vint_p vint_n vs1_p vs1_n vdd vss net5 telescopic_no_cmfb
+I1 net5 vss 10u
+I2 net4 vss 10u
+V11 net6 vss 1
+x8 net7 vvg_rrl_p vvg_rrl_n net6 vss pseudores
+I3 vss net7 100n
+V3 net8 vss 1
+x9 net9 vvg_p vvg_n net8 vss pseudores
+I4 vdd net9 100n
 **** begin user architecture code
 
 .options method=gear
@@ -48,7 +48,7 @@ V11 net7 vss 0.5
 .ic v(vs2_p)=0.76 v(vs2_n)=0.76
 .ic v(vinchop_p)=0.5 v(vinchop_n)=0.5
 .control
-	tran 5n 1000u
+	tran 5n 500u
 	let vdiff = v(vout_p)-v(vout_n)
         meas tran vavg AVG vdiff
 .endc
@@ -150,6 +150,24 @@ XM12 vns_1 vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 
 XM25 vg_nmos vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XM1 vns_2 vg_nmos vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  pseudores/pseudores.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/pseudores/pseudores.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/pseudores/pseudores.sch
+.subckt pseudores ibias vb_1 vb_2 va vss
+*.iopin ibias
+*.iopin vb_1
+*.iopin vb_2
+*.iopin va
+*.iopin vss
+XM1 ibias ibias va vss nfet_03v3 L=1u W=50u nf=50 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 vb_1 ibias va vss nfet_03v3 L=50u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vb_2 ibias va vss nfet_03v3 L=50u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 
