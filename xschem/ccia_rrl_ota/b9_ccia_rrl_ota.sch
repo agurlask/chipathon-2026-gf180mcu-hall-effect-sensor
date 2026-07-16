@@ -41,6 +41,11 @@ N 840 -660 910 -660 {lab=vcm_set}
 N 840 -590 910 -590 {lab=vout_p}
 N 1270 -590 1340 -590 {lab=vout_n}
 N 570 -20 610 -20 {lab=vss}
+N 530 -390 580 -390 {lab=v_int_pbias}
+N 580 -390 640 -390 {lab=v_int_pbias}
+N 160 -150 250 -150 {lab=v_int_pbias}
+N 560 -70 610 -70 {lab=vg_nmos}
+N 540 -70 560 -70 {lab=vg_nmos}
 C {lab_wire.sym} 210 -100 0 1 {name=p1 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 570 -160 0 1 {name=p2 sig_type=std_logic lab=vss}
 C {lab_wire.sym} 570 -540 0 1 {name=p3 sig_type=std_logic lab=vdd}
@@ -50,7 +55,7 @@ C {lab_wire.sym} 550 -250 0 1 {name=p6 sig_type=std_logic lab=vout_p}
 C {lab_wire.sym} 830 -250 0 0 {name=p7 sig_type=std_logic lab=vout_n}
 C {lab_wire.sym} 830 -470 0 0 {name=p8 sig_type=std_logic lab=vin_p}
 C {lab_wire.sym} 550 -470 0 1 {name=p9 sig_type=std_logic lab=vin_n}
-C {lab_wire.sym} 650 -400 3 0 {name=p10 sig_type=std_logic lab=vps_1}
+C {lab_wire.sym} 650 -400 1 1 {name=p10 sig_type=std_logic lab=vps_1}
 C {lab_wire.sym} 730 -400 1 1 {name=p11 sig_type=std_logic lab=vps_2}
 C {lab_wire.sym} 640 -580 0 0 {name=p12 sig_type=std_logic lab=vtail}
 C {lab_wire.sym} 210 -590 1 0 {name=p13 sig_type=std_logic lab=iref}
@@ -76,5 +81,8 @@ C {lab_wire.sym} 580 -210 0 0 {name=p33 sig_type=std_logic lab=vbn}
 C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_input_pair.sym} 610 -420 0 0 {name=x1}
 C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_pmos_bias.sym} 170 -650 0 0 {name=x4}
 C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode.sym} 610 -160 0 0 {name=x2}
-C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode_bias.sym} 250 -100 0 0 {name=x3}
 C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cmfb.sym} 610 -20 0 0 {name=x5}
+C {lab_wire.sym} 640 -390 0 0 {name=p14 sig_type=std_logic lab=v_int_pbias}
+C {xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode_bias.sym} 250 -100 0 0 {name=x3}
+C {lab_wire.sym} 160 -150 0 1 {name=p34 sig_type=std_logic lab=v_int_nbias}
+C {lab_wire.sym} 540 -70 0 1 {name=p35 sig_type=std_logic lab=vg_nmos}

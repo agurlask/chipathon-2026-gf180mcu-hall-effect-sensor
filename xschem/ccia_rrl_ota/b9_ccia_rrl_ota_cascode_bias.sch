@@ -18,7 +18,7 @@ N 940 -450 970 -450 {lab=vb_pmos_casc}
 N 940 -450 940 -390 {lab=vb_pmos_casc}
 N 940 -390 1010 -390 {lab=vb_pmos_casc}
 N 1010 -420 1010 -390 {lab=vb_pmos_casc}
-N 1010 -510 1010 -480 {lab=vdebug}
+N 1010 -510 1010 -480 {lab=vdebug_pmos}
 N 1010 -390 1010 -260 {lab=vb_pmos_casc}
 N 1010 -200 1010 -170 {lab=vss}
 N 760 -200 760 -170 {lab=vss}
@@ -29,7 +29,7 @@ N 500 -330 500 -240 {lab=vb_nmos_casc}
 N 480 -330 500 -330 {lab=vb_nmos_casc}
 N 500 -390 500 -330 {lab=vb_nmos_casc}
 N 440 -390 500 -390 {lab=vb_nmos_casc}
-N 440 -300 440 -270 {lab=#net1}
+N 440 -300 440 -270 {lab=vdebug_nmos}
 N 440 -210 440 -170 {lab=vss}
 N 1010 -540 1070 -540 {lab=vdd}
 N 1010 -450 1070 -450 {lab=vdd}
@@ -46,7 +46,8 @@ N 760 -630 760 -390 {lab=bias}
 N 440 -630 440 -410 {lab=vb_nmos_casc}
 N 440 -410 440 -390 {lab=vb_nmos_casc}
 N 1010 -330 1180 -330 {lab=vb_pmos_casc}
-N 1010 -490 1140 -490 {lab=vdebug}
+N 1010 -490 1140 -490 {lab=vdebug_pmos}
+N 310 -290 440 -290 {lab=vdebug_nmos}
 C {symbols/nfet_03v3.sym} 460 -240 0 1 {name=M1
 L=3u
 W=2u
@@ -151,5 +152,7 @@ C {iopin.sym} 0 -330 0 0 {name=p11 lab=vss}
 C {iopin.sym} 0 -290 0 0 {name=p12 lab=vdd}
 C {lab_wire.sym} 1180 -330 0 0 {name=p14 sig_type=std_logic lab=vb_pmos_casc}
 C {title.sym} 160 -50 0 0 {name=l1 author="alang"}
-C {lab_wire.sym} 1140 -490 0 0 {name=p13 sig_type=std_logic lab=vdebug}
-C {iopin.sym} 0 -250 0 0 {name=p15 lab=vdebug}
+C {lab_wire.sym} 1140 -490 0 0 {name=p13 sig_type=std_logic lab=vdebug_pmos}
+C {iopin.sym} 0 -250 0 0 {name=p15 lab=vdebug_pmos}
+C {lab_wire.sym} 310 -290 0 1 {name=p16 sig_type=std_logic lab=vdebug_nmos}
+C {iopin.sym} 0 -210 0 0 {name=p17 lab=vdebug_nmos}
