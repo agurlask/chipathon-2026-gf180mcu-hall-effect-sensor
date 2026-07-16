@@ -90,6 +90,7 @@ L 4 175 -140 180 -135 {}
 L 4 255 -140 265 -140 {}
 L 4 260 -135 265 -140 {}
 L 4 255 -140 260 -135 {}
+L 4 260 -290 300 -290 {}
 B 4 20 -400 300 -0 {fill=False}
 B 5 297.5 -112.5 302.5 -107.5 {name=vb_nmos_casc dir=inout}
 B 5 177.5 -402.5 182.5 -397.5 {name=bias dir=inout}
@@ -97,6 +98,7 @@ B 5 257.5 -402.5 262.5 -397.5 {name=vtail dir=inout}
 B 5 297.5 -192.5 302.5 -187.5 {name=vb_pmos_casc dir=inout}
 B 5 17.5 -2.5 22.5 2.5 {name=vss dir=inout}
 B 5 17.5 -402.5 22.5 -397.5 {name=vdd dir=inout}
+B 5 297.5 -292.5 302.5 -287.5 {name=vdebug dir=inout}
 T {@name} 105 -412 0 0 0.2 0.2 {}
 T {vss} 45 -14 0 1 0.2 0.2 {}
 T {vdd} 45 -394 0 1 0.2 0.2 {}
