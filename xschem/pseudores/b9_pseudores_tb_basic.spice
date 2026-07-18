@@ -1,0 +1,43 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/pseudores/b9_pseudores_tb_basic.sch
+**.subckt b9_pseudores_tb_basic
+x1 net1 v1 v2 net2 vss b9_pseudores
+I0 vdd net1 100n
+V5 vdd vss 3.3
+V6 vss 0 0
+V1 net2 vss 2
+I1 vss v2 0
+I2 vss v1 DC 0 AC 1 0
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+
+.ac dec 1000 1 10G
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  xschem/pseudores/b9_pseudores.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/pseudores/b9_pseudores.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/pseudores/b9_pseudores.sch
+.subckt b9_pseudores ibias vb_1 vb_2 va vss
+*.iopin ibias
+*.iopin vb_1
+*.iopin vb_2
+*.iopin va
+*.iopin vss
+XM1 ibias ibias va vss nfet_03v3 L=1u W=50u nf=50 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 vb_1 ibias va vss nfet_03v3 L=50u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vb_2 ibias va vss nfet_03v3 L=50u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end

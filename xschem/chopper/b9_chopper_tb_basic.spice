@@ -1,0 +1,69 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/b9_chopper_tb_basic.sch
+**.subckt b9_chopper_tb_basic
+x1 vdd phi1 vss vin_p phi2 vin_n vout_p vout_n b9_chopper
+V7 vcm vss {vcm}
+E1 vin_p vcm vin vss 0.5
+E2 vin_n vcm vin vss -0.5
+C1 vout_p vss 200f
+C2 vout_n vss 200f
+V5 vdd vss 3.3
+V6 vss 0 0
+V1 vin vss {vd}
+V2 phi1 vss PULSE(0 3.3 0 500p 500p {tper/2-tdead-500p} {tper})
+V8 phi2 vss PULSE(0 3.3 {tper/2} 500p 500p {tper/2-tdead-500p} {tper})
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+
+
+.options method=gear
+.param tper=10u
+.param tdead=1n
+.param vcm=1
+.param vd=0.2
+.csparam vd_cs=vd
+.control
+	tran 1n 80u
+	let vdiff = v(vout_p)-v(vout_n)
+        meas tran vavg AVG vdiff
+	let error = vd_cs-vavg
+        echo "$&error"
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  xschem/chopper/b9_chopper.sym # of pins=8
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/b9_chopper.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/chopper/b9_chopper.sch
+.subckt b9_chopper vdd phi1 vss vin_p phi2 vin_n vout_p vout_n
+*.iopin vss
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.ipin phi1
+*.ipin phi2
+*.iopin vdd
+x1 vdd vin_n vss vout_n phi1 b9_sw_chop
+x2 vdd vin_n vss vout_p phi2 b9_sw_chop
+x3 vdd vin_p vss vout_n phi2 b9_sw_chop
+x4 vdd vin_p vss vout_p phi1 b9_sw_chop
+.ends
+
+
+* expanding   symbol:  xschem/sw/b9_sw_chop.sym # of pins=5
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_chop.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_chop.sch
+.subckt b9_sw_chop vdd va vss vb en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end

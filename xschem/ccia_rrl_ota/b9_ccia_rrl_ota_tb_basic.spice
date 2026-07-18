@@ -1,0 +1,287 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_tb_basic.sch
+**.subckt b9_ccia_rrl_ota_tb_basic
+x1 vin_p net6 vin_n net7 net3 vout_p vout_n net4 vdd net5 vss net2 vss vcm net1 b9_ccia_rrl_ota
+I0 net1 vss 10u
+* noconn #net2
+* noconn #net3
+* noconn #net4
+* noconn #net5
+* noconn #net6
+* noconn #net7
+C1 vout_p vss 1p
+C2 vout_n vss 1p
+V7 vcm vss {vincm}
+E1 vin_p vcm vin vss 0.5
+E2 vin_n vcm vin vss -0.5
+Vin vin vss DC {vd} AC 1 0
+V5 vdd vss 3.3
+V6 vss 0 0
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+
+.param vincm=1
+.param voutcm=0.8
+.param vd=0
+.control
+save all
+save @m.x1.x1.xm2.m0[id] @m.x1.x1.xm2.m0[gm] @m.x1.x1.xm2.m0[gds] @m.x1.x1.xm2.m0[cdb] @m.x1.x1.xm2.m0[cgs] @m.x1.x1.xm2.m0[csb] @m.x1.x1.xm2.m0[cgd]
+save @m.x1.x1.xm3.m0[id] @m.x1.x1.xm3.m0[gm] @m.x1.x1.xm3.m0[gds] @m.x1.x1.xm3.m0[cdb] @m.x1.x1.xm3.m0[cgs] @m.x1.x1.xm3.m0[csb] @m.x1.x1.xm3.m0[cgd]
+save @m.x1.x4.xm4.m0[id] @m.x1.x4.xm4.m0[gm] @m.x1.x4.xm4.m0[gds] @m.x1.x4.xm4.m0[cdb] @m.x1.x4.xm4.m0[cgs] @m.x1.x4.xm4.m0[csb] @m.x1.x4.xm4.m0[cgd]
+save @m.x1.x4.xm16.m0[id] @m.x1.x4.xm16.m0[gm] @m.x1.x4.xm16.m0[gds] @m.x1.x4.xm16.m0[cdb] @m.x1.x4.xm16.m0[cgs] @m.x1.x4.xm16.m0[csb] @m.x1.x4.xm16.m0[cgd]
+save @m.x1.x4.xm17.m0[id] @m.x1.x4.xm17.m0[gm] @m.x1.x4.xm17.m0[gds] @m.x1.x4.xm17.m0[cdb] @m.x1.x4.xm17.m0[cgs] @m.x1.x4.xm17.m0[csb] @m.x1.x4.xm17.m0[cgd]
+save @m.x1.x4.xm18.m0[id] @m.x1.x4.xm18.m0[gm] @m.x1.x4.xm18.m0[gds] @m.x1.x4.xm18.m0[cdb] @m.x1.x4.xm18.m0[cgs] @m.x1.x4.xm18.m0[csb] @m.x1.x4.xm18.m0[cgd]
+save @m.x1.x2.xm10.m0[id] @m.x1.x2.xm10.m0[gm] @m.x1.x2.xm10.m0[gds] @m.x1.x2.xm10.m0[cdb] @m.x1.x2.xm10.m0[cgs] @m.x1.x2.xm10.m0[csb] @m.x1.x2.xm10.m0[cgd]
+save @m.x1.x2.xm11.m0[id] @m.x1.x2.xm11.m0[gm] @m.x1.x2.xm11.m0[gds] @m.x1.x2.xm11.m0[cdb] @m.x1.x2.xm11.m0[cgs] @m.x1.x2.xm11.m0[csb] @m.x1.x2.xm11.m0[cgd]
+save @m.x1.x2.xm7.m0[id] @m.x1.x2.xm7.m0[gm] @m.x1.x2.xm7.m0[gds] @m.x1.x2.xm7.m0[cdb] @m.x1.x2.xm7.m0[cgs] @m.x1.x2.xm7.m0[csb] @m.x1.x2.xm7.m0[cgd]
+save @m.x1.x2.xm8.m0[id] @m.x1.x2.xm8.m0[gm] @m.x1.x2.xm8.m0[gds] @m.x1.x2.xm8.m0[cdb] @m.x1.x2.xm8.m0[cgs] @m.x1.x2.xm8.m0[csb] @m.x1.x2.xm8.m0[cgd]
+save @m.x1.x5.xm12.m0[id] @m.x1.x5.xm12.m0[gm] @m.x1.x5.xm12.m0[gds] @m.x1.x5.xm12.m0[cdb] @m.x1.x5.xm12.m0[cgs] @m.x1.x5.xm12.m0[csb] @m.x1.x5.xm12.m0[cgd]
+save @m.x1.x5.xm13.m0[id] @m.x1.x5.xm13.m0[gm] @m.x1.x5.xm13.m0[gds] @m.x1.x5.xm13.m0[cdb] @m.x1.x5.xm13.m0[cgs] @m.x1.x5.xm13.m0[csb] @m.x1.x5.xm13.m0[cgd]
+save @m.x1.x5.xm19.m0[id] @m.x1.x5.xm19.m0[gm] @m.x1.x5.xm19.m0[gds] @m.x1.x5.xm19.m0[cdb] @m.x1.x5.xm19.m0[cgs] @m.x1.x5.xm19.m0[csb] @m.x1.x5.xm19.m0[cgd]
+save @m.x1.x5.xm22.m0[id] @m.x1.x5.xm22.m0[gm] @m.x1.x5.xm22.m0[gds] @m.x1.x5.xm22.m0[cdb] @m.x1.x5.xm22.m0[cgs] @m.x1.x5.xm22.m0[csb] @m.x1.x5.xm22.m0[cgd]
+save @m.x1.x5.xm25.m0[id] @m.x1.x5.xm25.m0[gm] @m.x1.x5.xm25.m0[gds] @m.x1.x5.xm25.m0[cdb] @m.x1.x5.xm25.m0[cgs] @m.x1.x5.xm25.m0[csb] @m.x1.x5.xm25.m0[cgd]
+save @m.x1.x5.xm26.m0[id] @m.x1.x5.xm26.m0[gm] @m.x1.x5.xm26.m0[gds] @m.x1.x5.xm26.m0[cdb] @m.x1.x5.xm26.m0[cgs] @m.x1.x5.xm26.m0[csb] @m.x1.x5.xm26.m0[cgd]
+save @m.x1.x5.xm27.m0[id] @m.x1.x5.xm27.m0[gm] @m.x1.x5.xm27.m0[gds] @m.x1.x5.xm27.m0[cdb] @m.x1.x5.xm27.m0[cgs] @m.x1.x5.xm27.m0[csb] @m.x1.x5.xm27.m0[cgd]
+save @m.x1.x5.xm28.m0[id] @m.x1.x5.xm28.m0[gm] @m.x1.x5.xm28.m0[gds] @m.x1.x5.xm28.m0[cdb] @m.x1.x5.xm28.m0[cgs] @m.x1.x5.xm28.m0[csb] @m.x1.x5.xm28.m0[cgd]
+save @m.x1.x5.xm20.m0[id] @m.x1.x5.xm20.m0[gm] @m.x1.x5.xm20.m0[gds] @m.x1.x5.xm20.m0[cdb] @m.x1.x5.xm20.m0[cgs] @m.x1.x5.xm20.m0[csb] @m.x1.x5.xm20.m0[cgd]
+save @m.x1.x5.xm21.m0[id] @m.x1.x5.xm21.m0[gm] @m.x1.x5.xm21.m0[gds] @m.x1.x5.xm21.m0[cdb] @m.x1.x5.xm21.m0[cgs] @m.x1.x5.xm21.m0[csb] @m.x1.x5.xm21.m0[cgd]
+save @m.x1.x5.xm23.m0[id] @m.x1.x5.xm23.m0[gm] @m.x1.x5.xm23.m0[gds] @m.x1.x5.xm23.m0[cdb] @m.x1.x5.xm23.m0[cgs] @m.x1.x5.xm23.m0[csb] @m.x1.x5.xm23.m0[cgd]
+save @m.x1.x3.xm1.m0[id] @m.x1.x3.xm1.m0[gm] @m.x1.x3.xm1.m0[gds] @m.x1.x3.xm1.m0[cdb] @m.x1.x3.xm1.m0[cgs] @m.x1.x3.xm1.m0[csb] @m.x1.x3.xm1.m0[cgd]
+save @m.x1.x3.xm5.m0[id] @m.x1.x3.xm5.m0[gm] @m.x1.x3.xm5.m0[gds] @m.x1.x3.xm5.m0[cdb] @m.x1.x3.xm5.m0[cgs] @m.x1.x3.xm5.m0[csb] @m.x1.x3.xm5.m0[cgd]
+save @m.x1.x3.xm15.m0[id] @m.x1.x3.xm15.m0[gm] @m.x1.x3.xm15.m0[gds] @m.x1.x3.xm15.m0[cdb] @m.x1.x3.xm15.m0[cgs] @m.x1.x3.xm15.m0[csb] @m.x1.x3.xm15.m0[cgd]
+save @m.x1.x3.xm9.m0[id] @m.x1.x3.xm9.m0[gm] @m.x1.x3.xm9.m0[gds] @m.x1.x3.xm9.m0[cdb] @m.x1.x3.xm9.m0[cgs] @m.x1.x3.xm9.m0[csb] @m.x1.x3.xm9.m0[cgd]
+save @m.x1.x3.xm6.m0[id] @m.x1.x3.xm6.m0[gm] @m.x1.x3.xm6.m0[gds] @m.x1.x3.xm6.m0[cdb] @m.x1.x3.xm6.m0[cgs] @m.x1.x3.xm6.m0[csb] @m.x1.x3.xm6.m0[cgd]
+save @m.x1.x3.xm14.m0[id] @m.x1.x3.xm14.m0[gm] @m.x1.x3.xm14.m0[gds] @m.x1.x3.xm14.m0[cdb] @m.x1.x3.xm14.m0[cgs] @m.x1.x3.xm14.m0[csb] @m.x1.x3.xm14.m0[cgd]
+save @m.x1.x7.x1.xm1.m0[id] @m.x1.x7.x1.xm1.m0[gm] @m.x1.x7.x1.xm1.m0[gds] @m.x1.x7.x1.xm1.m0[cdb] @m.x1.x7.x1.xm1.m0[cgs] @m.x1.x7.x1.xm1.m0[csb] @m.x1.x7.x1.xm1.m0[cgd]
+save @m.x1.x7.x1.xm2.m0[id] @m.x1.x7.x1.xm2.m0[gm] @m.x1.x7.x1.xm2.m0[gds] @m.x1.x7.x1.xm2.m0[cdb] @m.x1.x7.x1.xm2.m0[cgs] @m.x1.x7.x1.xm2.m0[csb] @m.x1.x7.x1.xm2.m0[cgd]
+save @m.x1.x7.xm1.m0[id] @m.x1.x7.xm1.m0[gm] @m.x1.x7.xm1.m0[gds] @m.x1.x7.xm1.m0[cdb] @m.x1.x7.xm1.m0[cgs] @m.x1.x7.xm1.m0[csb] @m.x1.x7.xm1.m0[cgd]
+save @m.x1.x8.x1.xm1.m0[id] @m.x1.x8.x1.xm1.m0[gm] @m.x1.x8.x1.xm1.m0[gds] @m.x1.x8.x1.xm1.m0[cdb] @m.x1.x8.x1.xm1.m0[cgs] @m.x1.x8.x1.xm1.m0[csb] @m.x1.x8.x1.xm1.m0[cgd]
+save @m.x1.x8.x1.xm2.m0[id] @m.x1.x8.x1.xm2.m0[gm] @m.x1.x8.x1.xm2.m0[gds] @m.x1.x8.x1.xm2.m0[cdb] @m.x1.x8.x1.xm2.m0[cgs] @m.x1.x8.x1.xm2.m0[csb] @m.x1.x8.x1.xm2.m0[cgd]
+save @m.x1.x8.xm1.m0[id] @m.x1.x8.xm1.m0[gm] @m.x1.x8.xm1.m0[gds] @m.x1.x8.xm1.m0[cdb] @m.x1.x8.xm1.m0[cgs] @m.x1.x8.xm1.m0[csb] @m.x1.x8.xm1.m0[cgd]
+save @m.x1.x9.x1.xm1.m0[id] @m.x1.x9.x1.xm1.m0[gm] @m.x1.x9.x1.xm1.m0[gds] @m.x1.x9.x1.xm1.m0[cdb] @m.x1.x9.x1.xm1.m0[cgs] @m.x1.x9.x1.xm1.m0[csb] @m.x1.x9.x1.xm1.m0[cgd]
+save @m.x1.x9.x1.xm2.m0[id] @m.x1.x9.x1.xm2.m0[gm] @m.x1.x9.x1.xm2.m0[gds] @m.x1.x9.x1.xm2.m0[cdb] @m.x1.x9.x1.xm2.m0[cgs] @m.x1.x9.x1.xm2.m0[csb] @m.x1.x9.x1.xm2.m0[cgd]
+save @m.x1.x9.xm1.m0[id] @m.x1.x9.xm1.m0[gm] @m.x1.x9.xm1.m0[gds] @m.x1.x9.xm1.m0[cdb] @m.x1.x9.xm1.m0[cgs] @m.x1.x9.xm1.m0[csb] @m.x1.x9.xm1.m0[cgd]
+save @m.x1.x10.x1.xm1.m0[id] @m.x1.x10.x1.xm1.m0[gm] @m.x1.x10.x1.xm1.m0[gds] @m.x1.x10.x1.xm1.m0[cdb] @m.x1.x10.x1.xm1.m0[cgs] @m.x1.x10.x1.xm1.m0[csb] @m.x1.x10.x1.xm1.m0[cgd]
+save @m.x1.x10.x1.xm2.m0[id] @m.x1.x10.x1.xm2.m0[gm] @m.x1.x10.x1.xm2.m0[gds] @m.x1.x10.x1.xm2.m0[cdb] @m.x1.x10.x1.xm2.m0[cgs] @m.x1.x10.x1.xm2.m0[csb] @m.x1.x10.x1.xm2.m0[cgd]
+save @m.x1.x10.xm1.m0[id] @m.x1.x10.xm1.m0[gm] @m.x1.x10.xm1.m0[gds] @m.x1.x10.xm1.m0[cdb] @m.x1.x10.xm1.m0[cgs] @m.x1.x10.xm1.m0[csb] @m.x1.x10.xm1.m0[cgd]
+save @m.x1.x11.x1.xm1.m0[id] @m.x1.x11.x1.xm1.m0[gm] @m.x1.x11.x1.xm1.m0[gds] @m.x1.x11.x1.xm1.m0[cdb] @m.x1.x11.x1.xm1.m0[cgs] @m.x1.x11.x1.xm1.m0[csb] @m.x1.x11.x1.xm1.m0[cgd]
+save @m.x1.x11.x1.xm2.m0[id] @m.x1.x11.x1.xm2.m0[gm] @m.x1.x11.x1.xm2.m0[gds] @m.x1.x11.x1.xm2.m0[cdb] @m.x1.x11.x1.xm2.m0[cgs] @m.x1.x11.x1.xm2.m0[csb] @m.x1.x11.x1.xm2.m0[cgd]
+save @m.x1.x11.xm1.m0[id] @m.x1.x11.xm1.m0[gm] @m.x1.x11.xm1.m0[gds] @m.x1.x11.xm1.m0[cdb] @m.x1.x11.xm1.m0[cgs] @m.x1.x11.xm1.m0[csb] @m.x1.x11.xm1.m0[cgd]
+save @m.x1.x12.x1.xm1.m0[id] @m.x1.x12.x1.xm1.m0[gm] @m.x1.x12.x1.xm1.m0[gds] @m.x1.x12.x1.xm1.m0[cdb] @m.x1.x12.x1.xm1.m0[cgs] @m.x1.x12.x1.xm1.m0[csb] @m.x1.x12.x1.xm1.m0[cgd]
+save @m.x1.x12.x1.xm2.m0[id] @m.x1.x12.x1.xm2.m0[gm] @m.x1.x12.x1.xm2.m0[gds] @m.x1.x12.x1.xm2.m0[cdb] @m.x1.x12.x1.xm2.m0[cgs] @m.x1.x12.x1.xm2.m0[csb] @m.x1.x12.x1.xm2.m0[cgd]
+save @m.x1.x12.xm1.m0[id] @m.x1.x12.xm1.m0[gm] @m.x1.x12.xm1.m0[gds] @m.x1.x12.xm1.m0[cdb] @m.x1.x12.xm1.m0[cgs] @m.x1.x12.xm1.m0[csb] @m.x1.x12.xm1.m0[cgd]
+save @m.x1.x6.m0[id] @m.x1.x6.m0[gm] @m.x1.x6.m0[gds] @m.x1.x6.m0[cdb] @m.x1.x6.m0[cgs] @m.x1.x6.m0[csb] @m.x1.x6.m0[cgd]
+
+op
+write ota_op.raw all
+ac dec 100 1 10G
+write ota_ac.raw all
+.endc
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota.sym # of pins=15
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota.sch
+.subckt b9_ccia_rrl_ota vin_p probe_vbn vin_n probe_vbp probe_pcasc_bias vout_p vout_n probe_int_nbias vdd probe_int_pbias vss
++ probe_vg_nmos dbg_en vcm_set iref
+*.iopin vin_p
+*.iopin vin_n
+*.iopin vout_p
+*.iopin vout_n
+*.iopin vdd
+*.iopin vss
+*.iopin vcm_set
+*.iopin iref
+*.iopin probe_vbn
+*.iopin probe_vbp
+*.iopin probe_pcasc_bias
+*.iopin probe_int_nbias
+*.iopin probe_int_pbias
+*.iopin probe_vg_nmos
+*.iopin dbg_en
+x1 vtail vdd vin_n vin_p vps_1 vps_2 b9_ccia_rrl_ota_input_pair
+x4 vdd vbn v_pcasc_bias vtail iref b9_ccia_rrl_ota_pmos_bias
+x2 vdd vss vps_1 vps_2 vns_1 vns_2 vout_p vout_n vbp vbn b9_ccia_rrl_ota_cascode
+x5 vg_nmos vns_1 vns_2 vout_p vout_n iref vdd vss vcm_set b9_ccia_rrl_ota_cmfb
+x3 vbn v_pcasc_bias vtail vbp vss vdd v_int_pbias v_int_nbias b9_ccia_rrl_ota_cascode_bias
+x7 dbg_en dbg_en_n vbn probe_vbn vdd vss b9_debug_bitcell_local
+x8 dbg_en dbg_en_n vbp probe_vbp vdd vss b9_debug_bitcell_local
+x9 dbg_en dbg_en_n v_pcasc_bias probe_pcasc_bias vdd vss b9_debug_bitcell_local
+x10 dbg_en dbg_en_n v_int_nbias probe_int_nbias vdd vss b9_debug_bitcell_local
+x11 dbg_en dbg_en_n v_int_pbias probe_int_pbias vdd vss b9_debug_bitcell_local
+x12 dbg_en dbg_en_n vg_nmos probe_vg_nmos vdd vss b9_debug_bitcell_local
+x6 dbg_en dbg_en_n vdd vdd vss vss gf180mcu_fd_sc_mcu7t5v0__inv_2
+.ends
+
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota_input_pair.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_input_pair.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_input_pair.sch
+.subckt b9_ccia_rrl_ota_input_pair vtail vdd vin_1 vin_2 vd_1 vd_2
+*.iopin vtail
+*.iopin vdd
+*.iopin vin_1
+*.iopin vin_2
+*.iopin vd_1
+*.iopin vd_2
+XM2 vd_1 vin_1 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM3 vd_2 vin_2 vtail vdd pfet_03v3 L=0.84u W=32u nf=8 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+* noconn vtail
+.ends
+
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota_pmos_bias.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_pmos_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_pmos_bias.sch
+.subckt b9_ccia_rrl_ota_pmos_bias vdd vbias_ncasc vbias_pcasc vtail iref
+*.iopin vdd
+*.iopin vbias_ncasc
+*.iopin vbias_pcasc
+*.iopin vtail
+*.iopin iref
+XM4 vtail iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=50
+XM16 vbias_pcasc iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM17 vbias_ncasc iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+XM18 iref iref vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=10
+.ends
+
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode.sym # of pins=10
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode.sch
+.subckt b9_ccia_rrl_ota_cascode vdd vss pmos_vs_1 pmos_vs_2 nmos_vs_1 nmos_vs_2 vout_1 vout_2 pmos_vb nmos_vb
+*.iopin vdd
+*.iopin vss
+*.iopin pmos_vs_1
+*.iopin pmos_vs_2
+*.iopin nmos_vs_1
+*.iopin nmos_vs_2
+*.iopin vout_1
+*.iopin vout_2
+*.iopin pmos_vb
+*.iopin nmos_vb
+XM10 vout_1 nmos_vb nmos_vs_1 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM11 vout_2 nmos_vb nmos_vs_2 vss nfet_03v3 L=0.28u W=6u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM7 vout_1 pmos_vb pmos_vs_1 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM8 vout_2 pmos_vb pmos_vs_2 vdd pfet_03v3 L=0.28u W=16u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cmfb.sym # of pins=9
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cmfb.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cmfb.sch
+.subckt b9_ccia_rrl_ota_cmfb vb_nbias nmos_vs_1 nmos_vs_2 vout_1 vout_2 vg_pmos vdd vss vcm_set
+*.iopin nmos_vs_1
+*.iopin nmos_vs_2
+*.iopin vout_1
+*.iopin vout_2
+*.iopin vg_pmos
+*.iopin vdd
+*.iopin vss
+*.iopin vcm_set
+*.iopin vb_nbias
+XM12 nmos_vs_1 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM13 nmos_vs_2 vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM19 vtail_cmfb1 vg_pmos vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM22 vtail_cmfb2 vg_pmos vdd vdd pfet_03v3 L=3u W=4u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=20
+XM25 vb_nbias vb_nbias vss vss nfet_03v3 L=3u W=18u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM26 vcmfb_1 vcmfb_1 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM27 vcmfb_2 vcmfb_2 vss vss nfet_03v3 L=3u W=18u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM28 vcmfb_1 vout_1 vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM20 vb_nbias vcm_set vtail_cmfb1 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM21 vb_nbias vcm_set vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM23 vcmfb_2 vout_2 vtail_cmfb2 vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode_bias.sym # of pins=8
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode_bias.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/ccia_rrl_ota/b9_ccia_rrl_ota_cascode_bias.sch
+.subckt b9_ccia_rrl_ota_cascode_bias vb_nmos_casc bias vtail vb_pmos_casc vss vdd vdebug_pmos vdebug_nmos
+*.iopin vb_nmos_casc
+*.iopin bias
+*.iopin vtail
+*.iopin vb_pmos_casc
+*.iopin vss
+*.iopin vdd
+*.iopin vdebug_pmos
+*.iopin vdebug_nmos
+XM1 vdebug_nmos vb_nmos_casc vss vss nfet_03v3 L=3u W=2u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM5 vdebug_pmos vb_pmos_casc vtail vdd pfet_03v3 L=0.84u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM15 bias bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM9 vb_pmos_casc bias vss vss nfet_03v3 L=3u W=4.5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM6 vb_pmos_casc vb_pmos_casc vdebug_pmos vdd pfet_03v3 L=0.28u W=8u nf=2 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM14 vb_nmos_casc vb_nmos_casc vdebug_nmos vss nfet_03v3 L=0.28u W=3u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u'
++ pd='2*int((nf+1)/2) * (W/nf + 0.18u)' ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  xschem/debug_mux/b9_debug_bitcell_local.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/debug_mux/b9_debug_bitcell_local.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/debug_mux/b9_debug_bitcell_local.sch
+.subckt b9_debug_bitcell_local probe_en_p probe_en_n vprobe vbus vdd vss
+*.iopin probe_en_p
+*.iopin probe_en_n
+*.iopin vprobe
+*.iopin vbus
+*.iopin vdd
+*.iopin vss
+x1 vdd vprobe vss vbus probe_en_n probe_en_p b9_sw_debug
+XM1 vbus probe_en_n vss vss nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  xschem/sw/b9_sw_debug.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_debug.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_debug.sch
+.subckt b9_sw_debug vdd va vss vb en_n en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+*.iopin en_n
+XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=9.6u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end

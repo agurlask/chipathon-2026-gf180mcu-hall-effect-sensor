@@ -19,7 +19,7 @@ C {iopin.sym} 100 -260 0 0 {name=p4 lab=va}
 C {iopin.sym} 100 -220 0 0 {name=p5 lab=vb}
 C {symbols/nfet_03v3.sym} 400 -260 1 0 {name=M1
 L=0.28u
-W=3.2u
+W=9.6u
 nf=4
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"

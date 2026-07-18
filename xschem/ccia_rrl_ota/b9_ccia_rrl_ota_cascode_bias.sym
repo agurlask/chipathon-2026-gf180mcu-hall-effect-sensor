@@ -100,7 +100,7 @@ B 5 277.5 -192.5 282.5 -187.5 {name=vb_pmos_casc dir=inout}
 B 5 -2.5 -2.5 2.5 2.5 {name=vss dir=inout}
 B 5 -2.5 -402.5 2.5 -397.5 {name=vdd dir=inout}
 B 5 277.5 -292.5 282.5 -287.5 {name=vdebug_pmos dir=inout}
-B 5 -2.5 -52.5 2.5 -47.5 {name=vdebug_pmos dir=inout}
+B 5 -2.5 -52.5 2.5 -47.5 {name=vdebug_nmos dir=inout}
 T {@name} 85 -412 0 0 0.2 0.2 {}
 T {vss} 25 -14 0 1 0.2 0.2 {}
 T {vdd} 25 -394 0 1 0.2 0.2 {}

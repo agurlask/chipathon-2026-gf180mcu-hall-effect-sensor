@@ -1,0 +1,56 @@
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/debug_mux/b9_debug_bitcell_local_tb_basic.sch
+**.subckt b9_debug_bitcell_local_tb_basic
+x1 vdd vss vtest vdc vdd vss b9_debug_bitcell_local
+I0 vss vtest DC 0 AC 1 0
+V1 vdd vss 3.3
+V2 vss 0 0
+V3 vdc vss 2
+**** begin user architecture code
+
+.include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice moscap_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
+.include /foss/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice
+
+
+.ac dec 1000 1 10G
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  xschem/debug_mux/b9_debug_bitcell_local.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/debug_mux/b9_debug_bitcell_local.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/debug_mux/b9_debug_bitcell_local.sch
+.subckt b9_debug_bitcell_local probe_en_p probe_en_n vprobe vbus vdd vss
+*.iopin probe_en_p
+*.iopin probe_en_n
+*.iopin vprobe
+*.iopin vbus
+*.iopin vdd
+*.iopin vss
+x1 vdd vprobe vss vbus probe_en_n probe_en_p b9_sw_debug
+XM1 vbus probe_en_n vss vss nfet_03v3 L=0.28u W=0.22u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+
+* expanding   symbol:  xschem/sw/b9_sw_debug.sym # of pins=6
+** sym_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_debug.sym
+** sch_path: /foss/designs/chipathon-2026-gf180mcu-hall-effect-sensor/xschem/sw/b9_sw_debug.sch
+.subckt b9_sw_debug vdd va vss vb en_n en
+*.iopin vdd
+*.iopin vss
+*.iopin en
+*.iopin va
+*.iopin vb
+*.iopin en_n
+XM1 vb en va vss nfet_03v3 L=0.28u W=3.2u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XM2 va en_n vb vdd pfet_03v3 L=0.28u W=9.6u nf=4 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+.ends
+
+.end
