@@ -8,7 +8,7 @@ E {}
 P 4 1 960 -620 {}
 P 4 3 970 -610 980 -600 990 -610 {}
 T {140 uA} 1000 -610 0 0 0.2 0.2 {}
-T {500 um^2 * (2 fF/um^2) = 1 pF} 850 -490 0 0 0.1 0.1 {}
+T {2 pF} 880 -490 0 0 0.2 0.2 {}
 N 980 -460 980 -180 {lab=vout}
 N 660 -150 940 -150 {lab=vin}
 N 660 -460 660 -150 {lab=vin}
@@ -63,9 +63,10 @@ C {iopin.sym} 0 -480 0 0 {name=p17 lab=vss}
 C {iopin.sym} 0 -440 0 0 {name=p18 lab=vin}
 C {iopin.sym} 0 -400 0 0 {name=p19 lab=vout}
 C {title.sym} 160 -40 0 0 {name=l1 author="alang"}
-C {capa.sym} 890 -460 1 0 {name=C1
-m=1
-value=2p
-footprint=1206
-device="ceramic capacitor"}
 C {lab_wire.sym} 925 -730 0 0 {name=p1 sig_type=std_logic lab=vcmfb}
+C {symbols/cap_mim_2f0fF.sym} 890 -460 1 0 {name=C1
+W=20e-6
+L=25e-6
+model=cap_mim_2f0fF
+spiceprefix=X
+m=2}
