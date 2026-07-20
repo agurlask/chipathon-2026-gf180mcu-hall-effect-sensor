@@ -9,10 +9,10 @@ T {10 pF} 320 -2010 0 0 0.4 0.4 {}
 T {Ripple Reduction Loop} 1260 -3500 0 0 0.8 0.8 {}
 T {Main OTA} 1050 -2450 0 0 0.8 0.8 {}
 T {200 fF} 1300 -1630 0 1 0.4 0.4 {}
-T {200 fF} 1300 -1480 0 1 0.4 0.4 {}
-T {200 fF} 1300 -1350 0 1 0.4 0.4 {}
-T {200 fF} 1300 -1220 0 1 0.4 0.4 {}
-T {200 fF} 1300 -1090 0 1 0.4 0.4 {}
+T {200 fF} 1330 -1480 0 1 0.4 0.4 {}
+T {200 fF} 1330 -1340 0 1 0.4 0.4 {}
+T {200 fF} 1330 -1210 0 1 0.4 0.4 {}
+T {200 fF} 1330 -1080 0 1 0.4 0.4 {}
 T {200 fF} 1310 -930 0 1 0.4 0.4 {}
 T {200 fF} 1310 -780 0 1 0.4 0.4 {}
 T {200 fF} 1310 -650 0 1 0.4 0.4 {}
@@ -45,7 +45,6 @@ N 1080 -2750 1120 -2750 {lab=dbg_en}
 N 1390 -1900 1520 -1900 {lab=probe_main_ota_iref_copy_int_p}
 N 1390 -1740 1450 -1740 {lab=dbg_en}
 N 150 -2040 210 -2040 {lab=vinchop_1}
-N 610 -2040 910 -2040 {lab=vvg_1}
 N 610 -1960 910 -1960 {lab=vvg_2}
 N 150 -1960 210 -1960 {lab=vinchop_2}
 N 910 -3160 1120 -3160 {lab=vs1out_1}
@@ -122,12 +121,12 @@ N 1710 -910 1750 -910 {lab=vout_2}
 N 690 -2040 690 -1100 {lab=vvg_1}
 N 1870 -1460 1870 -1100 {lab=vout_1}
 N 1710 -990 1750 -990 {lab=vout_1}
-N 1100 -1450 1180 -1450 {lab=vint_1}
-N 1100 -1430 1100 -1400 {lab=vss}
-N 1100 -1500 1100 -1470 {lab=vdd}
-N 1100 -1310 1180 -1310 {lab=vint_2}
-N 1100 -1180 1180 -1180 {lab=vint_3}
-N 1100 -1050 1180 -1050 {lab=vint_4}
+N 1100 -1450 1180 -1450 {lab=vint_1_1}
+N 1240 -1430 1240 -1400 {lab=vss}
+N 1240 -1500 1240 -1470 {lab=vdd}
+N 1100 -1310 1180 -1310 {lab=vint_2_1}
+N 1100 -1180 1180 -1180 {lab=vint_3_1}
+N 1100 -1050 1180 -1050 {lab=vint_4_1}
 N 960 -1590 1180 -1590 {lab=vvg_2}
 N 960 -1590 960 -1450 {lab=vvg_2}
 N 960 -1450 1040 -1450 {lab=vvg_2}
@@ -141,32 +140,32 @@ N 1240 -1050 1340 -1050 {lab=voutchop_1}
 N 1240 -1180 1340 -1180 {lab=voutchop_1}
 N 1240 -1310 1340 -1310 {lab=voutchop_1}
 N 1240 -1450 1340 -1450 {lab=voutchop_1}
-N 1080 -1500 1080 -1470 {lab=en1_n}
-N 1060 -1500 1060 -1470 {lab=cfb_en1}
-N 1060 -1510 1060 -1500 {lab=cfb_en1}
-N 1100 -1290 1100 -1260 {lab=vss}
-N 1100 -1360 1100 -1330 {lab=vdd}
-N 1100 -1160 1100 -1130 {lab=vss}
-N 1100 -1230 1100 -1200 {lab=vdd}
-N 1100 -1030 1100 -1000 {lab=vss}
-N 1100 -1100 1100 -1070 {lab=vdd}
-N 1080 -1530 1080 -1500 {lab=en1_n}
-N 1060 -1530 1060 -1510 {lab=cfb_en1}
-N 1080 -1360 1080 -1330 {lab=en2_n}
-N 1060 -1360 1060 -1330 {lab=cfb_en2}
-N 1060 -1370 1060 -1360 {lab=cfb_en2}
-N 1080 -1390 1080 -1360 {lab=en2_n}
-N 1060 -1390 1060 -1370 {lab=cfb_en2}
-N 1080 -1230 1080 -1200 {lab=en3_n}
-N 1060 -1230 1060 -1200 {lab=cfb_en3}
-N 1060 -1240 1060 -1230 {lab=cfb_en3}
-N 1080 -1260 1080 -1230 {lab=en3_n}
-N 1060 -1260 1060 -1240 {lab=cfb_en3}
-N 1080 -1100 1080 -1070 {lab=en4_n}
-N 1060 -1100 1060 -1070 {lab=cfb_en4}
-N 1060 -1110 1060 -1100 {lab=cfb_en4}
-N 1080 -1130 1080 -1100 {lab=en4_n}
-N 1060 -1130 1060 -1110 {lab=cfb_en4}
+N 1220 -1500 1220 -1470 {lab=en1_n}
+N 1200 -1500 1200 -1470 {lab=cfb_en1}
+N 1200 -1510 1200 -1500 {lab=cfb_en1}
+N 1240 -1290 1240 -1260 {lab=vss}
+N 1240 -1360 1240 -1330 {lab=vdd}
+N 1240 -1160 1240 -1130 {lab=vss}
+N 1240 -1230 1240 -1200 {lab=vdd}
+N 1240 -1030 1240 -1000 {lab=vss}
+N 1240 -1100 1240 -1070 {lab=vdd}
+N 1220 -1530 1220 -1500 {lab=en1_n}
+N 1200 -1530 1200 -1510 {lab=cfb_en1}
+N 1220 -1360 1220 -1330 {lab=en2_n}
+N 1200 -1360 1200 -1330 {lab=cfb_en2}
+N 1200 -1370 1200 -1360 {lab=cfb_en2}
+N 1220 -1390 1220 -1360 {lab=en2_n}
+N 1200 -1390 1200 -1370 {lab=cfb_en2}
+N 1220 -1230 1220 -1200 {lab=en3_n}
+N 1200 -1230 1200 -1200 {lab=cfb_en3}
+N 1200 -1240 1200 -1230 {lab=cfb_en3}
+N 1220 -1260 1220 -1230 {lab=en3_n}
+N 1200 -1260 1200 -1240 {lab=cfb_en3}
+N 1220 -1100 1220 -1070 {lab=en4_n}
+N 1200 -1100 1200 -1070 {lab=cfb_en4}
+N 1200 -1110 1200 -1100 {lab=cfb_en4}
+N 1220 -1130 1220 -1100 {lab=en4_n}
+N 1200 -1130 1200 -1110 {lab=cfb_en4}
 N 740 -1960 740 -1590 {lab=vvg_2}
 N 80 -590 160 -590 {lab=cfb_en1}
 N 160 -670 160 -630 {lab=vdd}
@@ -200,12 +199,12 @@ N 510 -350 510 -290 {lab=vss}
 N 510 -450 510 -390 {lab=vdd}
 N 480 -450 510 -450 {lab=vdd}
 N 560 -370 640 -370 {lab=en4_n}
-N 1110 -750 1190 -750 {lab=vint_1}
-N 1110 -730 1110 -700 {lab=vss}
-N 1110 -800 1110 -770 {lab=vdd}
-N 1110 -610 1190 -610 {lab=vint_2}
-N 1110 -480 1190 -480 {lab=vint_3}
-N 1110 -350 1190 -350 {lab=vint_4}
+N 1110 -750 1190 -750 {lab=vint_1_2}
+N 1250 -730 1250 -700 {lab=vss}
+N 1250 -800 1250 -770 {lab=vdd}
+N 1110 -610 1190 -610 {lab=vint_2_2}
+N 1110 -480 1190 -480 {lab=vint_3_2}
+N 1110 -350 1190 -350 {lab=vint_4_2}
 N 970 -890 1190 -890 {lab=vvg_1}
 N 970 -890 970 -750 {lab=vvg_1}
 N 970 -750 1050 -750 {lab=vvg_1}
@@ -219,32 +218,32 @@ N 1250 -350 1350 -350 {lab=voutchop_2}
 N 1250 -480 1350 -480 {lab=voutchop_2}
 N 1250 -610 1350 -610 {lab=voutchop_2}
 N 1250 -750 1350 -750 {lab=voutchop_2}
-N 1090 -800 1090 -770 {lab=en1_n}
-N 1070 -800 1070 -770 {lab=cfb_en1}
-N 1070 -810 1070 -800 {lab=cfb_en1}
-N 1110 -590 1110 -560 {lab=vss}
-N 1110 -660 1110 -630 {lab=vdd}
-N 1110 -460 1110 -430 {lab=vss}
-N 1110 -530 1110 -500 {lab=vdd}
-N 1110 -330 1110 -300 {lab=vss}
-N 1110 -400 1110 -370 {lab=vdd}
-N 1090 -830 1090 -800 {lab=en1_n}
-N 1070 -830 1070 -810 {lab=cfb_en1}
-N 1090 -660 1090 -630 {lab=en2_n}
-N 1070 -660 1070 -630 {lab=cfb_en2}
-N 1070 -670 1070 -660 {lab=cfb_en2}
-N 1090 -690 1090 -660 {lab=en2_n}
-N 1070 -690 1070 -670 {lab=cfb_en2}
-N 1090 -530 1090 -500 {lab=en3_n}
-N 1070 -530 1070 -500 {lab=cfb_en3}
-N 1070 -540 1070 -530 {lab=cfb_en3}
-N 1090 -560 1090 -530 {lab=en3_n}
-N 1070 -560 1070 -540 {lab=cfb_en3}
-N 1090 -400 1090 -370 {lab=en4_n}
-N 1070 -400 1070 -370 {lab=cfb_en4}
-N 1070 -410 1070 -400 {lab=cfb_en4}
-N 1090 -430 1090 -400 {lab=en4_n}
-N 1070 -430 1070 -410 {lab=cfb_en4}
+N 1230 -800 1230 -770 {lab=en1_n}
+N 1210 -800 1210 -770 {lab=cfb_en1}
+N 1210 -810 1210 -800 {lab=cfb_en1}
+N 1250 -590 1250 -560 {lab=vss}
+N 1250 -660 1250 -630 {lab=vdd}
+N 1250 -460 1250 -430 {lab=vss}
+N 1250 -530 1250 -500 {lab=vdd}
+N 1250 -330 1250 -300 {lab=vss}
+N 1250 -400 1250 -370 {lab=vdd}
+N 1230 -830 1230 -800 {lab=en1_n}
+N 1210 -830 1210 -810 {lab=cfb_en1}
+N 1230 -660 1230 -630 {lab=en2_n}
+N 1210 -660 1210 -630 {lab=cfb_en2}
+N 1210 -670 1210 -660 {lab=cfb_en2}
+N 1230 -690 1230 -660 {lab=en2_n}
+N 1210 -690 1210 -670 {lab=cfb_en2}
+N 1230 -530 1230 -500 {lab=en3_n}
+N 1210 -530 1210 -500 {lab=cfb_en3}
+N 1210 -540 1210 -530 {lab=cfb_en3}
+N 1230 -560 1230 -530 {lab=en3_n}
+N 1210 -560 1210 -540 {lab=cfb_en3}
+N 1230 -400 1230 -370 {lab=en4_n}
+N 1210 -400 1210 -370 {lab=cfb_en4}
+N 1210 -410 1210 -400 {lab=cfb_en4}
+N 1230 -430 1230 -400 {lab=en4_n}
+N 1210 -430 1210 -410 {lab=cfb_en4}
 N 690 -1100 690 -890 {lab=vvg_1}
 N 1920 -1380 1920 -910 {lab=vout_2}
 N 1750 -910 1920 -910 {lab=vout_2}
@@ -267,6 +266,10 @@ N 2130 -3070 2130 -2760 {lab=vout_2}
 N 2170 -3160 2170 -2850 {lab=vout_1}
 N 0 -2040 90 -2040 {lab=vin_1}
 N 0 -1960 90 -1960 {lab=vin_2}
+N 830 -2040 910 -2040 {lab=#net1}
+N 610 -2040 770 -2040 {lab=vvg_1}
+N 1840 -3290 1930 -3290 {lab=#net2}
+N 1840 -3250 1930 -3250 {lab=#net3}
 C {xschem/ccia_main_ota/b9_ccia_main_ota.sym} 910 -1720 0 0 {name=x1}
 C {xschem/ccia_rrl/b9_ccia_rrl.sym} 1840 -2650 0 1 {name=x2}
 C {title.sym} 160 -40 0 0 {name=l1 author="alang"}
@@ -354,55 +357,55 @@ model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1210 -1450 3 0 {name=C4
+C {symbols/cap_mim_2f0fF.sym} 1070 -1450 3 0 {name=C4
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1210 -1310 3 0 {name=C5
+C {symbols/cap_mim_2f0fF.sym} 1070 -1310 3 0 {name=C5
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1210 -1180 3 0 {name=C6
+C {symbols/cap_mim_2f0fF.sym} 1070 -1180 3 0 {name=C6
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1210 -1050 3 0 {name=C7
+C {symbols/cap_mim_2f0fF.sym} 1070 -1050 3 0 {name=C7
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {xschem/sw/b9_sw_debug.sym} 1100 -1430 0 1 {name=x7}
-C {lab_wire.sym} 1120 -1450 0 1 {name=p63 sig_type=std_logic lab=vint_1}
-C {lab_wire.sym} 1120 -1310 0 1 {name=p64 sig_type=std_logic lab=vint_2}
-C {lab_wire.sym} 1120 -1180 0 1 {name=p65 sig_type=std_logic lab=vint_3}
-C {lab_wire.sym} 1120 -1050 0 1 {name=p66 sig_type=std_logic lab=vint_4}
-C {lab_wire.sym} 1100 -1400 1 0 {name=p67 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1100 -1500 1 1 {name=p68 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 1060 -1530 1 1 {name=p69 sig_type=std_logic lab=cfb_en1}
-C {xschem/sw/b9_sw_debug.sym} 1100 -1290 0 1 {name=x8}
-C {lab_wire.sym} 1100 -1260 1 0 {name=p70 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1100 -1360 1 1 {name=p71 sig_type=std_logic lab=vdd}
-C {xschem/sw/b9_sw_debug.sym} 1100 -1160 0 1 {name=x9}
-C {lab_wire.sym} 1100 -1130 1 0 {name=p72 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1100 -1230 1 1 {name=p74 sig_type=std_logic lab=vdd}
-C {xschem/sw/b9_sw_debug.sym} 1100 -1030 0 1 {name=x10}
-C {lab_wire.sym} 1100 -1000 3 1 {name=p75 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1100 -1100 1 1 {name=p76 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 1080 -1530 1 1 {name=p77 sig_type=std_logic lab=en1_n}
-C {lab_wire.sym} 1080 -1390 1 1 {name=p79 sig_type=std_logic lab=en2_n}
-C {lab_wire.sym} 1080 -1260 1 1 {name=p81 sig_type=std_logic lab=en3_n}
-C {lab_wire.sym} 1080 -1130 1 1 {name=p83 sig_type=std_logic lab=en4_n}
+C {xschem/sw/b9_sw_debug.sym} 1240 -1430 0 1 {name=x7}
+C {lab_wire.sym} 1110 -1450 0 1 {name=p63 sig_type=std_logic lab=vint_1_1}
+C {lab_wire.sym} 1120 -1310 0 1 {name=p64 sig_type=std_logic lab=vint_2_1}
+C {lab_wire.sym} 1120 -1180 0 1 {name=p65 sig_type=std_logic lab=vint_3_1}
+C {lab_wire.sym} 1120 -1050 0 1 {name=p66 sig_type=std_logic lab=vint_4_1}
+C {lab_wire.sym} 1240 -1400 1 0 {name=p67 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1240 -1500 1 1 {name=p68 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1200 -1530 1 1 {name=p69 sig_type=std_logic lab=cfb_en1}
+C {xschem/sw/b9_sw_debug.sym} 1240 -1290 0 1 {name=x8}
+C {lab_wire.sym} 1240 -1260 1 0 {name=p70 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1240 -1360 1 1 {name=p71 sig_type=std_logic lab=vdd}
+C {xschem/sw/b9_sw_debug.sym} 1240 -1160 0 1 {name=x9}
+C {lab_wire.sym} 1240 -1130 1 0 {name=p72 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1240 -1230 1 1 {name=p74 sig_type=std_logic lab=vdd}
+C {xschem/sw/b9_sw_debug.sym} 1240 -1030 0 1 {name=x10}
+C {lab_wire.sym} 1240 -1000 3 1 {name=p75 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1240 -1100 1 1 {name=p76 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1220 -1530 1 1 {name=p77 sig_type=std_logic lab=en1_n}
+C {lab_wire.sym} 1220 -1390 1 1 {name=p79 sig_type=std_logic lab=en2_n}
+C {lab_wire.sym} 1220 -1260 1 1 {name=p81 sig_type=std_logic lab=en3_n}
+C {lab_wire.sym} 1220 -1130 1 1 {name=p83 sig_type=std_logic lab=en4_n}
 C {xschem/mcu7t5v0/gf180mcu_fd_sc_mcu7t5v0__inv_2.sym} 160 -550 0 0 {name=x11}
 C {lab_wire.sym} 80 -590 0 1 {name=p57 sig_type=std_logic lab=cfb_en1}
 C {lab_wire.sym} 320 -590 0 0 {name=p62 sig_type=std_logic lab=en1_n}
@@ -430,61 +433,61 @@ model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1220 -750 3 0 {name=C9
+C {symbols/cap_mim_2f0fF.sym} 1080 -750 3 0 {name=C9
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1220 -610 3 0 {name=C10
+C {symbols/cap_mim_2f0fF.sym} 1080 -610 3 0 {name=C10
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1220 -480 3 0 {name=C11
+C {symbols/cap_mim_2f0fF.sym} 1080 -480 3 0 {name=C11
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {symbols/cap_mim_2f0fF.sym} 1220 -350 3 0 {name=C12
+C {symbols/cap_mim_2f0fF.sym} 1080 -350 3 0 {name=C12
 W=10e-6
 L=10e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1
 }
-C {xschem/sw/b9_sw_debug.sym} 1110 -730 0 1 {name=x15}
-C {lab_wire.sym} 1130 -750 0 1 {name=p98 sig_type=std_logic lab=vint_1}
-C {lab_wire.sym} 1130 -610 0 1 {name=p99 sig_type=std_logic lab=vint_2}
-C {lab_wire.sym} 1130 -480 0 1 {name=p100 sig_type=std_logic lab=vint_3}
-C {lab_wire.sym} 1130 -350 0 1 {name=p101 sig_type=std_logic lab=vint_4}
-C {lab_wire.sym} 1110 -700 1 0 {name=p102 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1110 -800 1 1 {name=p103 sig_type=std_logic lab=vdd}
-C {xschem/sw/b9_sw_debug.sym} 1110 -590 0 1 {name=x16}
-C {lab_wire.sym} 1110 -560 1 0 {name=p105 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1110 -660 1 1 {name=p106 sig_type=std_logic lab=vdd}
-C {xschem/sw/b9_sw_debug.sym} 1110 -460 0 1 {name=x17}
-C {lab_wire.sym} 1110 -430 1 0 {name=p107 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1110 -530 1 1 {name=p108 sig_type=std_logic lab=vdd}
-C {xschem/sw/b9_sw_debug.sym} 1110 -330 0 1 {name=x18}
-C {lab_wire.sym} 1110 -300 3 1 {name=p109 sig_type=std_logic lab=vss}
-C {lab_wire.sym} 1110 -400 1 1 {name=p110 sig_type=std_logic lab=vdd}
-C {lab_wire.sym} 1090 -830 1 1 {name=p111 sig_type=std_logic lab=en1_n}
-C {lab_wire.sym} 1090 -690 1 1 {name=p113 sig_type=std_logic lab=en2_n}
-C {lab_wire.sym} 1090 -560 1 1 {name=p115 sig_type=std_logic lab=en3_n}
-C {lab_wire.sym} 1090 -430 1 1 {name=p117 sig_type=std_logic lab=en4_n}
-C {lab_wire.sym} 1060 -1390 1 1 {name=p56 sig_type=std_logic lab=cfb_en2}
-C {lab_wire.sym} 1060 -1260 1 1 {name=p73 sig_type=std_logic lab=cfb_en3}
-C {lab_wire.sym} 1060 -1130 1 1 {name=p78 sig_type=std_logic lab=cfb_en4}
-C {lab_wire.sym} 1070 -830 1 1 {name=p80 sig_type=std_logic lab=cfb_en1}
-C {lab_wire.sym} 1070 -690 1 1 {name=p104 sig_type=std_logic lab=cfb_en2}
-C {lab_wire.sym} 1070 -560 1 1 {name=p112 sig_type=std_logic lab=cfb_en3}
-C {lab_wire.sym} 1070 -430 1 1 {name=p114 sig_type=std_logic lab=cfb_en4}
+C {xschem/sw/b9_sw_debug.sym} 1250 -730 0 1 {name=x15}
+C {lab_wire.sym} 1130 -750 0 1 {name=p98 sig_type=std_logic lab=vint_1_2}
+C {lab_wire.sym} 1130 -610 0 1 {name=p99 sig_type=std_logic lab=vint_2_2}
+C {lab_wire.sym} 1130 -480 0 1 {name=p100 sig_type=std_logic lab=vint_3_2}
+C {lab_wire.sym} 1130 -350 0 1 {name=p101 sig_type=std_logic lab=vint_4_2}
+C {lab_wire.sym} 1250 -700 1 0 {name=p102 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1250 -800 1 1 {name=p103 sig_type=std_logic lab=vdd}
+C {xschem/sw/b9_sw_debug.sym} 1250 -590 0 1 {name=x16}
+C {lab_wire.sym} 1250 -560 1 0 {name=p105 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1250 -660 1 1 {name=p106 sig_type=std_logic lab=vdd}
+C {xschem/sw/b9_sw_debug.sym} 1250 -460 0 1 {name=x17}
+C {lab_wire.sym} 1250 -430 1 0 {name=p107 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1250 -530 1 1 {name=p108 sig_type=std_logic lab=vdd}
+C {xschem/sw/b9_sw_debug.sym} 1250 -330 0 1 {name=x18}
+C {lab_wire.sym} 1250 -300 3 1 {name=p109 sig_type=std_logic lab=vss}
+C {lab_wire.sym} 1250 -400 1 1 {name=p110 sig_type=std_logic lab=vdd}
+C {lab_wire.sym} 1230 -830 1 1 {name=p111 sig_type=std_logic lab=en1_n}
+C {lab_wire.sym} 1230 -690 1 1 {name=p113 sig_type=std_logic lab=en2_n}
+C {lab_wire.sym} 1230 -560 1 1 {name=p115 sig_type=std_logic lab=en3_n}
+C {lab_wire.sym} 1230 -430 1 1 {name=p117 sig_type=std_logic lab=en4_n}
+C {lab_wire.sym} 1200 -1390 1 1 {name=p56 sig_type=std_logic lab=cfb_en2}
+C {lab_wire.sym} 1200 -1260 1 1 {name=p73 sig_type=std_logic lab=cfb_en3}
+C {lab_wire.sym} 1200 -1130 1 1 {name=p78 sig_type=std_logic lab=cfb_en4}
+C {lab_wire.sym} 1210 -830 1 1 {name=p80 sig_type=std_logic lab=cfb_en1}
+C {lab_wire.sym} 1210 -690 1 1 {name=p104 sig_type=std_logic lab=cfb_en2}
+C {lab_wire.sym} 1210 -560 1 1 {name=p112 sig_type=std_logic lab=cfb_en3}
+C {lab_wire.sym} 1210 -430 1 1 {name=p114 sig_type=std_logic lab=cfb_en4}
 C {lab_wire.sym} 1480 -1330 0 0 {name=p82 sig_type=std_logic lab=voutchop_1}
 C {lab_wire.sym} 1490 -600 0 0 {name=p116 sig_type=std_logic lab=voutchop_2}
 C {iopin.sym} 0 -1500 0 0 {name=p119 lab=vin_2}
@@ -526,3 +529,6 @@ C {iopin.sym} 240 -860 0 0 {name=p153 lab=probe_gm4_int_pbias}
 C {iopin.sym} 240 -820 0 0 {name=p154 lab=probe_gm4_vbn}
 C {iopin.sym} 240 -780 0 0 {name=p155 lab=probe_gm4_vbp}
 C {iopin.sym} 0 -820 0 0 {name=p156 lab=dbg_en}
+C {vsource.sym} 800 -2040 1 0 {name=V1 value=10m savecurrent=false}
+C {lab_wire.sym} 1930 -3290 0 0 {name=p157 sig_type=std_logic lab=phi1}
+C {lab_wire.sym} 1930 -3250 0 0 {name=p158 sig_type=std_logic lab=phi2}
